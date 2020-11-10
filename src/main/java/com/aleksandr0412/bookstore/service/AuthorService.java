@@ -1,40 +1,49 @@
 package com.aleksandr0412.bookstore.service;
 
-import com.aleksandr0412.bookstore.dao.AuthorDAO;
 import com.aleksandr0412.bookstore.model.Author;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
-@Service
-public class AuthorService {
-    private AuthorDAO authorDAO;
+/**
+ * AuthorService
+ */
+public interface AuthorService {
+    /**
+     * Добавляет автора
+     *
+     * @param author
+     * @return добавленного автора
+     */
+    Author addAuthor(Author author);
 
-    @Autowired
-    public AuthorService(AuthorDAO authorDAO) {
-        this.authorDAO = authorDAO;
-    }
+    /**
+     * Получает автора по первичному ключу
+     *
+     * @param id
+     * @return автора по заданному пк
+     */
+    Author getAuthorByPK(Long id);
 
-    public Author addAuthor(Author author) {
-        return authorDAO.save(author);
-    }
+    /**
+     * Удаляет автора по первичному ключу
+     *
+     * @param id
+     * @return автора по заданному пк
+     */
+    Author deleteAuthorByPK(Long id);
 
-    public Author getAuthorByPK(Long id) {
-        return authorDAO.getByPK(id);
-    }
+    /**
+     * Обновляет автора
+     *
+     * @param author обновленный автор
+     * @return обновленного автора
+     */
+    Author updateAuthor(Author author);
 
-    public Author deleteAuthorByPK(Long id) {
-        return authorDAO.deleteByPK(id);
-    }
-
-    public Author updateAuthor(Author author) {
-        return authorDAO.update(author);
-    }
-
-    public List<Author> getAllAuthors() {
-        return new ArrayList<>(authorDAO.getAll());
-    }
-
+    /**
+     * Возвращает список всех авторов
+     *
+     * @return всех авторов
+     */
+    List<Author> getAllAuthors();
 }

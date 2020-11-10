@@ -5,10 +5,10 @@ import com.aleksandr0412.bookstore.model.Author;
 import com.aleksandr0412.bookstore.model.Book;
 import com.aleksandr0412.bookstore.model.Order;
 import com.aleksandr0412.bookstore.model.User;
-import com.aleksandr0412.bookstore.service.AuthorService;
-import com.aleksandr0412.bookstore.service.BookService;
-import com.aleksandr0412.bookstore.service.OrderService;
-import com.aleksandr0412.bookstore.service.UserService;
+import com.aleksandr0412.bookstore.service.impl.AuthorServiceImpl;
+import com.aleksandr0412.bookstore.service.impl.BookServiceImpl;
+import com.aleksandr0412.bookstore.service.impl.OrderServiceImpl;
+import com.aleksandr0412.bookstore.service.impl.UserServiceImpl;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -32,10 +32,10 @@ public class MainApp {
         order.setId(1L);
         order.setUser(user);
 
-        BookService bookService = (BookService) context.getBean("bookService");
-        AuthorService authorService = (AuthorService) context.getBean("authorService");
-        UserService userService = (UserService) context.getBean("userService");
-        OrderService orderService = (OrderService) context.getBean("orderService");
+        BookServiceImpl bookService = (BookServiceImpl) context.getBean("bookServiceImpl");
+        AuthorServiceImpl authorService = (AuthorServiceImpl) context.getBean("authorServiceImpl");
+        UserServiceImpl userService = (UserServiceImpl) context.getBean("userServiceImpl");
+        OrderServiceImpl orderService = (OrderServiceImpl) context.getBean("orderServiceImpl");
 
         System.out.println(bookService.addBook(book));
         System.out.println(bookService.getAllBooks());
