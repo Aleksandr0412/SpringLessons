@@ -1,9 +1,24 @@
 package com.aleksandr0412.bookstore.model;
 
+/**
+ * Представление полбзователя в системе
+ */
 public class User implements Identified<Long> {
+    /**
+     * Идентификатор пользователя
+     */
     private Long id;
+    /**
+     * Логин пользователя на английском
+     */
     private String username;
+    /**
+     * Пароль
+     */
     private String password;
+    /**
+     * Почта пользователя
+     */
     private String email;
 
     @Override
@@ -37,5 +52,15 @@ public class User implements Identified<Long> {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                '}';
     }
 }
