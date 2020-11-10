@@ -1,52 +1,49 @@
 package com.aleksandr0412.bookstore.service;
 
-import com.aleksandr0412.bookstore.dao.BookDAO;
-import com.aleksandr0412.bookstore.exceptions.ResourceNotFoundException;
 import com.aleksandr0412.bookstore.model.Book;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
-public class BookService {
-    private BookDAO bookDAO;
+/**
+ * BookService
+ */
+public interface BookService {
+    /**
+     * Добавляет книгу
+     *
+     * @param book
+     * @return добавленную книгу
+     */
+    Book addBook(Book book);
 
-    public BookService(BookDAO bookDAO) {
-        this.bookDAO = bookDAO;
-    }
+    /**
+     * Возвращает книгу по первичному ключу
+     *
+     * @param id
+     * @return книгу по пк
+     */
+    Book getBookByPK(Long id);
 
-    public Book addBook(Book book) {
-        return bookDAO.save(book);
-    }
+    /**
+     * Удаляет книгу по первичному ключу
+     *
+     * @param id
+     * @return удаленную книгу
+     */
+    Book deleteBookByPK(Long id);
 
-    public Book getBookByPK(Long id) {
-        Book book;
-        if ((book = bookDAO.getByPK(id)) != null) {
-            return book;
-        } else throw new ResourceNotFoundException("Book not found");
-    }
+    /**
+     * Обновляет книгу
+     *
+     * @param book
+     * @return обновленную книгу
+     */
+    Book updateBook(Book book);
 
-    public Book deleteBookByPK(Long id) {
-        if (bookDAO.getByPK(id) != null) {
-            return bookDAO.deleteByPK(id);
-        } else throw new ResourceNotFoundException("Book not found");
-    }
-
-    public Book updateBook(Book book) {
-        return bookDAO.update(book);
-    }
-
-    public Book deleteBook(Book book) {
-        if (bookDAO.getByPK(book.getId()) != null) {
-            return bookDAO.delete(book);
-        } else throw new ResourceNotFoundException("Book not found");
-    }
-
-    public List<Book> getAllBooks() {
-        return new ArrayList<>(bookDAO.getAll());
-    }
-
-    public List<Book> addAllBooks(Collection<Book> books) {
-        return new ArrayList<>(bookDAO.addAll(books));
-    }
+    /**
+     * Возвращает список всех книг
+     *
+     * @return список всех книг
+     */
+    List<Book> getAllBooks();
 }

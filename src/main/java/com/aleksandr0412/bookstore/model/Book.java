@@ -2,13 +2,37 @@ package com.aleksandr0412.bookstore.model;
 
 import java.time.LocalDate;
 
+/**
+ * Представление книги в системе
+ */
 public class Book implements Identified<Long> {
+    /**
+     * Идентификатор книги
+     */
     private Long id;
+    /**
+     * Название книги
+     */
     private String title;
+    /**
+     * Аннотация книги
+     */
     private String description;
+    /**
+     * Жанр книги
+     */
     private Genre genre;
+    /**
+     * Цена книги в рублях
+     */
     private Long price;
+    /**
+     * Дата публикации книги
+     */
     private LocalDate publishDate;
+    /**
+     * Автор книги
+     */
     private Author author;
 
     @Override
@@ -66,5 +90,18 @@ public class Book implements Identified<Long> {
 
     public void setPublishDate(LocalDate publishDate) {
         this.publishDate = publishDate;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", genre=" + genre +
+                ", price=" + price +
+                ", publishDate=" + publishDate +
+                ", author=" + author +
+                '}';
     }
 }

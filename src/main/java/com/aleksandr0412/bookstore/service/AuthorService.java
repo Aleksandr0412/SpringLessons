@@ -1,52 +1,49 @@
 package com.aleksandr0412.bookstore.service;
 
-import com.aleksandr0412.bookstore.dao.AuthorDAO;
-import com.aleksandr0412.bookstore.exceptions.ResourceNotFoundException;
 import com.aleksandr0412.bookstore.model.Author;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
-public class AuthorService {
-    private AuthorDAO authorDAO;
+/**
+ * AuthorService
+ */
+public interface AuthorService {
+    /**
+     * Добавляет автора
+     *
+     * @param author
+     * @return добавленного автора
+     */
+    Author addAuthor(Author author);
 
-    public AuthorService(AuthorDAO authorDAO) {
-        this.authorDAO = authorDAO;
-    }
+    /**
+     * Получает автора по первичному ключу
+     *
+     * @param id
+     * @return автора по заданному пк
+     */
+    Author getAuthorByPK(Long id);
 
-    public Author addAuthor(Author author) {
-        return authorDAO.save(author);
-    }
+    /**
+     * Удаляет автора по первичному ключу
+     *
+     * @param id
+     * @return автора по заданному пк
+     */
+    Author deleteAuthorByPK(Long id);
 
-    public Author getAuthorByPK(Long id) {
-        Author author;
-        if ((author = authorDAO.getByPK(id)) != null) {
-            return author;
-        } else throw new ResourceNotFoundException("Author not found");
-    }
+    /**
+     * Обновляет автора
+     *
+     * @param author обновленный автор
+     * @return обновленного автора
+     */
+    Author updateAuthor(Author author);
 
-    public Author deleteAuthorByPK(Long id) {
-        if (authorDAO.getByPK(id) != null) {
-            return authorDAO.deleteByPK(id);
-        } else throw new ResourceNotFoundException("Author not found");
-    }
-
-    public Author updateAuthor(Author author) {
-        return authorDAO.update(author);
-    }
-
-    public Author deleteAuthor(Author author) {
-        if (authorDAO.getByPK(author.getId()) != null) {
-            return authorDAO.delete(author);
-        } else throw new ResourceNotFoundException("Author not found");
-    }
-
-    public List<Author> getAllAuthors() {
-        return new ArrayList<>(authorDAO.getAll());
-    }
-
-    public List<Author> addAllAuthors(Collection<Author> authors) {
-        return new ArrayList<>(authorDAO.addAll(authors));
-    }
+    /**
+     * Возвращает список всех авторов
+     *
+     * @return всех авторов
+     */
+    List<Author> getAllAuthors();
 }
