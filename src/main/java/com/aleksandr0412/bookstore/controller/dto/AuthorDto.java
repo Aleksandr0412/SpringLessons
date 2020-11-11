@@ -1,11 +1,10 @@
-package com.aleksandr0412.bookstore.model;
+package com.aleksandr0412.bookstore.controller.dto;
+
+import com.aleksandr0412.bookstore.model.Book;
 
 import java.util.Set;
 
-/**
- * Представление автора книги в системе
- */
-public class Author implements Identified<Long> {
+public class AuthorDto {
     /**
      * Идентификатор автора
      */
@@ -19,16 +18,6 @@ public class Author implements Identified<Long> {
      */
     private Set<Book> books;
 
-    public Author() {
-    }
-
-    public Author(Long id, String name, Set<Book> books) {
-        this.id = id;
-        this.name = name;
-        this.books = books;
-    }
-
-    @Override
     public Long getId() {
         return id;
     }
@@ -53,12 +42,12 @@ public class Author implements Identified<Long> {
         this.books = books;
     }
 
-    @Override
-    public String toString() {
-        return "Author{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", books=" + books +
-                '}';
+    public AuthorDto() {
+    }
+
+    public AuthorDto(Long id, String name, Set<Book> books) {
+        this.id = id;
+        this.name = name;
+        this.books = books;
     }
 }

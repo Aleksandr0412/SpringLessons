@@ -1,9 +1,9 @@
 package com.aleksandr0412.bookstore.service.impl;
 
+import com.aleksandr0412.bookstore.controller.dto.BookDto;
 import com.aleksandr0412.bookstore.dao.BookDAO;
 import com.aleksandr0412.bookstore.model.Book;
 import com.aleksandr0412.bookstore.service.BookService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -17,23 +17,38 @@ public class BookServiceImpl implements BookService {
         this.bookDAO = bookDAO;
     }
 
-    public Book addBook(Book book) {
-        return bookDAO.save(book);
+    public BookDto addBook(BookDto bookDto) {
+        Book book = new Book(bookDto.getId(), bookDto.getTitle(), bookDto.getDescription(), bookDto.getGenre(),
+                bookDto.getPrice(), bookDto.getPublishDate(), bookDto.getAuthor());
+        bookDAO.save(book);
+        return bookDto;
     }
 
-    public Book getBookByPK(Long id) {
-        return bookDAO.getByPK(id);
+    public BookDto getBookByPK(Long id) {
+        Book book = bookDAO.getByPK(id);
+        return new BookDto(book.getId(), book.getTitle(), book.getDescription(), book.getGenre(),
+                book.getPrice(), book.getPublishDate(), book.getAuthor());
     }
 
-    public Book deleteBookByPK(Long id) {
-        return bookDAO.deleteByPK(id);
+    public BookDto deleteBookByPK(Long id) {
+        Book book = bookDAO.deleteByPK(id);
+        return new BookDto(book.getId(), book.getTitle(), book.getDescription(), book.getGenre(),
+                book.getPrice(), book.getPublishDate(), book.getAuthor());
     }
 
-    public Book updateBook(Book book) {
-        return bookDAO.update(book);
+    public BookDto updateBook(BookDto bookDto) {
+        Book book = new Book(bookDto.getId(), bookDto.getTitle(), bookDto.getDescription(), bookDto.getGenre(),
+                bookDto.getPrice(), bookDto.getPublishDate(), bookDto.getAuthor());
+        bookDAO.update(book);
+        return bookDto;
     }
 
-    public List<Book> getAllBooks() {
-        return new ArrayList<>(bookDAO.getAll());
+    public List<BookDto> getAllBooks() {
+        List<BookDto> bookDtos = new ArrayList<>();
+        for (Book book : bookDAO.getAll()) {
+            bookDtos.add(new BookDto(book.getId(), book.getTitle(), book.getDescription(), book.getGenre(),
+                    book.getPrice(), book.getPublishDate(), book.getAuthor()));
+        }
+        return bookDtos;
     }
 }

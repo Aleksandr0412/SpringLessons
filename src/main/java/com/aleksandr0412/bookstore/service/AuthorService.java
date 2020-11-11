@@ -1,5 +1,6 @@
 package com.aleksandr0412.bookstore.service;
 
+import com.aleksandr0412.bookstore.controller.dto.AuthorDto;
 import com.aleksandr0412.bookstore.model.Author;
 
 import java.util.List;
@@ -11,10 +12,10 @@ public interface AuthorService {
     /**
      * Добавляет автора
      *
-     * @param author
+     * @param authorDto
      * @return добавленного автора
      */
-    Author addAuthor(Author author);
+    AuthorDto addAuthor(AuthorDto authorDto);
 
     /**
      * Получает автора по первичному ключу
@@ -22,7 +23,7 @@ public interface AuthorService {
      * @param id
      * @return автора по заданному пк
      */
-    Author getAuthorByPK(Long id);
+    AuthorDto getAuthorByPK(Long id);
 
     /**
      * Удаляет автора по первичному ключу
@@ -30,20 +31,20 @@ public interface AuthorService {
      * @param id
      * @return автора по заданному пк
      */
-    Author deleteAuthorByPK(Long id);
+    AuthorDto deleteAuthorByPK(Long id);
 
     /**
      * Обновляет автора
      *
-     * @param author обновленный автор
+     * @param authorDto обновленный автор
      * @return обновленного автора
      */
-    Author updateAuthor(Author author);
+    AuthorDto updateAuthor(AuthorDto authorDto);
 
     /**
      * Возвращает список всех авторов
      *
      * @return всех авторов
      */
-    List<Author> getAllAuthors();
+    List<AuthorDto> getAllAuthors();
 }

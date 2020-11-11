@@ -1,9 +1,9 @@
 package com.aleksandr0412.bookstore.service.impl;
 
+import com.aleksandr0412.bookstore.controller.dto.AuthorDto;
 import com.aleksandr0412.bookstore.dao.AuthorDAO;
 import com.aleksandr0412.bookstore.model.Author;
 import com.aleksandr0412.bookstore.service.AuthorService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -17,23 +17,33 @@ public class AuthorServiceImpl implements AuthorService {
         this.authorDAO = authorDAO;
     }
 
-    public Author addAuthor(Author author) {
-        return authorDAO.save(author);
+    public AuthorDto addAuthor(AuthorDto authorDto) {
+        Author author = new Author(authorDto.getId(), authorDto.getName(), authorDto.getBooks());
+        authorDAO.save(author);
+        return authorDto;
     }
 
-    public Author getAuthorByPK(Long id) {
-        return authorDAO.getByPK(id);
+    public AuthorDto getAuthorByPK(Long id) {
+        Author author = authorDAO.getByPK(id);
+        return new AuthorDto(author.getId(), author.getName(), author.getBooks());
     }
 
-    public Author deleteAuthorByPK(Long id) {
-        return authorDAO.deleteByPK(id);
+    public AuthorDto deleteAuthorByPK(Long id) {
+        Author author = authorDAO.deleteByPK(id);
+        return new AuthorDto(author.getId(), author.getName(), author.getBooks());
     }
 
-    public Author updateAuthor(Author author) {
-        return authorDAO.update(author);
+    public AuthorDto updateAuthor(AuthorDto authorDto) {
+        Author author = new Author(authorDto.getId(), authorDto.getName(), authorDto.getBooks());
+        authorDAO.update(author);
+        return authorDto;
     }
 
-    public List<Author> getAllAuthors() {
-        return new ArrayList<>(authorDAO.getAll());
+    public List<AuthorDto> getAllAuthors() {
+        List<AuthorDto> authorDtos = new ArrayList<>();
+        for (Author author : authorDAO.getAll()) {
+            authorDtos.add(new AuthorDto(author.getId(), author.getName(), author.getBooks()));
+        }
+        return authorDtos;
     }
 }

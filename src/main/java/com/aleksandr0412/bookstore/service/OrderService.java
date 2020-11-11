@@ -1,5 +1,6 @@
 package com.aleksandr0412.bookstore.service;
 
+import com.aleksandr0412.bookstore.controller.dto.OrderDto;
 import com.aleksandr0412.bookstore.model.Order;
 
 /**
@@ -9,8 +10,8 @@ public interface OrderService {
     /**
      * Создает новый заказ
      *
-     * @param order
+     * @param orderDto
      * @return созданный заказ
      */
-    Order createNewOrder(Order order);
+    OrderDto createNewOrder(OrderDto orderDto);
 }

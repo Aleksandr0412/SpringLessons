@@ -1,5 +1,6 @@
 package com.aleksandr0412.bookstore.service;
 
+import com.aleksandr0412.bookstore.controller.dto.UserDto;
 import com.aleksandr0412.bookstore.model.User;
 
 /**
@@ -9,10 +10,10 @@ public interface UserService {
     /**
      * Создает нового пользователя
      *
-     * @param user
+     * @param userDto
      * @return созданного пользователя
      */
-    User createUser(User user);
+    UserDto createUser(UserDto userDto);
 
     /**
      * Возвращает пользователя по первичному ключу
@@ -20,7 +21,7 @@ public interface UserService {
      * @param id
      * @return пользователя по пк
      */
-    User getUserByPK(Long id);
+    UserDto getUserByPK(Long id);
 
     /**
      * Удаляет пользователя по первичному ключу
@@ -28,5 +29,5 @@ public interface UserService {
      * @param id
      * @return удаленного пользователя
      */
-    User deleteUserByPK(Long id);
+    UserDto deleteUserByPK(Long id);
 }
