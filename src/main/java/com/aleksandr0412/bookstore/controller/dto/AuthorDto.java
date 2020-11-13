@@ -3,12 +3,13 @@ package com.aleksandr0412.bookstore.controller.dto;
 import com.aleksandr0412.bookstore.model.Book;
 
 import java.util.Set;
+import java.util.UUID;
 
 public class AuthorDto {
     /**
      * Идентификатор автора
      */
-    private Long id;
+    private UUID id;
     /**
      * Имя автора в формате Фамилмя И. О.
      */
@@ -18,11 +19,11 @@ public class AuthorDto {
      */
     private Set<Book> books;
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -45,7 +46,7 @@ public class AuthorDto {
     public AuthorDto() {
     }
 
-    public AuthorDto(Long id, String name, Set<Book> books) {
+    public AuthorDto(UUID id, String name, Set<Book> books) {
         this.id = id;
         this.name = name;
         this.books = books;

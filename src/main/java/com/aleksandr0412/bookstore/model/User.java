@@ -1,13 +1,15 @@
 package com.aleksandr0412.bookstore.model;
 
+import java.util.UUID;
+
 /**
  * Представление полбзователя в системе
  */
-public class User implements Identified<Long> {
+public class User implements Identified<UUID> {
     /**
      * Идентификатор пользователя
      */
-    private Long id;
+    private UUID id;
     /**
      * Логин пользователя на английском
      */
@@ -24,7 +26,7 @@ public class User implements Identified<Long> {
     public User() {
     }
 
-    public User(Long id, String username, String password, String email) {
+    public User(UUID id, String username, String password, String email) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -32,11 +34,11 @@ public class User implements Identified<Long> {
     }
 
     @Override
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

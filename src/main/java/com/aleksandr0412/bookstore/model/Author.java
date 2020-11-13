@@ -1,15 +1,16 @@
 package com.aleksandr0412.bookstore.model;
 
 import java.util.Set;
+import java.util.UUID;
 
 /**
  * Представление автора книги в системе
  */
-public class Author implements Identified<Long> {
+public class Author implements Identified<UUID> {
     /**
      * Идентификатор автора
      */
-    private Long id;
+    private UUID id;
     /**
      * Имя автора в формате Фамилмя И. О.
      */
@@ -22,18 +23,18 @@ public class Author implements Identified<Long> {
     public Author() {
     }
 
-    public Author(Long id, String name, Set<Book> books) {
+    public Author(UUID id, String name, Set<Book> books) {
         this.id = id;
         this.name = name;
         this.books = books;
     }
 
     @Override
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

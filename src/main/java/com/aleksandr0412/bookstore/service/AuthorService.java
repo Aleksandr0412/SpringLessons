@@ -1,9 +1,9 @@
 package com.aleksandr0412.bookstore.service;
 
 import com.aleksandr0412.bookstore.controller.dto.AuthorDto;
-import com.aleksandr0412.bookstore.model.Author;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  * AuthorService
@@ -23,7 +23,7 @@ public interface AuthorService {
      * @param id
      * @return автора по заданному пк
      */
-    AuthorDto getAuthorByPK(Long id);
+    AuthorDto getAuthorByPK(UUID id);
 
     /**
      * Удаляет автора по первичному ключу
@@ -31,7 +31,7 @@ public interface AuthorService {
      * @param id
      * @return автора по заданному пк
      */
-    AuthorDto deleteAuthorByPK(Long id);
+    AuthorDto deleteAuthorByPK(UUID id);
 
     /**
      * Обновляет автора

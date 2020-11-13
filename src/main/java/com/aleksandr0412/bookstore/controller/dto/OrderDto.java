@@ -3,13 +3,15 @@ package com.aleksandr0412.bookstore.controller.dto;
 import com.aleksandr0412.bookstore.model.Book;
 import com.aleksandr0412.bookstore.model.User;
 
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.UUID;
 
 public class OrderDto {
     /**
      * Идентификатор заказа
      */
-    private Long id;
+    private UUID id;
     /**
      * Пользователь, создавший заказ
      */
@@ -17,17 +19,17 @@ public class OrderDto {
     /**
      * Цена в рублях
      */
-    private Long price;
+    private BigDecimal price;
     /**
      * Список книг заказа
      */
     private List<Book> books;
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -39,11 +41,11 @@ public class OrderDto {
         this.user = user;
     }
 
-    public Long getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(Long price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
@@ -58,7 +60,7 @@ public class OrderDto {
     public OrderDto() {
     }
 
-    public OrderDto(Long id, User user, Long price, List<Book> books) {
+    public OrderDto(UUID id, User user, BigDecimal price, List<Book> books) {
         this.id = id;
         this.user = user;
         this.price = price;

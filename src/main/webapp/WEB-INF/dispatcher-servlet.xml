@@ -15,5 +15,9 @@
     <context:component-scan base-package="com.aleksandr0412.bookstore"/>
 
     <mvc:annotation-driven/>
+    <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <property name="basename" value="message"/>
+        <property name="defaultEncoding" value="UTF-8"/>
+    </bean>
 
 </beans>

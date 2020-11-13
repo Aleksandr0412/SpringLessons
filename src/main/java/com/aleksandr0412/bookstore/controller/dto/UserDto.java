@@ -1,10 +1,12 @@
 package com.aleksandr0412.bookstore.controller.dto;
 
+import java.util.UUID;
+
 public class UserDto {
     /**
      * Идентификатор пользователя
      */
-    private Long id;
+    private UUID id;
     /**
      * Логин пользователя на английском
      */
@@ -18,11 +20,11 @@ public class UserDto {
      */
     private String email;
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -53,7 +55,7 @@ public class UserDto {
     public UserDto() {
     }
 
-    public UserDto(Long id, String username, String password, String email) {
+    public UserDto(UUID id, String username, String password, String email) {
         this.id = id;
         this.username = username;
         this.password = password;
