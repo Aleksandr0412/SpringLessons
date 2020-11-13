@@ -1,6 +1,5 @@
 package com.aleksandr0412.bookstore.validator;
 
-import com.aleksandr0412.bookstore.controller.dto.AuthorDto;
 import com.aleksandr0412.bookstore.controller.dto.UserDto;
 import com.aleksandr0412.bookstore.exceptions.IncorrectEmailException;
 import org.apache.logging.log4j.LogManager;
@@ -17,7 +16,7 @@ public class UserDtoValidator {
     protected static final Pattern VALID_EMAIL_ADDRESS_REGEX =
             Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
     private MessageSource messageSource;
-    private static final Logger logger = LogManager.getLogger(AuthorDto.class.getName());
+    private static final Logger logger = LogManager.getLogger(UserDtoValidator.class.getName());
 
     public UserDtoValidator(MessageSource messageSource) {
         this.messageSource = messageSource;

@@ -13,7 +13,7 @@ import java.util.Locale;
 @Component
 public class OrderDtoValidator {
     private MessageSource messageSource;
-    private static final Logger logger = LogManager.getLogger(UserDtoValidator.class.getName());
+    private static final Logger logger = LogManager.getLogger(OrderDtoValidator.class.getName());
 
     public OrderDtoValidator(MessageSource messageSource) {
         this.messageSource = messageSource;

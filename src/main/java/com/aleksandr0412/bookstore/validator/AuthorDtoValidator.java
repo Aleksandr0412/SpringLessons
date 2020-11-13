@@ -11,7 +11,7 @@ import java.util.Locale;
 @Component
 public class AuthorDtoValidator {
     private MessageSource messageSource;
-    private static final Logger logger = LogManager.getLogger(AuthorDto.class.getName());
+    private static final Logger logger = LogManager.getLogger(AuthorDtoValidator.class.getName());
 
     public AuthorDtoValidator(MessageSource messageSource) {
         this.messageSource = messageSource;
