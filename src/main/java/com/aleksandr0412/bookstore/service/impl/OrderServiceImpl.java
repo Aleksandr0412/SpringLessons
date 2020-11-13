@@ -1,5 +1,6 @@
 package com.aleksandr0412.bookstore.service.impl;
 
+import com.aleksandr0412.bookstore.controller.dto.OrderDto;
 import com.aleksandr0412.bookstore.dao.OrderDAO;
 import com.aleksandr0412.bookstore.model.Order;
 import com.aleksandr0412.bookstore.service.OrderService;
@@ -14,7 +15,9 @@ public class OrderServiceImpl implements OrderService {
         this.orderDAO = orderDAO;
     }
 
-    public Order createNewOrder(Order order) {
-        return orderDAO.save(order);
+    public OrderDto createNewOrder(OrderDto orderDto) {
+        Order order = new Order(orderDto.getId(), orderDto.getUser(), orderDto.getPrice(), orderDto.getBooks());
+        orderDAO.save(order);
+        return orderDto;
     }
 }

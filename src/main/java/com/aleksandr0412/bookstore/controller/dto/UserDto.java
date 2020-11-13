@@ -1,9 +1,6 @@
-package com.aleksandr0412.bookstore.model;
+package com.aleksandr0412.bookstore.controller.dto;
 
-/**
- * Представление полбзователя в системе
- */
-public class User implements Identified<Long> {
+public class UserDto {
     /**
      * Идентификатор пользователя
      */
@@ -21,17 +18,6 @@ public class User implements Identified<Long> {
      */
     private String email;
 
-    public User() {
-    }
-
-    public User(Long id, String username, String password, String email) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.email = email;
-    }
-
-    @Override
     public Long getId() {
         return id;
     }
@@ -64,13 +50,13 @@ public class User implements Identified<Long> {
         this.email = email;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", email='" + email + '\'' +
-                '}';
+    public UserDto() {
+    }
+
+    public UserDto(Long id, String username, String password, String email) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.email = email;
     }
 }

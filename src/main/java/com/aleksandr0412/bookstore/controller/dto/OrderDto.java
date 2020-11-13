@@ -1,11 +1,11 @@
-package com.aleksandr0412.bookstore.model;
+package com.aleksandr0412.bookstore.controller.dto;
+
+import com.aleksandr0412.bookstore.model.Book;
+import com.aleksandr0412.bookstore.model.User;
 
 import java.util.List;
 
-/**
- * Представление заказов в системе
- */
-public class Order implements Identified<Long> {
+public class OrderDto {
     /**
      * Идентификатор заказа
      */
@@ -23,17 +23,6 @@ public class Order implements Identified<Long> {
      */
     private List<Book> books;
 
-    public Order() {
-    }
-
-    public Order(Long id, User user, Long price, List<Book> books) {
-        this.id = id;
-        this.user = user;
-        this.price = price;
-        this.books = books;
-    }
-
-    @Override
     public Long getId() {
         return id;
     }
@@ -66,13 +55,13 @@ public class Order implements Identified<Long> {
         this.books = books;
     }
 
-    @Override
-    public String toString() {
-        return "Order{" +
-                "id=" + id +
-                ", user=" + user +
-                ", price=" + price +
-                ", books=" + books +
-                '}';
+    public OrderDto() {
+    }
+
+    public OrderDto(Long id, User user, Long price, List<Book> books) {
+        this.id = id;
+        this.user = user;
+        this.price = price;
+        this.books = books;
     }
 }

@@ -1,5 +1,6 @@
 package com.aleksandr0412.bookstore.service;
 
+import com.aleksandr0412.bookstore.controller.dto.BookDto;
 import com.aleksandr0412.bookstore.model.Book;
 
 import java.util.List;
@@ -11,10 +12,10 @@ public interface BookService {
     /**
      * Добавляет книгу
      *
-     * @param book
+     * @param bookDto
      * @return добавленную книгу
      */
-    Book addBook(Book book);
+    BookDto addBook(BookDto bookDto);
 
     /**
      * Возвращает книгу по первичному ключу
@@ -22,7 +23,7 @@ public interface BookService {
      * @param id
      * @return книгу по пк
      */
-    Book getBookByPK(Long id);
+    BookDto getBookByPK(Long id);
 
     /**
      * Удаляет книгу по первичному ключу
@@ -30,20 +31,20 @@ public interface BookService {
      * @param id
      * @return удаленную книгу
      */
-    Book deleteBookByPK(Long id);
+    BookDto deleteBookByPK(Long id);
 
     /**
      * Обновляет книгу
      *
-     * @param book
+     * @param bookDto
      * @return обновленную книгу
      */
-    Book updateBook(Book book);
+    BookDto updateBook(BookDto bookDto);
 
     /**
      * Возвращает список всех книг
      *
      * @return список всех книг
      */
-    List<Book> getAllBooks();
+    List<BookDto> getAllBooks();
 }

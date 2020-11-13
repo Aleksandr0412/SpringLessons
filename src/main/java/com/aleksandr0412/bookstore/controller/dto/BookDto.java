@@ -1,11 +1,11 @@
-package com.aleksandr0412.bookstore.model;
+package com.aleksandr0412.bookstore.controller.dto;
+
+import com.aleksandr0412.bookstore.model.Author;
+import com.aleksandr0412.bookstore.model.Genre;
 
 import java.time.LocalDate;
 
-/**
- * Представление книги в системе
- */
-public class Book implements Identified<Long> {
+public class BookDto {
     /**
      * Идентификатор книги
      */
@@ -35,7 +35,7 @@ public class Book implements Identified<Long> {
      */
     private Author author;
 
-    public Book(Long id, String title, String description, Genre genre, Long price, LocalDate publishDate, Author author) {
+    public BookDto(Long id, String title, String description, Genre genre, Long price, LocalDate publishDate, Author author) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -45,17 +45,8 @@ public class Book implements Identified<Long> {
         this.author = author;
     }
 
-    @Override
     public Long getId() {
         return id;
-    }
-
-    public Author getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(Author author) {
-        this.author = author;
     }
 
     public void setId(Long id) {
@@ -102,16 +93,11 @@ public class Book implements Identified<Long> {
         this.publishDate = publishDate;
     }
 
-    @Override
-    public String toString() {
-        return "Book{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", description='" + description + '\'' +
-                ", genre=" + genre +
-                ", price=" + price +
-                ", publishDate=" + publishDate +
-                ", author=" + author +
-                '}';
+    public Author getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
     }
 }
