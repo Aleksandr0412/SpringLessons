@@ -25,10 +25,6 @@ public class BookController {
 
     @GetMapping
     public List<BookDto> getAllBooks() {
-        //TODO
-        BookDto bookDto = new BookDto(UUID.randomUUID(), "lotr", "good", Genre.CLASSICS,
-                new BigDecimal("12345566"), LocalDate.now(), new Author());
-        service.addBook(bookDto);
         return service.getAllBooks();
     }
 
