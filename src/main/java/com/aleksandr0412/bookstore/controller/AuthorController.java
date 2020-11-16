@@ -1,6 +1,7 @@
 package com.aleksandr0412.bookstore.controller;
 
 import com.aleksandr0412.bookstore.controller.dto.AuthorDto;
+import com.aleksandr0412.bookstore.exceptions.ResourceNotFoundException;
 import com.aleksandr0412.bookstore.service.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -41,7 +42,9 @@ public class AuthorController {
 
     @PutMapping("{id}")
     public AuthorDto updateAuthor(@PathVariable UUID id, @RequestBody AuthorDto authorDto) {
-        authorDto.setId(id);
+        if (!authorDto.getId().equals(id)) {
+            throw new ResourceNotFoundException("wrong id");
+        }
 
         return service.updateAuthor(authorDto);
     }

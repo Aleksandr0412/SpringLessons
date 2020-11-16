@@ -2,19 +2,16 @@ package com.aleksandr0412.bookstore.validator;
 
 import com.aleksandr0412.bookstore.controller.dto.UserDto;
 import com.aleksandr0412.bookstore.exceptions.IncorrectEmailException;
+import org.apache.commons.validator.routines.EmailValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Component;
 
 import java.util.Locale;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 @Component
 public class UserDtoValidator {
-    protected static final Pattern VALID_EMAIL_ADDRESS_REGEX =
-            Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
     private MessageSource messageSource;
     private static final Logger logger = LogManager.getLogger(UserDtoValidator.class.getName());
 
@@ -23,8 +20,8 @@ public class UserDtoValidator {
     }
 
     protected static boolean validateEmail(String emailStr) {
-        Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(emailStr);
-        return matcher.find();
+        EmailValidator emailValidator = EmailValidator.getInstance();
+        return emailValidator.isValid(emailStr.trim());
     }
 
     public void validate(UserDto userForm) {

@@ -1,6 +1,7 @@
 package com.aleksandr0412.bookstore.controller;
 
 import com.aleksandr0412.bookstore.controller.dto.BookDto;
+import com.aleksandr0412.bookstore.exceptions.ResourceNotFoundException;
 import com.aleksandr0412.bookstore.model.Author;
 import com.aleksandr0412.bookstore.model.Genre;
 import com.aleksandr0412.bookstore.service.BookService;
@@ -43,7 +44,9 @@ public class BookController {
 
     @PutMapping("{id}")
     public BookDto updateBook(@PathVariable UUID id, @RequestBody BookDto bookDto) {
-        bookDto.setId(id);
+        if (!bookDto.getId().equals(id)) {
+            throw new ResourceNotFoundException("wrong id");
+        }
 
         return service.updateBook(bookDto);
     }

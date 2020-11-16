@@ -4,6 +4,7 @@ import com.aleksandr0412.bookstore.controller.dto.ResponseError;
 import com.aleksandr0412.bookstore.exceptions.EmptyOrderException;
 import com.aleksandr0412.bookstore.exceptions.IncorrectEmailException;
 import com.aleksandr0412.bookstore.exceptions.IncorrectSumException;
+import com.aleksandr0412.bookstore.exceptions.ResourceNotFoundException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.http.HttpHeaders;
@@ -26,6 +27,18 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         ResponseError error = new ResponseError(
                 UUID.randomUUID(),
                 "illegalArgumentException",
+                exception.getLocalizedMessage(),
+                "mySystem"
+        );
+        return new ResponseEntity<>(error, new HttpHeaders(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ResponseEntity<ResponseError> resourceNotFoundException(ResourceNotFoundException exception) {
+        log.debug(exception.getLocalizedMessage(), exception);
+        ResponseError error = new ResponseError(
+                UUID.randomUUID(),
+                "resourceNotFoundException",
                 exception.getLocalizedMessage(),
                 "mySystem"
         );
