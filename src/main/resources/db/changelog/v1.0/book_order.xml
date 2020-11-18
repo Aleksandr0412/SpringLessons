@@ -16,8 +16,8 @@
             <column name="book_id" type="uuid"
                     remarks="Идентификатор книги">
                 <constraints primaryKey="true"
-                             primaryKeyName="book_pk"
-                             foreignKeyName="order_fk"
+                             primaryKeyName="book_pk1"
+                             foreignKeyName="book_fk_from_bo"
                              referencedTableName="books"
                              referencedColumnNames="id"
                              nullable="false"/>
@@ -25,8 +25,8 @@
             <column name="order_id" type="uuid"
                     remarks="Идентификатор книги">
                 <constraints primaryKey="true"
-                             primaryKeyName="order_pk"
-                             foreignKeyName="order_fk"
+                             primaryKeyName="order_pk1"
+                             foreignKeyName="order_fk_from_bo"
                              referencedTableName="orders"
                              referencedColumnNames="id"
                              nullable="false"/>

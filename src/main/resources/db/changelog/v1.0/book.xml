@@ -38,28 +38,7 @@
                              referencedColumnNames="id"
                              nullable="false"/>
             </column>
-
-            <!--            <column name="organization_id" type="uuid" remarks="Организация">-->
-            <!--                <constraints foreignKeyName="user_fk"-->
-            <!--                             referencedTableName="organization"-->
-            <!--                             referencedColumnNames="id"-->
-            <!--                             nullable="false"/>-->
-            <!--            </column>-->
-
         </createTable>
         <comment>Задача по созданию книги</comment>
     </changeSet>
-
-    <!--    <changeSet id="2" author="Ilya Sukhachev">-->
-    <!--        <preConditions onFail="MARK_RAN">-->
-    <!--            <not>-->
-    <!--                <indexExists tableName="user" indexName="user_username_idx"/>-->
-    <!--            </not>-->
-    <!--        </preConditions>-->
-    <!--        <createIndex tableName="user" indexName="user_username_idx">-->
-    <!--            <column name="username"/>-->
-    <!--        </createIndex>-->
-    <!--        <comment>Индекс для поиска по имени пользователя</comment>-->
-    <!--    </changeSet>-->
-
 </databaseChangeLog>
