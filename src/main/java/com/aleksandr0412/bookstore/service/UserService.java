@@ -1,7 +1,8 @@
 package com.aleksandr0412.bookstore.service;
 
 import com.aleksandr0412.bookstore.controller.dto.UserDto;
-import com.aleksandr0412.bookstore.model.User;
+
+import java.util.UUID;
 
 /**
  * UserService
@@ -21,7 +22,7 @@ public interface UserService {
      * @param id
      * @return пользователя по пк
      */
-    UserDto getUserByPK(Long id);
+    UserDto getUserByPK(UUID id);
 
     /**
      * Удаляет пользователя по первичному ключу
@@ -29,5 +30,5 @@ public interface UserService {
      * @param id
      * @return удаленного пользователя
      */
-    UserDto deleteUserByPK(Long id);
+    UserDto deleteUserByPK(UUID id);
 }

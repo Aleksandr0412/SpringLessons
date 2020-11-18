@@ -5,9 +5,10 @@ import com.aleksandr0412.bookstore.model.Author;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
+import java.util.UUID;
 
 @Repository
-public class AuthorDAOImpl extends AbstractDao<Author, Long> implements AuthorDAO {
+public class AuthorDAOImpl extends AbstractDao<Author, UUID> implements AuthorDAO {
     public AuthorDAOImpl() {
         super(Author.class, new HashMap<>());
     }

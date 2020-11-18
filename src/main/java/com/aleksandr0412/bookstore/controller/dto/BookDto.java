@@ -3,13 +3,15 @@ package com.aleksandr0412.bookstore.controller.dto;
 import com.aleksandr0412.bookstore.model.Author;
 import com.aleksandr0412.bookstore.model.Genre;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.UUID;
 
 public class BookDto {
     /**
      * Идентификатор книги
      */
-    private Long id;
+    private UUID id;
     /**
      * Название книги
      */
@@ -25,7 +27,7 @@ public class BookDto {
     /**
      * Цена книги в рублях
      */
-    private Long price;
+    private BigDecimal price;
     /**
      * Дата публикации книги
      */
@@ -35,7 +37,10 @@ public class BookDto {
      */
     private Author author;
 
-    public BookDto(Long id, String title, String description, Genre genre, Long price, LocalDate publishDate, Author author) {
+    public BookDto() {
+    }
+
+    public BookDto(UUID id, String title, String description, Genre genre, BigDecimal price, LocalDate publishDate, Author author) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -45,11 +50,11 @@ public class BookDto {
         this.author = author;
     }
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -77,11 +82,11 @@ public class BookDto {
         this.genre = genre;
     }
 
-    public Long getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(Long price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 

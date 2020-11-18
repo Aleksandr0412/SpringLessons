@@ -1,0 +1,56 @@
+1
+post
+localhost:8080/api/author
+{
+    "id": null,
+    "name": "qwe",
+    "books": null
+}
+
+2
+get
+http://localhost:8080/api/author/
++ взять из хедера предыдущего ответа
+
+или без продолжения = все авторы
+
+3
+put
+http://localhost:8080/api/author/
+{
+    "id": null,
+    "name": "qwe",
+    "books": null
+}
+
+4
+post
+ {
+        "id": null,
+        "title": "lotr",
+        "description": "good",
+        "genre": "CLASSICS",
+        "price": 12345566,
+        "publishDate": null,
+        "author": {
+            "id": null,
+            "name": null,
+            "books": null
+        }
+    }
+
+5
+get
+get
+http://localhost:8080/api/book/
++ взять из хедера предыдущего ответа
+
+или без продолжения = все книги
+
+6
+delete
+http://localhost:8080/api/book/?id=
+id из 5
+
+
+

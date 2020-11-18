@@ -1,15 +1,17 @@
 package com.aleksandr0412.bookstore.model;
 
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Представление заказов в системе
  */
-public class Order implements Identified<Long> {
+public class Order implements Identified<UUID> {
     /**
      * Идентификатор заказа
      */
-    private Long id;
+    private UUID id;
     /**
      * Пользователь, создавший заказ
      */
@@ -17,7 +19,7 @@ public class Order implements Identified<Long> {
     /**
      * Цена в рублях
      */
-    private Long price;
+    private BigDecimal price;
     /**
      * Список книг заказа
      */
@@ -26,7 +28,7 @@ public class Order implements Identified<Long> {
     public Order() {
     }
 
-    public Order(Long id, User user, Long price, List<Book> books) {
+    public Order(UUID id, User user, BigDecimal price, List<Book> books) {
         this.id = id;
         this.user = user;
         this.price = price;
@@ -34,11 +36,11 @@ public class Order implements Identified<Long> {
     }
 
     @Override
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -50,11 +52,11 @@ public class Order implements Identified<Long> {
         this.user = user;
     }
 
-    public Long getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(Long price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
