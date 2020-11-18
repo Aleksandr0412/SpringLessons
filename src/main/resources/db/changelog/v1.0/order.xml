@@ -1,0 +1,49 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+
+    <changeSet id="1" author="Aleksandr Petrov">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="orders"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="orders"
+                     remarks="Таблица закакзов">
+            <column name="id" type="uuid"
+                    remarks="Идентификатор записи">
+                <constraints primaryKey="true"
+                             primaryKeyName="order_pk"
+                             nullable="false"/>
+            </column>
+            <column name="price" type="numeric(8, 2)" remarks="Общая сумма заказа">
+                <constraints nullable="false"/>
+            </column>
+
+            <!--            <column name="organization_id" type="uuid" remarks="Организация">-->
+            <!--                <constraints foreignKeyName="user_fk"-->
+            <!--                             referencedTableName="organization"-->
+            <!--                             referencedColumnNames="id"-->
+            <!--                             nullable="false"/>-->
+            <!--            </column>-->
+
+        </createTable>
+        <comment>Задача по созданию заказа</comment>
+    </changeSet>
+
+    <!--    <changeSet id="2" author="Ilya Sukhachev">-->
+    <!--        <preConditions onFail="MARK_RAN">-->
+    <!--            <not>-->
+    <!--                <indexExists tableName="user" indexName="user_username_idx"/>-->
+    <!--            </not>-->
+    <!--        </preConditions>-->
+    <!--        <createIndex tableName="user" indexName="user_username_idx">-->
+    <!--            <column name="username"/>-->
+    <!--        </createIndex>-->
+    <!--        <comment>Индекс для поиска по имени пользователя</comment>-->
+    <!--    </changeSet>-->
+
+</databaseChangeLog>
