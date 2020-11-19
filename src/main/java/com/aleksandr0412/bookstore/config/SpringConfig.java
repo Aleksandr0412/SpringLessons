@@ -12,9 +12,7 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import java.util.concurrent.Executor;
 
 @Configuration
-@EnableAsync
 @ComponentScan(basePackages = {"com.aleksandr0412.bookstore"})
-@PropertySource("classpath:application.properties")
 public class SpringConfig {
     @Bean(name = "messageSource")
     public MessageSource messageSource() {
