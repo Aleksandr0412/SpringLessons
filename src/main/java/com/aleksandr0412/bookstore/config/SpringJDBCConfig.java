@@ -12,7 +12,7 @@ import javax.sql.DataSource;
 
 @Configuration
 public class SpringJDBCConfig {
-//
+
     @Bean
     @DependsOn("dataSource")
     public JdbcTemplate jdbcTemplate(DataSource dataSource) {
