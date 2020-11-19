@@ -10,11 +10,6 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 import java.util.concurrent.Executor;
 
-/**
- * SpringAsyncConfig.
- *
- * @author Ilya_Sukhachev
- */
 @Configuration
 @EnableAsync
 @PropertySource("classpath:application.properties")
@@ -38,5 +33,4 @@ public class SpringAsyncConfig implements AsyncConfigurer {
     public AsyncUncaughtExceptionHandler getAsyncUncaughtExceptionHandler() {
         return new CustomAsyncExceptionHandler();
     }
-
 }

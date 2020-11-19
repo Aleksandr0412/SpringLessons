@@ -1,0 +1,44 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+
+    <changeSet id="1" author="Aleksandr Petrov">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="books"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="books"
+                     remarks="Таблица книг">
+            <column name="id" type="uuid"
+                    remarks="Идентификатор записи">
+                <constraints primaryKey="true"
+                             primaryKeyName="book_pk"
+                             nullable="false"/>
+            </column>
+            <column name="title" type="varchar(255)" remarks="Название книги">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="varchar(255)" remarks="Описание книги">
+            </column>
+            <column name="genre" type="varchar(255)" remarks="Жанр книги">
+                <constraints nullable="false"/>
+            </column>
+            <column name="price" type="numeric(8, 2)" remarks="Цена книги">
+                <constraints nullable="false"/>
+            </column>
+            <column name="publish_year" type="date" remarks="Дата издания">
+            </column>
+            <column name="author_id" type="uuid" remarks="Цена книги">
+                <constraints foreignKeyName="book_fk"
+                             referencedTableName="authors"
+                             referencedColumnNames="id"
+                             nullable="false"/>
+            </column>
+        </createTable>
+        <comment>Задача по созданию книги</comment>
+    </changeSet>
+</databaseChangeLog>
