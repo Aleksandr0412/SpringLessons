@@ -7,10 +7,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.UUID;
 
-import static com.aleksandr0412.bookstore.common.JdbcConstants.AUTHOR_ID;
-import static com.aleksandr0412.bookstore.common.JdbcConstants.AUTHOR_NAME;
-
 public class AuthorRowMapper implements RowMapper<Author> {
+    public static final String AUTHOR_ID = "id";
+    public static final String AUTHOR_NAME = "name";
     @Override
     public Author mapRow(ResultSet rs, int rowNum) throws SQLException {
         final Author author = new Author();

@@ -16,10 +16,9 @@ import java.util.UUID;
 
 @Service
 public class AuthorServiceImpl implements AuthorService {
-    //    private AuthorDAO authorDAO;
-    private AuthorJdbcDAO authorDAO;
-    private BookJdbcDAO bookDAO;
-    private AuthorDtoValidator validator;
+    private final AuthorJdbcDAO authorDAO;
+    private final BookJdbcDAO bookDAO;
+    private final AuthorDtoValidator validator;
 
     public AuthorServiceImpl(AuthorJdbcDAO authorDAO, AuthorDtoValidator validator, BookJdbcDAO bookDAO) {
         this.authorDAO = authorDAO;

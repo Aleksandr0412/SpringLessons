@@ -7,9 +7,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.UUID;
 
-import static com.aleksandr0412.bookstore.common.JdbcConstants.*;
-
 public class UserRowMapper implements RowMapper<User> {
+    public static final String USER_ID = "id";
+    public static final String USER_NAME = "username";
+    public static final String USER_PASSWORD = "password";
+    public static final String USER_EMAIL = "email";
+
     @Override
     public User mapRow(ResultSet resultSet, int i) throws SQLException {
         final User user = new User();

@@ -12,7 +12,6 @@ import java.util.UUID;
 
 @Service
 public class UserServiceImpl implements UserService {
-//    private UserDAO userDAO;
     private UserJdbcDAO userDAO;
     private UserDtoValidator validator;
 
@@ -22,6 +21,8 @@ public class UserServiceImpl implements UserService {
     }
 
     public UserDto createUser(UserDto userDto) {
+        validator.validate(userDto);
+
         User user = new User(UUID.randomUUID(), userDto.getUsername(), userDto.getEmail(), userDto.getPassword());
         userDAO.save(user);
         userDto.setId(user.getId());
@@ -32,6 +33,7 @@ public class UserServiceImpl implements UserService {
         User user = userDAO.getByPK(id);
         return new UserDto(user.getId(), user.getUsername(), user.getEmail(), user.getPassword());
     }
+
     @Transactional
     public UserDto deleteUserByPK(UUID id) {
         User user = userDAO.getByPK(id);

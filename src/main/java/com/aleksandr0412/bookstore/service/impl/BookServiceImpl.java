@@ -1,7 +1,6 @@
 package com.aleksandr0412.bookstore.service.impl;
 
 import com.aleksandr0412.bookstore.controller.dto.BookDto;
-import com.aleksandr0412.bookstore.dao.map.BookDAO;
 import com.aleksandr0412.bookstore.dao.springJdbc.AuthorJdbcDAO;
 import com.aleksandr0412.bookstore.dao.springJdbc.BookJdbcDAO;
 import com.aleksandr0412.bookstore.model.Book;
@@ -16,7 +15,6 @@ import java.util.UUID;
 
 @Service
 public class BookServiceImpl implements BookService {
-//    private BookDAO bookDAO;
     private BookJdbcDAO bookDAO;
     private BookDtoValidator validator;
     private AuthorJdbcDAO authorDAO;

@@ -4,8 +4,6 @@ import com.aleksandr0412.bookstore.dao.springJdbc.AuthorJdbcDAO;
 import com.aleksandr0412.bookstore.dao.springJdbc.mapper.AuthorRowMapper;
 import com.aleksandr0412.bookstore.model.Author;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
@@ -14,17 +12,20 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-import static com.aleksandr0412.bookstore.common.JdbcConstants.AUTHOR_ID;
-import static com.aleksandr0412.bookstore.common.JdbcConstants.AUTHOR_NAME;
-import static com.aleksandr0412.bookstore.common.Queries.*;
+import static com.aleksandr0412.bookstore.dao.springJdbc.mapper.AuthorRowMapper.AUTHOR_ID;
+import static com.aleksandr0412.bookstore.dao.springJdbc.mapper.AuthorRowMapper.AUTHOR_NAME;
 
 @Repository
 public class AuthorJdbcImpl implements AuthorJdbcDAO {
-    private JdbcTemplate jdbcTemplate;
+      public static final String SELECT_AUTHOR_BY_ID = "SELECT * FROM authors WHERE id = ?";
+    public static final String DELETE_FROM_AUTHORS = "DELETE FROM authors WHERE id = ?";
+    public static final String UPDATE_AUTHORS = "UPDATE authors SET name = ? where id = ?";
+    public static final String SELECT_ALL_AUTHORS = "SELECT * FROM authors";
 
+    private JdbcTemplate jdbcTemplate;
     private SimpleJdbcInsert simpleJdbcInsert;
 
-    public AuthorJdbcImpl(JdbcTemplate jdbcTemplate, NamedParameterJdbcTemplate namedParameterJdbcTemplate, SimpleJdbcInsert simpleJdbcInsert, SimpleJdbcCall simpleJdbcCall) {
+    public AuthorJdbcImpl(JdbcTemplate jdbcTemplate, SimpleJdbcInsert simpleJdbcInsert) {
         this.jdbcTemplate = jdbcTemplate;
         this.simpleJdbcInsert = simpleJdbcInsert;
         simpleJdbcInsert.withTableName("authors");

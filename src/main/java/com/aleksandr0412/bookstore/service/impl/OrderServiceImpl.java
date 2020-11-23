@@ -45,8 +45,6 @@ public class OrderServiceImpl implements OrderService {
     @Transactional
     public OrderDto getOrderByPk(UUID id) {
         Order order = orderDAO.getByPK(id);
-//        List<Book> books = new ArrayList<>();
-//        books.addAll(orderDAO.getBooksFromOrder(id).forEach(uuid -> bookDAO.getByPK(uuid)))
         order.setBooks(orderDAO.getBooksFromOrder(id)
                 .stream()
                 .map(uuid -> bookDAO.getByPK(uuid))

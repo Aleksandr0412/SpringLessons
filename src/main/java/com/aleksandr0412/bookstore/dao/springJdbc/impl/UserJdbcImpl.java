@@ -14,11 +14,14 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-import static com.aleksandr0412.bookstore.common.JdbcConstants.*;
-import static com.aleksandr0412.bookstore.common.Queries.*;
+import static com.aleksandr0412.bookstore.dao.springJdbc.mapper.UserRowMapper.*;
 
 @Repository
 public class UserJdbcImpl implements UserJdbcDAO {
+    public static final String SELECT_USER_BY_ID = "SELECT * FROM users WHERE id = ?";
+    public static final String DELETE_FROM_USERS = "DELETE FROM users WHERE id = ?";
+    public static final String UPDATE_USERS = "UPDATE users SET username = ?, password = ?, email = ?  where id = ?";
+    public static final String SELECT_ALL_USERS = "SELECT * FROM users";
     private JdbcTemplate jdbcTemplate;
 
     private SimpleJdbcInsert simpleJdbcInsert;

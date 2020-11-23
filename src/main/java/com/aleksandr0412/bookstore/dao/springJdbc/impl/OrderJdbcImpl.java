@@ -14,15 +14,16 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.*;
 
-import static com.aleksandr0412.bookstore.common.JdbcConstants.ORDER_ID;
-import static com.aleksandr0412.bookstore.common.JdbcConstants.ORDER_PRICE;
-import static com.aleksandr0412.bookstore.common.Queries.DELETE_FROM_ORDERS;
-import static com.aleksandr0412.bookstore.common.Queries.SELECT_ORDER_BY_ID;
+import static com.aleksandr0412.bookstore.dao.springJdbc.mapper.OrderRowMapper.*;
 
 @Repository
 public class OrderJdbcImpl implements OrderJdbcDAO {
-    private JdbcTemplate jdbcTemplate;
+    public static final String SELECT_ORDER_BY_ID = "SELECT * FROM orders WHERE id = ?";
+    public static final String DELETE_FROM_ORDERS = "DELETE FROM orders WHERE id = ?";
+    public static final String UPDATE_ORDERS = "UPDATE orders SET price = ? where id = ?";
+    public static final String SELECT_ALL_ORDERS = "SELECT * FROM orders";
 
+    private JdbcTemplate jdbcTemplate;
     private SimpleJdbcInsert simpleJdbcInsert;
 
     public OrderJdbcImpl(JdbcTemplate jdbcTemplate, NamedParameterJdbcTemplate namedParameterJdbcTemplate, SimpleJdbcInsert simpleJdbcInsert, SimpleJdbcCall simpleJdbcCall) {
@@ -37,7 +38,7 @@ public class OrderJdbcImpl implements OrderJdbcDAO {
         final Map<String, Object> parameters = new HashMap<>();
         parameters.put(ORDER_ID, ob.getId());
         parameters.put(ORDER_PRICE, ob.getPrice());
-        parameters.put("user_id", ob.getUser().getId());
+        parameters.put(ORDER_USER_ID, ob.getUser().getId());
         return simpleJdbcInsert.execute(parameters);
     }
 
@@ -62,7 +63,8 @@ public class OrderJdbcImpl implements OrderJdbcDAO {
     public Order getByPK(UUID key) {
         return jdbcTemplate.queryForObject(SELECT_ORDER_BY_ID, new Object[]{key}, new OrderRowMapper());
     }
-//TODO check
+
+    //TODO check
     @Override
     public List<UUID> getBooksFromOrder(UUID key) {
         return jdbcTemplate.queryForList("SELECT * FROM book_order WHERE order_id = ?",
@@ -80,7 +82,8 @@ public class OrderJdbcImpl implements OrderJdbcDAO {
     public int update(Order ob) {
         throw new UnsupportedOperationException();
     }
-//TODO
+
+    //TODO
     @Override
     public Collection<Order> getAll() {
         return null;

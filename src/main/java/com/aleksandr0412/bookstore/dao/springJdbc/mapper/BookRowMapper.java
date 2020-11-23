@@ -8,12 +8,18 @@ import org.springframework.jdbc.core.RowMapper;
 import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.UUID;
 
-import static com.aleksandr0412.bookstore.common.JdbcConstants.*;
-
 public class BookRowMapper implements RowMapper<Book> {
+    public static final String BOOK_ID = "id";
+    public static final String BOOK_TITLE = "title";
+    public static final String BOOK_DESCRIPTION = "description";
+    public static final String BOOK_GENRE = "genre";
+    public static final String BOOK_PRICE = "price";
+    public static final String BOOK_PUBLISH_DATE = "publish_date";
+    public static final String BOOK_AUTHOR_ID = "author_id";
+    public static final String BOOK_AUTHOR_NAME = "name";
+
     @Override
     public Book mapRow(ResultSet resultSet, int rowNum) throws SQLException {
         final Book book = new Book();
@@ -25,8 +31,8 @@ public class BookRowMapper implements RowMapper<Book> {
         //TODO
 //        book.setPublishDate(resultSet.getObject(BOOK_PUBLISH_DATE, LocalDate.class));
         //TODO
-        book.setAuthor(new Author(UUID.fromString(resultSet.getString("author_id")),
-                resultSet.getString("name")));
+        book.setAuthor(new Author(UUID.fromString(resultSet.getString(BOOK_AUTHOR_ID)),
+                resultSet.getString(BOOK_AUTHOR_NAME)));
         return book;
     }
 }

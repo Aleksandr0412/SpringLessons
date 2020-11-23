@@ -25,6 +25,7 @@ public class SpringJDBCConfig {
 
     @Bean
     @DependsOn("dataSource")
+    @Scope("prototype")
     public NamedParameterJdbcTemplate namedParameterJdbcTemplate(DataSource dataSource) {
         NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
         return namedParameterJdbcTemplate;
