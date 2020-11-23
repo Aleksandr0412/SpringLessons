@@ -1,6 +1,6 @@
-package com.aleksandr0412.bookstore.dao.impl;
+package com.aleksandr0412.bookstore.dao.map.impl;
 
-import com.aleksandr0412.bookstore.dao.GenericDAO;
+import com.aleksandr0412.bookstore.dao.map.GenericDAO;
 import com.aleksandr0412.bookstore.model.Identified;
 
 import java.io.Serializable;

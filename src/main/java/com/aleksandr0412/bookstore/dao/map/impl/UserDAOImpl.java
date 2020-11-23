@@ -1,6 +1,6 @@
-package com.aleksandr0412.bookstore.dao.impl;
+package com.aleksandr0412.bookstore.dao.map.impl;
 
-import com.aleksandr0412.bookstore.dao.UserDAO;
+import com.aleksandr0412.bookstore.dao.map.UserDAO;
 import com.aleksandr0412.bookstore.model.User;
 import org.springframework.stereotype.Repository;
 

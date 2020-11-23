@@ -1,7 +1,7 @@
 package com.aleksandr0412.bookstore.service.impl;
 
 import com.aleksandr0412.bookstore.controller.dto.BookDto;
-import com.aleksandr0412.bookstore.dao.BookDAO;
+import com.aleksandr0412.bookstore.dao.map.BookDAO;
 import com.aleksandr0412.bookstore.model.Book;
 import com.aleksandr0412.bookstore.service.BookService;
 import com.aleksandr0412.bookstore.validator.BookDtoValidator;

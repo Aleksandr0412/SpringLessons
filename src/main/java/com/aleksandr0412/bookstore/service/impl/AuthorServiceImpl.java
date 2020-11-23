@@ -1,7 +1,7 @@
 package com.aleksandr0412.bookstore.service.impl;
 
 import com.aleksandr0412.bookstore.controller.dto.AuthorDto;
-import com.aleksandr0412.bookstore.dao.AuthorDAO;
+import com.aleksandr0412.bookstore.dao.map.AuthorDAO;
 import com.aleksandr0412.bookstore.model.Author;
 import com.aleksandr0412.bookstore.service.AuthorService;
 import com.aleksandr0412.bookstore.validator.AuthorDtoValidator;

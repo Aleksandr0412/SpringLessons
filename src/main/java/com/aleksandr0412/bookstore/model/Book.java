@@ -47,6 +47,10 @@ public class Book implements Identified<UUID> {
         this.author = author;
     }
 
+    public Book() {
+
+    }
+
     @Override
     public UUID getId() {
         return id;

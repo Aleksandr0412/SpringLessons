@@ -1,11 +1,10 @@
 package com.aleksandr0412.bookstore.service.impl;
 
 import com.aleksandr0412.bookstore.controller.dto.UserDto;
-import com.aleksandr0412.bookstore.dao.UserDAO;
+import com.aleksandr0412.bookstore.dao.map.UserDAO;
 import com.aleksandr0412.bookstore.model.User;
 import com.aleksandr0412.bookstore.service.UserService;
 import com.aleksandr0412.bookstore.validator.UserDtoValidator;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;

@@ -1,7 +1,7 @@
 package com.aleksandr0412.bookstore.service.impl;
 
 import com.aleksandr0412.bookstore.controller.dto.OrderDto;
-import com.aleksandr0412.bookstore.dao.OrderDAO;
+import com.aleksandr0412.bookstore.dao.map.OrderDAO;
 import com.aleksandr0412.bookstore.model.Order;
 import com.aleksandr0412.bookstore.service.OrderService;
 import com.aleksandr0412.bookstore.validator.OrderDtoValidator;
