@@ -11,7 +11,7 @@ public class JdbcConstants {
     public static final String BOOK_PRICE = "price";
     public static final String BOOK_PUBLISH_DATE = "publish_date";
     public static final String BOOK_AUTHOR_ID = "author_id";
-    public static final String BOOK_AUTHOR_NAME = "author_name";
+    public static final String BOOK_AUTHOR_NAME = "authors.name";
 
     public static final String USER_ID = "id";
     public static final String USER_NAME = "username";

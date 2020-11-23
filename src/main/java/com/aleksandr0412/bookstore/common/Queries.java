@@ -6,12 +6,14 @@ public class Queries {
     public static final String UPDATE_AUTHORS = "UPDATE authors SET name = ? where id = ?";
     public static final String SELECT_ALL_AUTHORS = "SELECT * FROM authors";
 
-    public static final String SELECT_BOOK_BY_ID = "SELECT * FROM books WHERE id = ?";
+    public static final String SELECT_BOOK_BY_ID = "SELECT * FROM books WHERE id = ? " +
+            "INNER JOIN authors" +
+            "ON books.author_id = authors.id";
     public static final String DELETE_FROM_BOOKS = "DELETE FROM books WHERE id = ?";
-    public static final String UPDATE_BOOKS = "UPDATE authors " +
+    public static final String UPDATE_BOOKS = "UPDATE books " +
             "SET title = ?, description = ?, genre = ?, price = ?, publish_date = ?" +
             " where id = ?";
-    public static final String SELECT_ALL_BOOKS = "SELECT * FROM books";
+    public static final String SELECT_ALL_BOOKS = "SELECT * FROM books INNER JOIN authors as author ON books.author_id = author.id";
 
     public static final String SELECT_USER_BY_ID = "SELECT * FROM users WHERE id = ?";
     public static final String DELETE_FROM_USERS = "DELETE FROM users WHERE id = ?";

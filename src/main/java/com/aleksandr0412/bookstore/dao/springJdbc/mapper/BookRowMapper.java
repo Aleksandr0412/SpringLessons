@@ -22,9 +22,11 @@ public class BookRowMapper implements RowMapper<Book> {
         book.setDescription(resultSet.getString(BOOK_DESCRIPTION));
         book.setGenre(Genre.valueOf(resultSet.getString(BOOK_GENRE)));
         book.setPrice(new BigDecimal(resultSet.getString(BOOK_PRICE)));
-        book.setPublishDate(resultSet.getObject(BOOK_PUBLISH_DATE, LocalDate.class));
-        book.setAuthor(new Author(UUID.fromString(resultSet.getString(BOOK_AUTHOR_ID)),
-                resultSet.getString(BOOK_AUTHOR_NAME)));
+        //TODO
+//        book.setPublishDate(resultSet.getObject(BOOK_PUBLISH_DATE, LocalDate.class));
+        //TODO
+        book.setAuthor(new Author(UUID.fromString(resultSet.getString("author_id")),
+                resultSet.getString("name")));
         return book;
     }
 }

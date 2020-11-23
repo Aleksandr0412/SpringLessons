@@ -2,10 +2,13 @@ package com.aleksandr0412.bookstore.service.impl;
 
 import com.aleksandr0412.bookstore.controller.dto.BookDto;
 import com.aleksandr0412.bookstore.dao.map.BookDAO;
+import com.aleksandr0412.bookstore.dao.springJdbc.AuthorJdbcDAO;
+import com.aleksandr0412.bookstore.dao.springJdbc.BookJdbcDAO;
 import com.aleksandr0412.bookstore.model.Book;
 import com.aleksandr0412.bookstore.service.BookService;
 import com.aleksandr0412.bookstore.validator.BookDtoValidator;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,12 +16,15 @@ import java.util.UUID;
 
 @Service
 public class BookServiceImpl implements BookService {
-    private BookDAO bookDAO;
+//    private BookDAO bookDAO;
+    private BookJdbcDAO bookDAO;
     private BookDtoValidator validator;
+    private AuthorJdbcDAO authorDAO;
 
-    public BookServiceImpl(BookDAO bookDAO, BookDtoValidator validator) {
+    public BookServiceImpl(BookJdbcDAO bookDAO, BookDtoValidator validator, AuthorJdbcDAO authorDAO) {
         this.bookDAO = bookDAO;
         this.validator = validator;
+        this.authorDAO = authorDAO;
     }
 
     public BookDto addBook(BookDto bookDto) {
@@ -37,8 +43,10 @@ public class BookServiceImpl implements BookService {
                 book.getPrice(), book.getPublishDate(), book.getAuthor());
     }
 
+    @Transactional
     public BookDto deleteBookByPK(UUID id) {
-        Book book = bookDAO.deleteByPK(id);
+        Book book = bookDAO.getByPK(id);
+        bookDAO.deleteByPK(id);
         return new BookDto(book.getId(), book.getTitle(), book.getDescription(), book.getGenre(),
                 book.getPrice(), book.getPublishDate(), book.getAuthor());
     }

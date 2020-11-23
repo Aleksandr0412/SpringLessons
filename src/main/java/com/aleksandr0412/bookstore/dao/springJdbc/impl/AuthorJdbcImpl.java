@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
+import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -17,6 +18,7 @@ import static com.aleksandr0412.bookstore.common.JdbcConstants.AUTHOR_ID;
 import static com.aleksandr0412.bookstore.common.JdbcConstants.AUTHOR_NAME;
 import static com.aleksandr0412.bookstore.common.Queries.*;
 
+@Repository
 public class AuthorJdbcImpl implements AuthorJdbcDAO {
     private JdbcTemplate jdbcTemplate;
 
@@ -31,7 +33,7 @@ public class AuthorJdbcImpl implements AuthorJdbcDAO {
     @Override
     public int save(Author ob) {
         final Map<String, Object> parameters = new HashMap<>();
-        parameters.put(AUTHOR_ID, ob.getId().toString());
+        parameters.put(AUTHOR_ID, ob.getId());
         parameters.put(AUTHOR_NAME, ob.getName());
         return simpleJdbcInsert.execute(parameters);
     }
@@ -48,7 +50,7 @@ public class AuthorJdbcImpl implements AuthorJdbcDAO {
 
     @Override
     public int update(Author ob) {
-        return jdbcTemplate.update(UPDATE_AUTHORS, ob.getName(), ob.getId().toString());
+        return jdbcTemplate.update(UPDATE_AUTHORS, ob.getName(), ob.getId());
     }
 
     @Override

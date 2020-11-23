@@ -5,26 +5,30 @@ import com.aleksandr0412.bookstore.dao.springJdbc.BookJdbcDAO;
 import com.aleksandr0412.bookstore.dao.springJdbc.mapper.BookRowMapper;
 import com.aleksandr0412.bookstore.model.Book;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
+import org.springframework.stereotype.Repository;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 import static com.aleksandr0412.bookstore.common.JdbcConstants.*;
 import static com.aleksandr0412.bookstore.common.Queries.*;
 
+@Repository
 public class BookJdbcImpl implements BookJdbcDAO {
     private JdbcTemplate jdbcTemplate;
 
     private SimpleJdbcInsert simpleJdbcInsert;
 
+    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+
     public BookJdbcImpl(JdbcTemplate jdbcTemplate, NamedParameterJdbcTemplate namedParameterJdbcTemplate, SimpleJdbcInsert simpleJdbcInsert, SimpleJdbcCall simpleJdbcCall) {
         this.jdbcTemplate = jdbcTemplate;
         this.simpleJdbcInsert = simpleJdbcInsert;
+        this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
         simpleJdbcInsert.withTableName("books");
     }
 
@@ -61,5 +65,11 @@ public class BookJdbcImpl implements BookJdbcDAO {
     @Override
     public Collection<Book> getAll() {
         return jdbcTemplate.query(SELECT_ALL_BOOKS, new BookRowMapper());
+    }
+
+    public Collection<Book> getBookByAuthorId(UUID id) {
+        final SqlParameterSource namedParameters = new MapSqlParameterSource().addValue("author_id", id);
+        return namedParameterJdbcTemplate.query("SELECT * FROM books WHERE author_id = :author_id", namedParameters,
+                new BookRowMapper());
     }
 }
