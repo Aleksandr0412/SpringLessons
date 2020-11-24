@@ -31,6 +31,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     @Transactional
     public OrderDto createNewOrder(OrderDto orderDto) {
+        orderDto.setId(UUID.randomUUID());
         validator.validate(orderDto);
         Order order = new Order(orderDto.getId(), orderDto.getUser(), orderDto.getPrice(), orderDto.getBooks());
         orderDAO.save(order);

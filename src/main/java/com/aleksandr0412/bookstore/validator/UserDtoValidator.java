@@ -30,7 +30,7 @@ public class UserDtoValidator {
             String message = messageSource.getMessage("user.exception", new Object[]{}, Locale.getDefault());
             throw new IllegalArgumentException(message);
         }
-        if (validateEmail(userForm.getEmail())) {
+        if (!validateEmail(userForm.getEmail())) {
             String message = messageSource.getMessage("email.exception", new Object[]{}, Locale.getDefault());
             throw new IncorrectEmailException(message);
         }

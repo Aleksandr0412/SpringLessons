@@ -48,8 +48,8 @@ public class OrderJdbcImpl implements OrderJdbcDAO {
             @Override
 //TODO magic
             public void setValues(PreparedStatement ps, int i) throws SQLException {
-                ps.setObject(1, orderId);
-                ps.setObject(2, keysOfBooks.get(i));
+                ps.setObject(1, keysOfBooks.get(i));
+                ps.setObject(2, orderId);
             }
 
             @Override

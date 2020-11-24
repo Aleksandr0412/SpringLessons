@@ -6,8 +6,8 @@
 
     <include file="author.xml" relativeToChangelogFile="true"/>
     <include file="book.xml" relativeToChangelogFile="true"/>
+    <include file="user.xml" relativeToChangelogFile="true"/>
     <include file="order.xml" relativeToChangelogFile="true"/>
     <include file="book_order.xml" relativeToChangelogFile="true"/>
-    <include file="user.xml" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>
