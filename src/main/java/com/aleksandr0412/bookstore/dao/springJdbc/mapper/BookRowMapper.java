@@ -16,7 +16,7 @@ public class BookRowMapper implements RowMapper<Book> {
     public static final String BOOK_DESCRIPTION = "description";
     public static final String BOOK_GENRE = "genre";
     public static final String BOOK_PRICE = "price";
-    public static final String BOOK_PUBLISH_DATE = "publish_date";
+    public static final String BOOK_PUBLISH_YEAR = "publish_year";
     public static final String BOOK_AUTHOR_ID = "author_id";
     public static final String BOOK_AUTHOR_NAME = "name";
 
@@ -28,9 +28,8 @@ public class BookRowMapper implements RowMapper<Book> {
         book.setDescription(resultSet.getString(BOOK_DESCRIPTION));
         book.setGenre(Genre.valueOf(resultSet.getString(BOOK_GENRE)));
         book.setPrice(new BigDecimal(resultSet.getString(BOOK_PRICE)));
-        //TODO
-//        book.setPublishDate(resultSet.getObject(BOOK_PUBLISH_DATE, LocalDate.class));
-        //TODO
+//        book.setPublishDate((resultSet.getDate(BOOK_PUBLISH_YEAR)).toLocalDate());
+        book.setPublishDate((resultSet.getDate(BOOK_PUBLISH_YEAR)) != null ? (resultSet.getDate(BOOK_PUBLISH_YEAR)).toLocalDate() : null);
         book.setAuthor(new Author(UUID.fromString(resultSet.getString(BOOK_AUTHOR_ID)),
                 resultSet.getString(BOOK_AUTHOR_NAME)));
         return book;
