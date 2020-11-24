@@ -16,7 +16,6 @@ public class SpringJDBCConfig {
 
     @Bean
     @DependsOn("dataSource")
-    @Scope("prototype")
     public JdbcTemplate jdbcTemplate(DataSource dataSource) {
         JdbcTemplate jdbcTemplate = new JdbcTemplate();
         jdbcTemplate.setDataSource(dataSource);
@@ -25,7 +24,6 @@ public class SpringJDBCConfig {
 
     @Bean
     @DependsOn("dataSource")
-    @Scope("prototype")
     public NamedParameterJdbcTemplate namedParameterJdbcTemplate(DataSource dataSource) {
         NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
         return namedParameterJdbcTemplate;
@@ -39,10 +37,4 @@ public class SpringJDBCConfig {
         return simpleJdbcInsert;
     }
 
-    @Bean
-    @DependsOn("dataSource")
-    public SimpleJdbcCall simpleJdbcCall(DataSource dataSource) {
-        SimpleJdbcCall simpleJdbcCall = new SimpleJdbcCall(dataSource);
-        return simpleJdbcCall;
-    }
 }

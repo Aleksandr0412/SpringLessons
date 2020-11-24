@@ -11,8 +11,6 @@ import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
-import java.sql.Date;
-import java.time.LocalDate;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -50,10 +48,8 @@ public class BookJdbcImpl implements BookJdbcDAO {
         parameters.put(BOOK_TITLE, ob.getTitle());
         parameters.put(BOOK_DESCRIPTION, ob.getDescription());
         parameters.put(BOOK_GENRE, ob.getGenre().name());
-        //TODO какой тип
         parameters.put(BOOK_PRICE, ob.getPrice());
-        parameters.put(BOOK_PUBLISH_YEAR, Date.valueOf(ob.getPublishDate()));
-//        parameters.put(BOOK_PUBLISH_YEAR, Date.valueOf(LocalDate.now()));
+        parameters.put(BOOK_PUBLISH_YEAR, ob.getPublishDate());
         parameters.put(BOOK_AUTHOR_ID, ob.getAuthor().getId());
         return simpleJdbcInsert.execute(parameters);
     }
@@ -79,6 +75,7 @@ public class BookJdbcImpl implements BookJdbcDAO {
         return jdbcTemplate.query(SELECT_ALL_BOOKS, new BookRowMapper());
     }
 
+    @Override
     public Collection<Book> getBookByAuthorId(UUID id) {
         final SqlParameterSource namedParameters = new MapSqlParameterSource().addValue("author_id", id);
         return namedParameterJdbcTemplate.query(SELECT_BOOKS_BY_AUTHOR_ID, namedParameters,

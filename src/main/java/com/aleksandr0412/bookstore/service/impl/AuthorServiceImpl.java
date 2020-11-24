@@ -61,7 +61,6 @@ public class AuthorServiceImpl implements AuthorService {
         List<AuthorDto> authorDtos = new ArrayList<>();
         for (Author author : authorDAO.getAll()) {
             author.setBooks(new HashSet<>(bookDAO.getBookByAuthorId(author.getId())));
-            //TODO author.getBooks() так делается? вроде должно быть дто
             authorDtos.add(new AuthorDto(author.getId(), author.getName(), author.getBooks()));
         }
         return authorDtos;

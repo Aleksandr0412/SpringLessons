@@ -17,12 +17,10 @@ import java.util.UUID;
 public class BookServiceImpl implements BookService {
     private BookJdbcDAO bookDAO;
     private BookDtoValidator validator;
-    private AuthorJdbcDAO authorDAO;
 
-    public BookServiceImpl(BookJdbcDAO bookDAO, BookDtoValidator validator, AuthorJdbcDAO authorDAO) {
+    public BookServiceImpl(BookJdbcDAO bookDAO, BookDtoValidator validator) {
         this.bookDAO = bookDAO;
         this.validator = validator;
-        this.authorDAO = authorDAO;
     }
 
     public BookDto addBook(BookDto bookDto) {

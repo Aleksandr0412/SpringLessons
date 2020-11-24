@@ -22,11 +22,11 @@ public class UserJdbcImpl implements UserJdbcDAO {
     public static final String DELETE_FROM_USERS = "DELETE FROM users WHERE id = ?";
     public static final String UPDATE_USERS = "UPDATE users SET username = ?, password = ?, email = ?  where id = ?";
     public static final String SELECT_ALL_USERS = "SELECT * FROM users";
-    private JdbcTemplate jdbcTemplate;
 
-    private SimpleJdbcInsert simpleJdbcInsert;
+    private final JdbcTemplate jdbcTemplate;
+    private final SimpleJdbcInsert simpleJdbcInsert;
 
-    public UserJdbcImpl(JdbcTemplate jdbcTemplate, NamedParameterJdbcTemplate namedParameterJdbcTemplate, SimpleJdbcInsert simpleJdbcInsert, SimpleJdbcCall simpleJdbcCall) {
+    public UserJdbcImpl(JdbcTemplate jdbcTemplate, SimpleJdbcInsert simpleJdbcInsert) {
         this.jdbcTemplate = jdbcTemplate;
         this.simpleJdbcInsert = simpleJdbcInsert;
         simpleJdbcInsert.withTableName("users");

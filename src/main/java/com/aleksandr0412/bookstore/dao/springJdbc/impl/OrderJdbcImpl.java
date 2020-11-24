@@ -5,8 +5,6 @@ import com.aleksandr0412.bookstore.dao.springJdbc.mapper.OrderRowMapper;
 import com.aleksandr0412.bookstore.model.Order;
 import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
@@ -23,17 +21,19 @@ public class OrderJdbcImpl implements OrderJdbcDAO {
     public static final String UPDATE_ORDERS = "UPDATE orders SET price = ? where id = ?";
     public static final String SELECT_ALL_ORDERS = "SELECT * FROM orders";
 
-    private JdbcTemplate jdbcTemplate;
-    private SimpleJdbcInsert simpleJdbcInsert;
+    private static final int BOOK_INDEX = 1;
+    private static final int ORDER_INDEX = 2;
 
-    public OrderJdbcImpl(JdbcTemplate jdbcTemplate, NamedParameterJdbcTemplate namedParameterJdbcTemplate, SimpleJdbcInsert simpleJdbcInsert, SimpleJdbcCall simpleJdbcCall) {
+    private final JdbcTemplate jdbcTemplate;
+    private final SimpleJdbcInsert simpleJdbcInsert;
+
+    public OrderJdbcImpl(JdbcTemplate jdbcTemplate, SimpleJdbcInsert simpleJdbcInsert) {
         this.jdbcTemplate = jdbcTemplate;
         this.simpleJdbcInsert = simpleJdbcInsert;
         simpleJdbcInsert.withTableName("orders");
     }
 
     @Override
-    //TODO magic
     public int save(Order ob) {
         final Map<String, Object> parameters = new HashMap<>();
         parameters.put(ORDER_ID, ob.getId());
@@ -46,10 +46,9 @@ public class OrderJdbcImpl implements OrderJdbcDAO {
     public int[] saveBooksInOrder(UUID orderId, List<UUID> keysOfBooks) {
         return jdbcTemplate.batchUpdate("INSERT INTO book_order VALUES(?, ?)", new BatchPreparedStatementSetter() {
             @Override
-//TODO magic
             public void setValues(PreparedStatement ps, int i) throws SQLException {
-                ps.setObject(1, keysOfBooks.get(i));
-                ps.setObject(2, orderId);
+                ps.setObject(BOOK_INDEX, keysOfBooks.get(i));
+                ps.setObject(ORDER_INDEX, orderId);
             }
 
             @Override
@@ -64,7 +63,6 @@ public class OrderJdbcImpl implements OrderJdbcDAO {
         return jdbcTemplate.queryForObject(SELECT_ORDER_BY_ID, new Object[]{key}, new OrderRowMapper());
     }
 
-    //TODO check
     @Override
     public List<UUID> getBooksFromOrder(UUID key) {
         return jdbcTemplate.queryForList("SELECT * FROM book_order WHERE order_id = ?",
@@ -77,15 +75,13 @@ public class OrderJdbcImpl implements OrderJdbcDAO {
         return jdbcTemplate.update(DELETE_FROM_ORDERS, key);
     }
 
-    //TODO
     @Override
     public int update(Order ob) {
-        throw new UnsupportedOperationException();
+        return jdbcTemplate.update(UPDATE_ORDERS, ob.getPrice(), ob.getId());
     }
 
-    //TODO
     @Override
     public Collection<Order> getAll() {
-        return null;
+        return jdbcTemplate.query(SELECT_ALL_ORDERS, new OrderRowMapper());
     }
 }

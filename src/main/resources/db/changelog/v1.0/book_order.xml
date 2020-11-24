@@ -31,9 +31,6 @@
                              referencedColumnNames="id"
                              nullable="false"/>
             </column>
-            <column name="name" type="varchar(255)" remarks="ФИО автора">
-                <constraints nullable="false"/>
-            </column>
         </createTable>
         <comment>Задача по созданию связующей таблицы книг и заказов</comment>
     </changeSet>
