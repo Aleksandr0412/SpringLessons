@@ -34,11 +34,10 @@ public class BookJdbcImpl implements BookJdbcDAO {
     private SimpleJdbcInsert simpleJdbcInsert;
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
-    public BookJdbcImpl(JdbcTemplate jdbcTemplate, NamedParameterJdbcTemplate namedParameterJdbcTemplate, SimpleJdbcInsert simpleJdbcInsert, SimpleJdbcCall simpleJdbcCall) {
+    public BookJdbcImpl(JdbcTemplate jdbcTemplate, NamedParameterJdbcTemplate namedParameterJdbcTemplate, SimpleJdbcInsert bookSimpleJdbcInsert) {
         this.jdbcTemplate = jdbcTemplate;
-        this.simpleJdbcInsert = simpleJdbcInsert;
+        this.simpleJdbcInsert = bookSimpleJdbcInsert;
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
-        simpleJdbcInsert.withTableName("books");
     }
 
     @Override

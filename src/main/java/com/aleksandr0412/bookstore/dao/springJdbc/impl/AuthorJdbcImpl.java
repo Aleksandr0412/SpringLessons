@@ -17,7 +17,7 @@ import static com.aleksandr0412.bookstore.dao.springJdbc.mapper.AuthorRowMapper.
 
 @Repository
 public class AuthorJdbcImpl implements AuthorJdbcDAO {
-      public static final String SELECT_AUTHOR_BY_ID = "SELECT * FROM authors WHERE id = ?";
+    public static final String SELECT_AUTHOR_BY_ID = "SELECT * FROM authors WHERE id = ?";
     public static final String DELETE_FROM_AUTHORS = "DELETE FROM authors WHERE id = ?";
     public static final String UPDATE_AUTHORS = "UPDATE authors SET name = ? where id = ?";
     public static final String SELECT_ALL_AUTHORS = "SELECT * FROM authors";
@@ -25,10 +25,9 @@ public class AuthorJdbcImpl implements AuthorJdbcDAO {
     private JdbcTemplate jdbcTemplate;
     private SimpleJdbcInsert simpleJdbcInsert;
 
-    public AuthorJdbcImpl(JdbcTemplate jdbcTemplate, SimpleJdbcInsert simpleJdbcInsert) {
+    public AuthorJdbcImpl(JdbcTemplate jdbcTemplate, SimpleJdbcInsert authorSimpleJdbcInsert) {
         this.jdbcTemplate = jdbcTemplate;
-        this.simpleJdbcInsert = simpleJdbcInsert;
-        simpleJdbcInsert.withTableName("authors");
+        this.simpleJdbcInsert = authorSimpleJdbcInsert;
     }
 
     @Override

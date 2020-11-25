@@ -26,10 +26,9 @@ public class UserJdbcImpl implements UserJdbcDAO {
     private final JdbcTemplate jdbcTemplate;
     private final SimpleJdbcInsert simpleJdbcInsert;
 
-    public UserJdbcImpl(JdbcTemplate jdbcTemplate, SimpleJdbcInsert simpleJdbcInsert) {
+    public UserJdbcImpl(JdbcTemplate jdbcTemplate, SimpleJdbcInsert userSimpleJdbcInsert) {
         this.jdbcTemplate = jdbcTemplate;
-        this.simpleJdbcInsert = simpleJdbcInsert;
-        simpleJdbcInsert.withTableName("users");
+        this.simpleJdbcInsert = userSimpleJdbcInsert;
     }
 
     @Override

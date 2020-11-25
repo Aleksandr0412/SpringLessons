@@ -27,10 +27,9 @@ public class OrderJdbcImpl implements OrderJdbcDAO {
     private final JdbcTemplate jdbcTemplate;
     private final SimpleJdbcInsert simpleJdbcInsert;
 
-    public OrderJdbcImpl(JdbcTemplate jdbcTemplate, SimpleJdbcInsert simpleJdbcInsert) {
+    public OrderJdbcImpl(JdbcTemplate jdbcTemplate, SimpleJdbcInsert orderSimpleJdbcInsert) {
         this.jdbcTemplate = jdbcTemplate;
-        this.simpleJdbcInsert = simpleJdbcInsert;
-        simpleJdbcInsert.withTableName("orders");
+        this.simpleJdbcInsert = orderSimpleJdbcInsert;
     }
 
     @Override
