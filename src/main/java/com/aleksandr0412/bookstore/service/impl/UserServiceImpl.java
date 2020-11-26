@@ -20,6 +20,7 @@ public class UserServiceImpl implements UserService {
         this.validator = validator;
     }
 
+    @Transactional
     public UserDto createUser(UserDto userDto) {
         validator.validate(userDto);
 
@@ -29,6 +30,7 @@ public class UserServiceImpl implements UserService {
         return userDto;
     }
 
+    @Transactional(readOnly = true)
     public UserDto getUserByPK(UUID id) {
         User user = userDAO.getByPK(id);
         return new UserDto(user.getId(), user.getUsername(), user.getEmail(), user.getPassword());

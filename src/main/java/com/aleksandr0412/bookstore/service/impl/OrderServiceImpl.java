@@ -43,7 +43,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public OrderDto getOrderByPk(UUID id) {
         Order order = orderDAO.getByPK(id);
         order.setBooks(orderDAO.getBooksFromOrder(id)

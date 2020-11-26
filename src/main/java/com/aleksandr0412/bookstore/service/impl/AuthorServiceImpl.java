@@ -26,6 +26,7 @@ public class AuthorServiceImpl implements AuthorService {
         this.bookDAO = bookDAO;
     }
 
+    @Transactional
     public AuthorDto addAuthor(AuthorDto authorDto) {
         validator.validate(authorDto);
         Author author = new Author(UUID.randomUUID(), authorDto.getName());
@@ -34,7 +35,7 @@ public class AuthorServiceImpl implements AuthorService {
         return authorDto;
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     public AuthorDto getAuthorByPK(UUID id) {
         Author author = authorDAO.getByPK(id);
         author.setBooks(new HashSet<>(bookDAO.getBookByAuthorId(id)));
@@ -48,6 +49,7 @@ public class AuthorServiceImpl implements AuthorService {
         return new AuthorDto(author.getId(), author.getName(), author.getBooks());
     }
 
+    @Transactional
     public AuthorDto updateAuthor(AuthorDto authorDto) {
         validator.validate(authorDto);
 
@@ -56,7 +58,7 @@ public class AuthorServiceImpl implements AuthorService {
         return authorDto;
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     public List<AuthorDto> getAllAuthors() {
         List<AuthorDto> authorDtos = new ArrayList<>();
         for (Author author : authorDAO.getAll()) {

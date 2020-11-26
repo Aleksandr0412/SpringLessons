@@ -23,6 +23,7 @@ public class BookServiceImpl implements BookService {
         this.validator = validator;
     }
 
+    @Transactional
     public BookDto addBook(BookDto bookDto) {
         validator.validate(bookDto);
 
@@ -33,6 +34,7 @@ public class BookServiceImpl implements BookService {
         return bookDto;
     }
 
+    @Transactional(readOnly = true)
     public BookDto getBookByPK(UUID id) {
         Book book = bookDAO.getByPK(id);
         return new BookDto(book.getId(), book.getTitle(), book.getDescription(), book.getGenre(),
@@ -47,6 +49,7 @@ public class BookServiceImpl implements BookService {
                 book.getPrice(), book.getPublishDate(), book.getAuthor());
     }
 
+    @Transactional
     public BookDto updateBook(BookDto bookDto) {
         validator.validate(bookDto);
 
@@ -56,6 +59,7 @@ public class BookServiceImpl implements BookService {
         return bookDto;
     }
 
+    @Transactional(readOnly = true)
     public List<BookDto> getAllBooks() {
         List<BookDto> bookDtos = new ArrayList<>();
         for (Book book : bookDAO.getAll()) {
