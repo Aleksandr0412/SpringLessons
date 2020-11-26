@@ -15,11 +15,13 @@ import java.util.UUID;
 
 @Service
 public class BookServiceImpl implements BookService {
-    private BookJdbcDAO bookDAO;
-    private BookDtoValidator validator;
+    private final BookJdbcDAO bookDAO;
+    private final AuthorJdbcDAO authorDAO;
+    private final BookDtoValidator validator;
 
-    public BookServiceImpl(BookJdbcDAO bookDAO, BookDtoValidator validator) {
+    public BookServiceImpl(BookJdbcDAO bookDAO, AuthorJdbcDAO authorDAO, BookDtoValidator validator) {
         this.bookDAO = bookDAO;
+        this.authorDAO = authorDAO;
         this.validator = validator;
     }
 
@@ -28,7 +30,7 @@ public class BookServiceImpl implements BookService {
         validator.validate(bookDto);
 
         Book book = new Book(UUID.randomUUID(), bookDto.getTitle(), bookDto.getDescription(), bookDto.getGenre(),
-                bookDto.getPrice(), bookDto.getPublishDate(), bookDto.getAuthor());
+                bookDto.getPrice(), bookDto.getPublishDate(), authorDAO.getByPK(bookDto.getAuthorUUID()));
         bookDto.setId(book.getId());
         bookDAO.save(book);
         return bookDto;
@@ -38,7 +40,7 @@ public class BookServiceImpl implements BookService {
     public BookDto getBookByPK(UUID id) {
         Book book = bookDAO.getByPK(id);
         return new BookDto(book.getId(), book.getTitle(), book.getDescription(), book.getGenre(),
-                book.getPrice(), book.getPublishDate(), book.getAuthor());
+                book.getPrice(), book.getPublishDate(), book.getAuthor().getId());
     }
 
     @Transactional
@@ -46,7 +48,7 @@ public class BookServiceImpl implements BookService {
         Book book = bookDAO.getByPK(id);
         bookDAO.deleteByPK(id);
         return new BookDto(book.getId(), book.getTitle(), book.getDescription(), book.getGenre(),
-                book.getPrice(), book.getPublishDate(), book.getAuthor());
+                book.getPrice(), book.getPublishDate(), book.getAuthor().getId());
     }
 
     @Transactional
@@ -54,7 +56,7 @@ public class BookServiceImpl implements BookService {
         validator.validate(bookDto);
 
         Book book = new Book(bookDto.getId(), bookDto.getTitle(), bookDto.getDescription(), bookDto.getGenre(),
-                bookDto.getPrice(), bookDto.getPublishDate(), bookDto.getAuthor());
+                bookDto.getPrice(), bookDto.getPublishDate(), authorDAO.getByPK(bookDto.getAuthorUUID()));
         bookDAO.update(book);
         return bookDto;
     }
@@ -64,8 +66,9 @@ public class BookServiceImpl implements BookService {
         List<BookDto> bookDtos = new ArrayList<>();
         for (Book book : bookDAO.getAll()) {
             bookDtos.add(new BookDto(book.getId(), book.getTitle(), book.getDescription(), book.getGenre(),
-                    book.getPrice(), book.getPublishDate(), book.getAuthor()));
+                    book.getPrice(), book.getPublishDate(), book.getAuthor().getId()));
         }
         return bookDtos;
     }
+
 }

@@ -4,15 +4,14 @@ import com.aleksandr0412.bookstore.controller.dto.AuthorDto;
 import com.aleksandr0412.bookstore.dao.springJdbc.AuthorJdbcDAO;
 import com.aleksandr0412.bookstore.dao.springJdbc.BookJdbcDAO;
 import com.aleksandr0412.bookstore.model.Author;
+import com.aleksandr0412.bookstore.model.Book;
 import com.aleksandr0412.bookstore.service.AuthorService;
 import com.aleksandr0412.bookstore.validator.AuthorDtoValidator;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class AuthorServiceImpl implements AuthorService {
@@ -39,14 +38,14 @@ public class AuthorServiceImpl implements AuthorService {
     public AuthorDto getAuthorByPK(UUID id) {
         Author author = authorDAO.getByPK(id);
         author.setBooks(new HashSet<>(bookDAO.getBookByAuthorId(id)));
-        return new AuthorDto(author.getId(), author.getName(), author.getBooks());
+        return new AuthorDto(author.getId(), author.getName(), getBooksUUID(author.getBooks()));
     }
 
     @Transactional
     public AuthorDto deleteAuthorByPK(UUID id) {
         Author author = authorDAO.getByPK(id);
         authorDAO.deleteByPK(id);
-        return new AuthorDto(author.getId(), author.getName(), author.getBooks());
+        return new AuthorDto(author.getId(), author.getName(), getBooksUUID(author.getBooks()));
     }
 
     @Transactional
@@ -63,8 +62,14 @@ public class AuthorServiceImpl implements AuthorService {
         List<AuthorDto> authorDtos = new ArrayList<>();
         for (Author author : authorDAO.getAll()) {
             author.setBooks(new HashSet<>(bookDAO.getBookByAuthorId(author.getId())));
-            authorDtos.add(new AuthorDto(author.getId(), author.getName(), author.getBooks()));
+            authorDtos.add(new AuthorDto(author.getId(), author.getName(), getBooksUUID(author.getBooks())));
         }
         return authorDtos;
+    }
+
+    private Set<UUID> getBooksUUID(Set<Book> books) {
+        return books.stream()
+                .map(Book::getId)
+                .collect(Collectors.toSet());
     }
 }

@@ -22,8 +22,8 @@ public class AuthorJdbcImpl implements AuthorJdbcDAO {
     public static final String UPDATE_AUTHORS = "UPDATE authors SET name = ? where id = ?";
     public static final String SELECT_ALL_AUTHORS = "SELECT * FROM authors";
 
-    private JdbcTemplate jdbcTemplate;
-    private SimpleJdbcInsert simpleJdbcInsert;
+    private final JdbcTemplate jdbcTemplate;
+    private final SimpleJdbcInsert simpleJdbcInsert;
 
     public AuthorJdbcImpl(JdbcTemplate jdbcTemplate, SimpleJdbcInsert authorSimpleJdbcInsert) {
         this.jdbcTemplate = jdbcTemplate;

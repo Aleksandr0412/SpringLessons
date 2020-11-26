@@ -20,9 +20,7 @@ import static com.aleksandr0412.bookstore.dao.springJdbc.mapper.BookRowMapper.*;
 
 @Repository
 public class BookJdbcImpl implements BookJdbcDAO {
-    public static final String SELECT_BOOK_BY_ID = "SELECT * FROM books WHERE id = ? " +
-            "INNER JOIN authors" +
-            "ON books.author_id = authors.id";
+    public static final String SELECT_BOOK_BY_ID = "SELECT * FROM books INNER JOIN authors ON books.author_id = authors.id WHERE books.id = ? ";
     public static final String DELETE_FROM_BOOKS = "DELETE FROM books WHERE id = ?";
     public static final String UPDATE_BOOKS = "UPDATE books " +
             "SET title = ?, description = ?, genre = ?, price = ?, publish_date = ?" +
@@ -30,9 +28,9 @@ public class BookJdbcImpl implements BookJdbcDAO {
     public static final String SELECT_ALL_BOOKS = "SELECT * FROM books INNER JOIN authors as author ON books.author_id = author.id";
     public static final String SELECT_BOOKS_BY_AUTHOR_ID = "SELECT * FROM books INNER JOIN authors ON books.author_id = authors.id WHERE author_id = :author_id";
 
-    private JdbcTemplate jdbcTemplate;
-    private SimpleJdbcInsert simpleJdbcInsert;
-    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+    private final JdbcTemplate jdbcTemplate;
+    private final SimpleJdbcInsert simpleJdbcInsert;
+    private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
     public BookJdbcImpl(JdbcTemplate jdbcTemplate, NamedParameterJdbcTemplate namedParameterJdbcTemplate, SimpleJdbcInsert bookSimpleJdbcInsert) {
         this.jdbcTemplate = jdbcTemplate;

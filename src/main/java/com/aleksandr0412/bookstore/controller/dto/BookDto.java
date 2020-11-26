@@ -1,6 +1,5 @@
 package com.aleksandr0412.bookstore.controller.dto;
 
-import com.aleksandr0412.bookstore.model.Author;
 import com.aleksandr0412.bookstore.model.Genre;
 
 import java.math.BigDecimal;
@@ -35,19 +34,19 @@ public class BookDto {
     /**
      * Автор книги
      */
-    private Author author;
+    private UUID authorUUID;
 
     public BookDto() {
     }
 
-    public BookDto(UUID id, String title, String description, Genre genre, BigDecimal price, LocalDate publishDate, Author author) {
+    public BookDto(UUID id, String title, String description, Genre genre, BigDecimal price, LocalDate publishDate, UUID authorUUID) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.genre = genre;
         this.price = price;
         this.publishDate = publishDate;
-        this.author = author;
+        this.authorUUID = authorUUID;
     }
 
     public UUID getId() {
@@ -98,11 +97,11 @@ public class BookDto {
         this.publishDate = publishDate;
     }
 
-    public Author getAuthor() {
-        return author;
+    public UUID getAuthorUUID() {
+        return authorUUID;
     }
 
-    public void setAuthor(Author author) {
-        this.author = author;
+    public void setAuthorUUID(UUID authorUUID) {
+        this.authorUUID = authorUUID;
     }
 }

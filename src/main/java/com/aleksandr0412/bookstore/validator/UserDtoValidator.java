@@ -12,7 +12,7 @@ import java.util.Locale;
 
 @Component
 public class UserDtoValidator {
-    private MessageSource messageSource;
+    private final MessageSource messageSource;
     private static final Logger logger = LogManager.getLogger(UserDtoValidator.class.getName());
 
     public UserDtoValidator(MessageSource messageSource) {

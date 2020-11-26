@@ -14,7 +14,6 @@ import java.util.concurrent.Executor;
 
 @Configuration
 @ComponentScan(basePackages = {"com.aleksandr0412.bookstore"})
-@EnableTransactionManagement
 public class SpringConfig {
     @Bean(name = "messageSource")
     public MessageSource messageSource() {

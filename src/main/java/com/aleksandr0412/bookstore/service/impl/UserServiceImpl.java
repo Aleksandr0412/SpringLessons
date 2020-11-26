@@ -12,8 +12,8 @@ import java.util.UUID;
 
 @Service
 public class UserServiceImpl implements UserService {
-    private UserJdbcDAO userDAO;
-    private UserDtoValidator validator;
+    private final UserJdbcDAO userDAO;
+    private final UserDtoValidator validator;
 
     public UserServiceImpl(UserJdbcDAO userDAO, UserDtoValidator validator) {
         this.userDAO = userDAO;
