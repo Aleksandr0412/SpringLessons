@@ -10,7 +10,7 @@ import java.util.Locale;
 
 @Component
 public class AuthorDtoValidator {
-    private MessageSource messageSource;
+    private final MessageSource messageSource;
     private static final Logger logger = LogManager.getLogger(AuthorDtoValidator.class.getName());
 
     public AuthorDtoValidator(MessageSource messageSource) {

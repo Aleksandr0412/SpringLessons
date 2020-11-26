@@ -1,8 +1,5 @@
 package com.aleksandr0412.bookstore.controller.dto;
 
-import com.aleksandr0412.bookstore.model.Book;
-import com.aleksandr0412.bookstore.model.User;
-
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
@@ -15,7 +12,7 @@ public class OrderDto {
     /**
      * Пользователь, создавший заказ
      */
-    private User user;
+    private UUID userId;
     /**
      * Цена в рублях
      */
@@ -23,7 +20,7 @@ public class OrderDto {
     /**
      * Список книг заказа
      */
-    private List<Book> books;
+    private List<UUID> bookIds;
 
     public UUID getId() {
         return id;
@@ -33,12 +30,20 @@ public class OrderDto {
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
+    public UUID getUserId() {
+        return userId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserId(UUID userId) {
+        this.userId = userId;
+    }
+
+    public List<UUID> getBookIds() {
+        return bookIds;
+    }
+
+    public void setBookIds(List<UUID> bookIds) {
+        this.bookIds = bookIds;
     }
 
     public BigDecimal getPrice() {
@@ -49,21 +54,13 @@ public class OrderDto {
         this.price = price;
     }
 
-    public List<Book> getBooks() {
-        return books;
-    }
-
-    public void setBooks(List<Book> books) {
-        this.books = books;
-    }
-
     public OrderDto() {
     }
 
-    public OrderDto(UUID id, User user, BigDecimal price, List<Book> books) {
+    public OrderDto(UUID id, UUID userId, BigDecimal price, List<UUID> bookIds) {
         this.id = id;
-        this.user = user;
+        this.userId = userId;
         this.price = price;
-        this.books = books;
+        this.bookIds = bookIds;
     }
 }

@@ -1,4 +1,4 @@
-package com.aleksandr0412.bookstore.dao;
+package com.aleksandr0412.bookstore.dao.map;
 
 import com.aleksandr0412.bookstore.model.Identified;
 
@@ -15,6 +15,7 @@ public interface GenericDAO<T extends Identified<PK>, PK extends Serializable> {
 
     /**
      * Создает новую запись, соответствующую объекту object
+     * @return
      */
     T save(T ob);
 

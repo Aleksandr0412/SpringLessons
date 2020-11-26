@@ -19,6 +19,12 @@
                              primaryKeyName="order_pk"
                              nullable="false"/>
             </column>
+            <column name="user_id" type="uuid" remarks="Заказчик">
+                <constraints foreignKeyName="user_fk_order"
+                             referencedTableName="users"
+                             referencedColumnNames="id"
+                             nullable="false"/>
+            </column>
             <column name="price" type="numeric(8, 2)" remarks="Общая сумма заказа">
                 <constraints nullable="false"/>
             </column>

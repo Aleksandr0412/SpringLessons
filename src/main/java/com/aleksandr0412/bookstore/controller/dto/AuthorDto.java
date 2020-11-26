@@ -1,7 +1,5 @@
 package com.aleksandr0412.bookstore.controller.dto;
 
-import com.aleksandr0412.bookstore.model.Book;
-
 import java.util.Set;
 import java.util.UUID;
 
@@ -17,7 +15,7 @@ public class AuthorDto {
     /**
      * Множество книг автора
      */
-    private Set<Book> books;
+    private Set<UUID> booksIds;
 
     public UUID getId() {
         return id;
@@ -35,20 +33,20 @@ public class AuthorDto {
         this.name = name;
     }
 
-    public Set<Book> getBooks() {
-        return books;
+    public Set<UUID> getBooks() {
+        return booksIds;
     }
 
-    public void setBooks(Set<Book> books) {
-        this.books = books;
+    public void setBooks(Set<UUID> books) {
+        this.booksIds = books;
     }
 
     public AuthorDto() {
     }
 
-    public AuthorDto(UUID id, String name, Set<Book> books) {
+    public AuthorDto(UUID id, String name, Set<UUID> booksIds) {
         this.id = id;
         this.name = name;
-        this.books = books;
+        this.booksIds = booksIds;
     }
 }

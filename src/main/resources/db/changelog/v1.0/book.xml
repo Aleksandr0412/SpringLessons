@@ -32,7 +32,7 @@
             </column>
             <column name="publish_year" type="date" remarks="Дата издания">
             </column>
-            <column name="author_id" type="uuid" remarks="Цена книги">
+            <column name="author_id" type="uuid" remarks="Автор книги">
                 <constraints foreignKeyName="book_fk"
                              referencedTableName="authors"
                              referencedColumnNames="id"

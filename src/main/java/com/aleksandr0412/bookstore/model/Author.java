@@ -20,6 +20,11 @@ public class Author implements Identified<UUID> {
      */
     private Set<Book> books;
 
+    public Author(UUID id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     public Author() {
     }
 

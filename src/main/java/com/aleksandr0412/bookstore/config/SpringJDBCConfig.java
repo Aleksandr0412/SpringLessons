@@ -3,6 +3,7 @@ package com.aleksandr0412.bookstore.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
+import org.springframework.context.annotation.Scope;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcCall;
@@ -30,15 +31,34 @@ public class SpringJDBCConfig {
 
     @Bean
     @DependsOn("dataSource")
-    public SimpleJdbcInsert simpleJdbcInsert(DataSource dataSource) {
-        SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(dataSource);
-        return simpleJdbcInsert;
+    public SimpleJdbcInsert authorSimpleJdbcInsert(DataSource dataSource) {
+        SimpleJdbcInsert authorSimpleJdbcInsert = new SimpleJdbcInsert(dataSource);
+        authorSimpleJdbcInsert.withTableName("authors");
+        return authorSimpleJdbcInsert;
     }
 
     @Bean
     @DependsOn("dataSource")
-    public SimpleJdbcCall simpleJdbcCall(DataSource dataSource) {
-        SimpleJdbcCall simpleJdbcCall = new SimpleJdbcCall(dataSource);
-        return simpleJdbcCall;
+    public SimpleJdbcInsert bookSimpleJdbcInsert(DataSource dataSource) {
+        SimpleJdbcInsert bookSimpleJdbcInsert = new SimpleJdbcInsert(dataSource);
+        bookSimpleJdbcInsert.withTableName("books");
+        return bookSimpleJdbcInsert;
     }
+
+    @Bean
+    @DependsOn("dataSource")
+    public SimpleJdbcInsert orderSimpleJdbcInsert(DataSource dataSource) {
+        SimpleJdbcInsert orderSimpleJdbcInsert = new SimpleJdbcInsert(dataSource);
+        orderSimpleJdbcInsert.withTableName("orders");
+        return orderSimpleJdbcInsert;
+    }
+
+    @Bean
+    @DependsOn("dataSource")
+    public SimpleJdbcInsert userSimpleJdbcInsert(DataSource dataSource) {
+        SimpleJdbcInsert userSimpleJdbcInsert = new SimpleJdbcInsert(dataSource);
+        userSimpleJdbcInsert.withTableName("users");
+        return userSimpleJdbcInsert;
+    }
+
 }

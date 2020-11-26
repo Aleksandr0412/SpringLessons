@@ -12,7 +12,7 @@ import java.util.Locale;
 
 @Component
 public class UserDtoValidator {
-    private MessageSource messageSource;
+    private final MessageSource messageSource;
     private static final Logger logger = LogManager.getLogger(UserDtoValidator.class.getName());
 
     public UserDtoValidator(MessageSource messageSource) {
@@ -30,7 +30,7 @@ public class UserDtoValidator {
             String message = messageSource.getMessage("user.exception", new Object[]{}, Locale.getDefault());
             throw new IllegalArgumentException(message);
         }
-        if (validateEmail(userForm.getEmail())) {
+        if (!validateEmail(userForm.getEmail())) {
             String message = messageSource.getMessage("email.exception", new Object[]{}, Locale.getDefault());
             throw new IncorrectEmailException(message);
         }
