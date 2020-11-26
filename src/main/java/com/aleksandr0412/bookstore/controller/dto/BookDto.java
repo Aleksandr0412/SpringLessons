@@ -34,19 +34,19 @@ public class BookDto {
     /**
      * Автор книги
      */
-    private UUID authorUUID;
+    private UUID authorId;
 
     public BookDto() {
     }
 
-    public BookDto(UUID id, String title, String description, Genre genre, BigDecimal price, LocalDate publishDate, UUID authorUUID) {
+    public BookDto(UUID id, String title, String description, Genre genre, BigDecimal price, LocalDate publishDate, UUID authorId) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.genre = genre;
         this.price = price;
         this.publishDate = publishDate;
-        this.authorUUID = authorUUID;
+        this.authorId = authorId;
     }
 
     public UUID getId() {
@@ -97,11 +97,11 @@ public class BookDto {
         this.publishDate = publishDate;
     }
 
-    public UUID getAuthorUUID() {
-        return authorUUID;
+    public UUID getAuthorId() {
+        return authorId;
     }
 
-    public void setAuthorUUID(UUID authorUUID) {
-        this.authorUUID = authorUUID;
+    public void setAuthorId(UUID authorId) {
+        this.authorId = authorId;
     }
 }

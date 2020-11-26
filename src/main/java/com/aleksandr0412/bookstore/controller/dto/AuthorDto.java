@@ -15,7 +15,7 @@ public class AuthorDto {
     /**
      * Множество книг автора
      */
-    private Set<UUID> booksId;
+    private Set<UUID> booksIds;
 
     public UUID getId() {
         return id;
@@ -34,19 +34,19 @@ public class AuthorDto {
     }
 
     public Set<UUID> getBooks() {
-        return booksId;
+        return booksIds;
     }
 
     public void setBooks(Set<UUID> books) {
-        this.booksId = books;
+        this.booksIds = books;
     }
 
     public AuthorDto() {
     }
 
-    public AuthorDto(UUID id, String name, Set<UUID> booksId) {
+    public AuthorDto(UUID id, String name, Set<UUID> booksIds) {
         this.id = id;
         this.name = name;
-        this.booksId = booksId;
+        this.booksIds = booksIds;
     }
 }

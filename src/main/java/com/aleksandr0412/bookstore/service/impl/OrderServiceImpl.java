@@ -34,8 +34,8 @@ public class OrderServiceImpl implements OrderService {
     public OrderDto createNewOrder(OrderDto orderDto) {
         orderDto.setId(UUID.randomUUID());
         validator.validate(orderDto);
-        List<Book> books = getBooksByPKList(orderDto.getBooksUUID());
-        Order order = new Order(orderDto.getId(), userDAO.getByPK(orderDto.getUserUUID()), orderDto.getPrice(), books);
+        List<Book> books = getBooksByPKList(orderDto.getBookIds());
+        Order order = new Order(orderDto.getId(), userDAO.getByPK(orderDto.getUserId()), orderDto.getPrice(), books);
         orderDAO.save(order);
         orderDAO.saveBooksInOrder(order.getId(), getBooksUUID(order.getBooks()));
         return orderDto;

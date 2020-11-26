@@ -12,7 +12,7 @@ public class OrderDto {
     /**
      * Пользователь, создавший заказ
      */
-    private UUID userUUID;
+    private UUID userId;
     /**
      * Цена в рублях
      */
@@ -20,7 +20,7 @@ public class OrderDto {
     /**
      * Список книг заказа
      */
-    private List<UUID> booksUUID;
+    private List<UUID> bookIds;
 
     public UUID getId() {
         return id;
@@ -30,20 +30,20 @@ public class OrderDto {
         this.id = id;
     }
 
-    public UUID getUserUUID() {
-        return userUUID;
+    public UUID getUserId() {
+        return userId;
     }
 
-    public void setUserUUID(UUID userUUID) {
-        this.userUUID = userUUID;
+    public void setUserId(UUID userId) {
+        this.userId = userId;
     }
 
-    public List<UUID> getBooksUUID() {
-        return booksUUID;
+    public List<UUID> getBookIds() {
+        return bookIds;
     }
 
-    public void setBooksUUID(List<UUID> booksUUID) {
-        this.booksUUID = booksUUID;
+    public void setBookIds(List<UUID> bookIds) {
+        this.bookIds = bookIds;
     }
 
     public BigDecimal getPrice() {
@@ -57,10 +57,10 @@ public class OrderDto {
     public OrderDto() {
     }
 
-    public OrderDto(UUID id, UUID userUUID, BigDecimal price, List<UUID> booksUUID) {
+    public OrderDto(UUID id, UUID userId, BigDecimal price, List<UUID> bookIds) {
         this.id = id;
-        this.userUUID = userUUID;
+        this.userId = userId;
         this.price = price;
-        this.booksUUID = booksUUID;
+        this.bookIds = bookIds;
     }
 }

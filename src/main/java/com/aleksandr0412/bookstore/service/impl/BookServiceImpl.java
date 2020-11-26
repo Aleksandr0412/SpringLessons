@@ -30,7 +30,7 @@ public class BookServiceImpl implements BookService {
         validator.validate(bookDto);
 
         Book book = new Book(UUID.randomUUID(), bookDto.getTitle(), bookDto.getDescription(), bookDto.getGenre(),
-                bookDto.getPrice(), bookDto.getPublishDate(), authorDAO.getByPK(bookDto.getAuthorUUID()));
+                bookDto.getPrice(), bookDto.getPublishDate(), authorDAO.getByPK(bookDto.getAuthorId()));
         bookDto.setId(book.getId());
         bookDAO.save(book);
         return bookDto;
@@ -56,7 +56,7 @@ public class BookServiceImpl implements BookService {
         validator.validate(bookDto);
 
         Book book = new Book(bookDto.getId(), bookDto.getTitle(), bookDto.getDescription(), bookDto.getGenre(),
-                bookDto.getPrice(), bookDto.getPublishDate(), authorDAO.getByPK(bookDto.getAuthorUUID()));
+                bookDto.getPrice(), bookDto.getPublishDate(), authorDAO.getByPK(bookDto.getAuthorId()));
         bookDAO.update(book);
         return bookDto;
     }

@@ -19,7 +19,7 @@ public class OrderDtoValidator {
     }
 
     public void validate(OrderDto orderForm) {
-        if (orderForm.getBooksUUID().isEmpty()) {
+        if (orderForm.getBookIds().isEmpty()) {
             logger.error("order is empty");
             String message = messageSource.getMessage("order.exception", new Object[]{}, Locale.getDefault());
             throw new EmptyOrderException(message);
