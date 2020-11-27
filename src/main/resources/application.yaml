@@ -1,0 +1,45 @@
+server:
+  port: ${APP_PORT:8080}
+  servlet:
+    session:
+      cookie:
+        http-only: true
+    context-path: /
+    application-display-name: MyAPP
+  tomcat:
+    max-connections: 1000
+    accept-count: 100
+    connection-timeout: 30000
+
+spring:
+  application:
+    name: my-app
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: POSTGRES
+    password: POSTGRES
+    driverClassName: org.postgresql.Driver
+    hikari:
+      connection-timeout: 30000
+      maximum-pool-size: 10
+  liquibase:
+    enabled: true
+    change-log: classpath:/db/changelog/changelog-master.xml
+
+logging:
+  level:
+    ROOT: INFO
+    ru.iteco: DEBUG
+    org.springframework: INFO
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info, health, metrics
+  metrics:
+    export:
+      atlas:
+        enabled: true
+
+
