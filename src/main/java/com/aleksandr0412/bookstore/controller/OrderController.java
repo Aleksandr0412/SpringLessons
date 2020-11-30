@@ -12,7 +12,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("api/order")
 public class OrderController {
-    private OrderService service;
+    private final OrderService service;
 
     public OrderController(OrderService service) {
         this.service = service;

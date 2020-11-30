@@ -3,8 +3,8 @@ package com.aleksandr0412.bookstore.validator;
 import com.aleksandr0412.bookstore.controller.dto.UserDto;
 import com.aleksandr0412.bookstore.exceptions.IncorrectEmailException;
 import org.apache.commons.validator.routines.EmailValidator;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Component;
 
@@ -13,7 +13,7 @@ import java.util.Locale;
 @Component
 public class UserDtoValidator {
     private final MessageSource messageSource;
-    private static final Logger logger = LogManager.getLogger(UserDtoValidator.class.getName());
+    private static final Logger logger = LoggerFactory.getLogger(UserDtoValidator.class.getName());
 
     public UserDtoValidator(MessageSource messageSource) {
         this.messageSource = messageSource;

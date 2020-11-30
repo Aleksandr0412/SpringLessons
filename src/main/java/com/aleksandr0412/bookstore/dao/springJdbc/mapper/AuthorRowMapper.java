@@ -10,6 +10,7 @@ import java.util.UUID;
 public class AuthorRowMapper implements RowMapper<Author> {
     public static final String AUTHOR_ID = "id";
     public static final String AUTHOR_NAME = "name";
+
     @Override
     public Author mapRow(ResultSet rs, int rowNum) throws SQLException {
         final Author author = new Author();
