@@ -29,7 +29,7 @@ spring:
 logging:
   level:
     ROOT: INFO
-    ru.iteco: DEBUG
+    com.aleksandr0412.bookstore: DEBUG
     org.springframework: INFO
 
 management:
@@ -42,4 +42,9 @@ management:
       atlas:
         enabled: true
 
+threadPool:
+  corePoolSize: 4
+  maxPoolSize: 8
 
+system:
+  name: my system1

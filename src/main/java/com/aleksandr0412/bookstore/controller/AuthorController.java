@@ -15,7 +15,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/author")
 public class AuthorController {
-    private AuthorService service;
+    private final AuthorService service;
 
     @Autowired
     public AuthorController(AuthorService service) {

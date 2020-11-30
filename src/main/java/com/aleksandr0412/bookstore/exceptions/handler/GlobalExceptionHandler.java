@@ -5,8 +5,8 @@ import com.aleksandr0412.bookstore.exceptions.EmptyOrderException;
 import com.aleksandr0412.bookstore.exceptions.IncorrectEmailException;
 import com.aleksandr0412.bookstore.exceptions.IncorrectSumException;
 import com.aleksandr0412.bookstore.exceptions.ResourceNotFoundException;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -20,7 +20,7 @@ import java.util.UUID;
 @RestControllerAdvice(basePackages = "com.aleksandr0412.bookstore.controller")
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
-    private static final Logger log = LogManager.getLogger(GlobalExceptionHandler.class.getName());
+    private static final Logger log = LoggerFactory.getLogger(GlobalExceptionHandler.class.getName());
     @Value("${system.name}")
     private String systemName;
 
