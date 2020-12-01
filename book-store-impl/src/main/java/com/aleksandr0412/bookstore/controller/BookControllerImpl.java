@@ -21,30 +21,26 @@ public class BookControllerImpl implements BookController {
         this.service = service;
     }
 
-    @GetMapping
     @Override
     public List<BookDto> getAllBooks() {
         return service.getAllBooks();
     }
 
-    @GetMapping("{id}")
     @Override
-    public BookDto getBookByPk(@PathVariable UUID id) {
+    public BookDto getBookByPk(UUID id) {
         return service.getBookByPK(id);
     }
 
-    @PostMapping
     @Override
-    public ResponseEntity<BookDto> createBook(@RequestBody BookDto bookDto, UriComponentsBuilder componentsBuilder) {
+    public ResponseEntity<BookDto> createBook(BookDto bookDto, UriComponentsBuilder componentsBuilder) {
         BookDto result = service.addBook(bookDto);
         URI uri = componentsBuilder.path("/api/book/" + result.getId()).buildAndExpand(result).toUri();
 
         return ResponseEntity.created(uri).body(result);
     }
 
-    @PutMapping("{id}")
     @Override
-    public BookDto updateBook(@PathVariable UUID id, @RequestBody BookDto bookDto) {
+    public BookDto updateBook(UUID id, BookDto bookDto) {
         if (!bookDto.getId().equals(id)) {
             throw new ResourceNotFoundException("wrong id");
         }
@@ -52,9 +48,8 @@ public class BookControllerImpl implements BookController {
         return service.updateBook(bookDto);
     }
 
-    @DeleteMapping
     @Override
-    public BookDto deleteBook(@RequestParam(value = "id") UUID id) {
+    public BookDto deleteBook(UUID id) {
         return service.deleteBookByPK(id);
     }
 }

@@ -25,4 +25,5 @@ dependencies {
 
 bootJar {
     enabled = true
+    launchScript()
 }

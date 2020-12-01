@@ -17,7 +17,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import java.util.UUID;
 
-@RestControllerAdvice(basePackages = "com.aleksandr0412.bookstore.com.aleksandr0412.bookstore.controller.controller")
+@RestControllerAdvice(basePackages = "com.aleksandr0412.bookstore.controller")
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     private static final Logger log = LoggerFactory.getLogger(GlobalExceptionHandler.class.getName());

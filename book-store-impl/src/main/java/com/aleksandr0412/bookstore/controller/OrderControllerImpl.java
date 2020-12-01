@@ -19,15 +19,13 @@ public class OrderControllerImpl implements OrderController {
         this.service = service;
     }
 
-    @GetMapping("{id}")
     @Override
-    public OrderDto getByPK(@PathVariable UUID id) {
+    public OrderDto getByPK(UUID id) {
         return service.getOrderByPk(id);
     }
 
-    @PostMapping
     @Override
-    public ResponseEntity<OrderDto> createOrder(@RequestBody OrderDto orderDto, UriComponentsBuilder componentsBuilder) {
+    public ResponseEntity<OrderDto> createOrder(OrderDto orderDto, UriComponentsBuilder componentsBuilder) {
         OrderDto result = service.createNewOrder(orderDto);
         URI uri = componentsBuilder.path("/api/order/" + result.getId()).buildAndExpand(result).toUri();
 

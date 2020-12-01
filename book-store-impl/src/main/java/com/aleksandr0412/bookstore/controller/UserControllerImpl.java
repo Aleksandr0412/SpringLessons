@@ -19,24 +19,21 @@ public class UserControllerImpl implements UserController {
         this.service = service;
     }
 
-    @GetMapping("{id}")
     @Override
-    public UserDto getUserByPK(@PathVariable UUID id) {
+    public UserDto getUserByPK(UUID id) {
         return service.getUserByPK(id);
     }
 
-    @PostMapping
     @Override
-    public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto, UriComponentsBuilder componentsBuilder) {
+    public ResponseEntity<UserDto> createUser(UserDto userDto, UriComponentsBuilder componentsBuilder) {
         UserDto result = service.createUser(userDto);
         URI uri = componentsBuilder.path("/api/book/" + result.getId()).buildAndExpand(result).toUri();
 
         return ResponseEntity.created(uri).body(result);
     }
 
-    @DeleteMapping
     @Override
-    public UserDto deleteUser(@RequestParam(value = "id") UUID id) {
+    public UserDto deleteUser(UUID id) {
         return service.deleteUserByPK(id);
     }
 }

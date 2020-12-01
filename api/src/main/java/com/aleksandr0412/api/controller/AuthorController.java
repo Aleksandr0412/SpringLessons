@@ -2,6 +2,7 @@ package com.aleksandr0412.api.controller;
 
 import com.aleksandr0412.api.dto.AuthorDto;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.List;
@@ -16,6 +17,7 @@ public interface AuthorController {
      *
      * @return всех авторов
      */
+    @GetMapping
     List<AuthorDto> getAllAuthors();
 
     /**
@@ -24,21 +26,24 @@ public interface AuthorController {
      * @param id - пк автора
      * @return автора по пк
      */
-    AuthorDto getAuthor(UUID id);
+    @GetMapping("/{id}")
+    AuthorDto getAuthor(@PathVariable UUID id);
 
     /**
      * @param authorDto
      * @param componentsBuilder
      * @return DTO созданного автора
      */
-    ResponseEntity<AuthorDto> createAuthor(AuthorDto authorDto, UriComponentsBuilder componentsBuilder);
+    @PostMapping
+    ResponseEntity<AuthorDto> createAuthor(@RequestBody AuthorDto authorDto, UriComponentsBuilder componentsBuilder);
 
     /**
      * @param id
      * @param authorDto
      * @return DTO обновленного автора
      */
-    AuthorDto updateAuthor(UUID id, AuthorDto authorDto);
+    @PutMapping("{id}")
+    AuthorDto updateAuthor(@PathVariable UUID id, @RequestBody AuthorDto authorDto);
 
     /**
      * Удаляет автора
@@ -46,5 +51,6 @@ public interface AuthorController {
      * @param id
      * @return ДТО удаленного автора
      */
-    AuthorDto deleteAuthor(UUID id);
+    @DeleteMapping
+    AuthorDto deleteAuthor(@RequestParam(value = "id") UUID id);
 }
