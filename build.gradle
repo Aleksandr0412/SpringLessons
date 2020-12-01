@@ -1,13 +1,22 @@
 plugins {
-    id 'org.springframework.boot' version '2.4.0'
-    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+    id 'org.springframework.boot'
+    id 'io.spring.dependency-management'
     id 'java'
     id 'idea'
 }
-group = 'com.aleksandr0412'
-version = '1.0-SNAPSHOT'
-description = 'BookStore'
-java.sourceCompatibility = JavaVersion.VERSION_1_8
+
+allprojects {
+    group = 'com.aleksandr0412'
+    version = '1.0-SNAPSHOT'
+    description = 'BookStore'
+    java.sourceCompatibility = JavaVersion.VERSION_11
+}
+
+subprojects {
+    repositories {
+        mavenCentral()
+    }
+}
 
 repositories {
     mavenLocal()
@@ -19,29 +28,12 @@ repositories {
 springBoot {
     buildInfo()
 }
+
 bootJar {
-    launchScript {
-    }
+    enabled = false
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-web'
 
-    implementation 'org.springframework.boot:spring-boot-starter-actuator'
-
-    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
-    implementation 'org.liquibase:liquibase-core:4.1.1'
-    implementation 'org.postgresql:postgresql:42.2.18'
-
-    implementation 'org.apache.commons:commons-lang3:3.11'
-    implementation 'commons-validator:commons-validator:1.7'
 }
 
-
-//publishing {
-//    publications {
-//        maven(MavenPublication) {
-//            from(components.java)
-//        }
-//    }
-//}
