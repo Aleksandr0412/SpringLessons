@@ -1,12 +1,5 @@
-plugins {
-    id 'org.springframework.boot'
-    id 'io.spring.dependency-management'
-    id 'java'
-    id 'idea'
-}
-
 dependencies {
-    implementation 'org.springframework:spring-web:5.2.9.RELEASE'
+    implementation 'org.springframework:spring-web'
 }
 
 bootJar {
