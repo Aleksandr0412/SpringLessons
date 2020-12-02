@@ -8,8 +8,9 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.util.UUID;
 
 /**
- *
+ * UserController
  */
+@RequestMapping("api/user")
 public interface UserController {
     /**
      * @param id

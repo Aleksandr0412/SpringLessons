@@ -27,3 +27,8 @@ bootJar {
     enabled = true
     launchScript()
 }
+
+
+springBoot {
+    buildInfo()
+}

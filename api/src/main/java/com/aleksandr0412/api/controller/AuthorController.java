@@ -9,8 +9,9 @@ import java.util.List;
 import java.util.UUID;
 
 /**
- * com.aleksandr0412.bookstore.controller.controller.AuthorController
+ * AuthorController
  */
+@RequestMapping("/api/author")
 public interface AuthorController {
     /**
      * Возвращает список всех авторов

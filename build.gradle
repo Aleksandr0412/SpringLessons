@@ -25,10 +25,6 @@ repositories {
     }
 }
 
-springBoot {
-    buildInfo()
-}
-
 bootJar {
     enabled = false
 }

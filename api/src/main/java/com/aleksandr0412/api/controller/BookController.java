@@ -9,8 +9,9 @@ import java.util.List;
 import java.util.UUID;
 
 /**
- * com.aleksandr0412.bookstore.controller.controller.BookController
+ * BookController
  */
+@RequestMapping("api/book")
 public interface BookController {
     /**
      * @return список всех книг
@@ -34,7 +35,7 @@ public interface BookController {
     ResponseEntity<BookDto> createBook(@RequestBody BookDto bookDto, UriComponentsBuilder componentsBuilder);
 
     /**
-     * @param id пк книги
+     * @param id      пк книги
      * @param bookDto
      * @return измененную книгу
      */

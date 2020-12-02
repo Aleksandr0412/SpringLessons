@@ -4,14 +4,13 @@ import com.aleksandr0412.api.controller.OrderController;
 import com.aleksandr0412.api.dto.OrderDto;
 import com.aleksandr0412.bookstore.service.OrderService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("api/order")
 public class OrderControllerImpl implements OrderController {
     private final OrderService service;
 

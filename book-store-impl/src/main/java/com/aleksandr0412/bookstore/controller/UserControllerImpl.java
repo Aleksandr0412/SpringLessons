@@ -4,14 +4,13 @@ import com.aleksandr0412.api.controller.UserController;
 import com.aleksandr0412.api.dto.UserDto;
 import com.aleksandr0412.bookstore.service.UserService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("api/user")
 public class UserControllerImpl implements UserController {
     private final UserService service;
 
