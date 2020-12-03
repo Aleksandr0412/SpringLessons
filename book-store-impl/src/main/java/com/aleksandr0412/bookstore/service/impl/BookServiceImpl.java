@@ -1,12 +1,11 @@
 package com.aleksandr0412.bookstore.service.impl;
 
 import com.aleksandr0412.api.dto.BookDto;
-import com.aleksandr0412.bookstore.dao.springJdbc.AuthorJdbcDAO;
 import com.aleksandr0412.bookstore.dao.springJdbc.BookJdbcDAO;
 import com.aleksandr0412.bookstore.model.Book;
-import com.aleksandr0412.bookstore.model.Genre;
 import com.aleksandr0412.bookstore.service.BookService;
 import com.aleksandr0412.bookstore.validator.BookDtoValidator;
+import ma.glasnost.orika.MapperFacade;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,48 +16,45 @@ import java.util.UUID;
 @Service
 public class BookServiceImpl implements BookService {
     private final BookJdbcDAO bookDAO;
-    private final AuthorJdbcDAO authorDAO;
     private final BookDtoValidator validator;
+    private final MapperFacade mapperFacade;
 
-    public BookServiceImpl(BookJdbcDAO bookDAO, AuthorJdbcDAO authorDAO, BookDtoValidator validator) {
+    public BookServiceImpl(BookJdbcDAO bookDAO, BookDtoValidator validator, MapperFacade mapperFacade) {
         this.bookDAO = bookDAO;
-        this.authorDAO = authorDAO;
         this.validator = validator;
+        this.mapperFacade = mapperFacade;
     }
 
     @Transactional
     public BookDto addBook(BookDto bookDto) {
         validator.validate(bookDto);
-
-        Book book = new Book(UUID.randomUUID(), bookDto.getTitle(), bookDto.getDescription(), Genre.valueOf(bookDto.getGenre()),
-                bookDto.getPrice(), bookDto.getPublishDate(), authorDAO.getByPK(bookDto.getAuthorId()));
-        bookDto.setId(book.getId());
+        bookDto.setId(UUID.randomUUID());
+        Book book = mapperFacade.map(bookDto, Book.class);
         bookDAO.save(book);
+
         return bookDto;
     }
 
     @Transactional(readOnly = true)
     public BookDto getBookByPK(UUID id) {
         Book book = bookDAO.getByPK(id);
-        return new BookDto(book.getId(), book.getTitle(), book.getDescription(), book.getGenre().name(),
-                book.getPrice(), book.getPublishDate(), book.getAuthor().getId());
+
+        return mapperFacade.map(book, BookDto.class);
     }
 
     @Transactional
     public BookDto deleteBookByPK(UUID id) {
         Book book = bookDAO.getByPK(id);
         bookDAO.deleteByPK(id);
-        return new BookDto(book.getId(), book.getTitle(), book.getDescription(), book.getGenre().name(),
-                book.getPrice(), book.getPublishDate(), book.getAuthor().getId());
+        return mapperFacade.map(book, BookDto.class);
     }
 
     @Transactional
     public BookDto updateBook(BookDto bookDto) {
         validator.validate(bookDto);
-
-        Book book = new Book(bookDto.getId(), bookDto.getTitle(), bookDto.getDescription(), Genre.valueOf(bookDto.getGenre()),
-                bookDto.getPrice(), bookDto.getPublishDate(), authorDAO.getByPK(bookDto.getAuthorId()));
+        Book book = mapperFacade.map(bookDto, Book.class);
         bookDAO.update(book);
+
         return bookDto;
     }
 
@@ -66,8 +62,7 @@ public class BookServiceImpl implements BookService {
     public List<BookDto> getAllBooks() {
         List<BookDto> bookDtos = new ArrayList<>();
         for (Book book : bookDAO.getAll()) {
-            bookDtos.add(new BookDto(book.getId(), book.getTitle(), book.getDescription(), book.getGenre().name(),
-                    book.getPrice(), book.getPublishDate(), book.getAuthor().getId()));
+            bookDtos.add(mapperFacade.map(book, BookDto.class));
         }
         return bookDtos;
     }

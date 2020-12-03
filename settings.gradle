@@ -6,6 +6,6 @@ pluginManagement {
 }
 rootProject.name = 'BookStore'
 
-include 'api'
+include 'book-store-api'
 include 'book-store-impl'
 

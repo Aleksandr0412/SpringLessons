@@ -8,6 +8,7 @@ import com.aleksandr0412.bookstore.model.Book;
 import com.aleksandr0412.bookstore.model.Order;
 import com.aleksandr0412.bookstore.service.OrderService;
 import com.aleksandr0412.bookstore.validator.OrderDtoValidator;
+import ma.glasnost.orika.MapperFacade;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,12 +22,14 @@ public class OrderServiceImpl implements OrderService {
     private final OrderDtoValidator validator;
     private final BookJdbcDAO bookDAO;
     private final UserJdbcDAO userDAO;
+    private final MapperFacade mapperFacade;
 
-    public OrderServiceImpl(OrderJdbcDAO orderDAO, OrderDtoValidator validator, BookJdbcDAO bookDAO, UserJdbcDAO userDAO) {
+    public OrderServiceImpl(OrderJdbcDAO orderDAO, OrderDtoValidator validator, BookJdbcDAO bookDAO, UserJdbcDAO userDAO, MapperFacade mapperFacade) {
         this.orderDAO = orderDAO;
         this.validator = validator;
         this.bookDAO = bookDAO;
         this.userDAO = userDAO;
+        this.mapperFacade = mapperFacade;
     }
 
     @Override
@@ -47,7 +50,8 @@ public class OrderServiceImpl implements OrderService {
         Order order = orderDAO.getByPK(id);
         order.setBooks(getBooksByPKList(orderDAO.getBooksFromOrder(id)));
         order.setUser(userDAO.getByPK(order.getUser().getId()));
-        return new OrderDto(order.getId(), order.getUser().getId(), order.getPrice(), getBooksUUID(order.getBooks()));
+//        return new OrderDto(order.getId(), order.getUser().getId(), order.getPrice(), getBooksUUID(order.getBooks()));
+        return mapperFacade.map(order, OrderDto.class);
     }
 
     @Transactional(readOnly = true)
