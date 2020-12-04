@@ -4,15 +4,16 @@ import com.aleksandr0412.api.dto.AuthorDto;
 import com.aleksandr0412.bookstore.dao.springJdbc.AuthorJdbcDAO;
 import com.aleksandr0412.bookstore.dao.springJdbc.BookJdbcDAO;
 import com.aleksandr0412.bookstore.model.Author;
-import com.aleksandr0412.bookstore.model.Book;
 import com.aleksandr0412.bookstore.service.AuthorService;
 import com.aleksandr0412.bookstore.validator.AuthorDtoValidator;
 import ma.glasnost.orika.MapperFacade;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.UUID;
 
 @Service
 public class AuthorServiceImpl implements AuthorService {
@@ -72,10 +73,4 @@ public class AuthorServiceImpl implements AuthorService {
         }
         return authorDtos;
     }
-//
-//    private Set<UUID> getBooksUUID(Set<Book> books) {
-//        return books.stream()
-//                .map(Book::getId)
-//                .collect(Collectors.toSet());
-//    }
 }

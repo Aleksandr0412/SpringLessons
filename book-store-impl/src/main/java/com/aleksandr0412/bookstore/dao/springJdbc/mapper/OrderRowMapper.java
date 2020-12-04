@@ -1,6 +1,7 @@
 package com.aleksandr0412.bookstore.dao.springJdbc.mapper;
 
 import com.aleksandr0412.bookstore.model.Order;
+import com.aleksandr0412.bookstore.model.User;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
@@ -17,6 +18,9 @@ public class OrderRowMapper implements RowMapper<Order> {
         final Order order = new Order();
         order.setId(UUID.fromString(resultSet.getString(ORDER_ID)));
         order.setPrice(resultSet.getBigDecimal(ORDER_PRICE));
+        User user = new User();
+        user.setId(UUID.fromString(resultSet.getString(ORDER_USER_ID)));
+        order.setUser(user);
         return order;
     }
 }

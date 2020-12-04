@@ -38,9 +38,11 @@ public class OrderServiceImpl implements OrderService {
         orderDto.setId(UUID.randomUUID());
         validator.validate(orderDto);
         List<Book> books = getBooksByPKList(orderDto.getBookIds());
-        Order order = new Order(orderDto.getId(), userDAO.getByPK(orderDto.getUserId()), orderDto.getPrice(), books);
+        Order order = mapperFacade.map(orderDto, Order.class);
+        order.setBooks(books);
         orderDAO.save(order);
         orderDAO.saveBooksInOrder(order.getId(), getBooksUUID(order.getBooks()));
+
         return orderDto;
     }
 
@@ -50,7 +52,7 @@ public class OrderServiceImpl implements OrderService {
         Order order = orderDAO.getByPK(id);
         order.setBooks(getBooksByPKList(orderDAO.getBooksFromOrder(id)));
         order.setUser(userDAO.getByPK(order.getUser().getId()));
-//        return new OrderDto(order.getId(), order.getUser().getId(), order.getPrice(), getBooksUUID(order.getBooks()));
+
         return mapperFacade.map(order, OrderDto.class);
     }
 
