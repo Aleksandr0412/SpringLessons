@@ -37,6 +37,14 @@ public class AuthorDto {
         return booksIds;
     }
 
+    public Set<UUID> getBooksIds() {
+        return booksIds;
+    }
+
+    public void setBooksIds(Set<UUID> booksIds) {
+        this.booksIds = booksIds;
+    }
+
     public void setBooks(Set<UUID> books) {
         this.booksIds = books;
     }

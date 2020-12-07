@@ -64,7 +64,7 @@ public class OrderJdbcImpl implements OrderJdbcDAO {
 
     @Override
     public List<UUID> getBooksFromOrder(UUID key) {
-        return jdbcTemplate.queryForList("SELECT * FROM book_order WHERE order_id = ?",
+        return jdbcTemplate.queryForList("SELECT book_id FROM book_order WHERE order_id = ?",
                 new Object[]{key},
                 UUID.class);
     }
