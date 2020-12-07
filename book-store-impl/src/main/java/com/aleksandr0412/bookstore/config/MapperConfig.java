@@ -3,9 +3,7 @@ package com.aleksandr0412.bookstore.config;
 import com.aleksandr0412.api.dto.AuthorDto;
 import com.aleksandr0412.api.dto.BookDto;
 import com.aleksandr0412.api.dto.OrderDto;
-import com.aleksandr0412.bookstore.config.customMappers.AuthorCustomMapper;
 import com.aleksandr0412.bookstore.config.customMappers.BookCustomMapper;
-import com.aleksandr0412.bookstore.config.customMappers.OrderCustomMapper;
 import com.aleksandr0412.bookstore.model.Author;
 import com.aleksandr0412.bookstore.model.Book;
 import com.aleksandr0412.bookstore.model.Order;
@@ -37,9 +35,8 @@ public class MapperConfig implements OrikaMapperFactoryConfigurer {
 
     public void configure(MapperFactory orikaMapperFactory) {
         orikaMapperFactory.classMap(Author.class, AuthorDto.class)
-                .exclude("books")
+                .field("books{id}", "booksIds{}")
                 .byDefault()
-                .customize(new AuthorCustomMapper())
                 .register();
 
         orikaMapperFactory.classMap(User.class, AuthorDto.class)
@@ -52,12 +49,10 @@ public class MapperConfig implements OrikaMapperFactoryConfigurer {
                 .customize(new BookCustomMapper())
                 .register();
 
-
         orikaMapperFactory.classMap(Order.class, OrderDto.class)
+                .field("user.id", "userId")
+                .field("books{id}", "bookIds{}")
                 .byDefault()
-                .exclude("User")
-                .exclude("Books")
-                .customize(new OrderCustomMapper())
                 .register();
 
     }
