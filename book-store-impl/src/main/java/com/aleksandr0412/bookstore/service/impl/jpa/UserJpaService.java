@@ -29,7 +29,6 @@ public class UserJpaService implements UserService {
     @Transactional
     @Override
     public UserDto createUser(UserDto userDto) {
-        userDto.setId(UUID.randomUUID());
         validator.validate(userDto);
         return mapperFacade.map(userRepo.save(mapperFacade.map(userDto, User.class)), UserDto.class);
     }

@@ -15,12 +15,12 @@ public class Order implements Identified<UUID> {
      * Идентификатор заказа
      */
     @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private UUID id;
     /**
      * Пользователь, создавший заказ
      */
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
     /**
@@ -31,7 +31,7 @@ public class Order implements Identified<UUID> {
     /**
      * Список книг заказа
      */
-    @ManyToMany(cascade = CascadeType.REMOVE)
+    @ManyToMany
     @JoinTable(name = "book_order",
             joinColumns = {@JoinColumn(name = "order_id")},
             inverseJoinColumns = {@JoinColumn(name = "book_id")})

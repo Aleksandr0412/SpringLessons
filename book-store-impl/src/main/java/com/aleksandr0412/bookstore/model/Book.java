@@ -15,7 +15,7 @@ public class Book implements Identified<UUID> {
      * Идентификатор книги
      */
     @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private UUID id;
     /**
      * Название книги
@@ -45,7 +45,7 @@ public class Book implements Identified<UUID> {
     /**
      * Автор книги
      */
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "author_id")
     private Author author;
 

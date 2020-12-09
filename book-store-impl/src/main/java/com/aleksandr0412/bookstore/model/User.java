@@ -1,7 +1,5 @@
 package com.aleksandr0412.bookstore.model;
 
-import liquibase.pro.packaged.C;
-
 import javax.persistence.*;
 import java.util.UUID;
 
@@ -15,7 +13,7 @@ public class User implements Identified<UUID> {
      * Идентификатор пользователя
      */
     @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private UUID id;
     /**
      * Логин пользователя на английском

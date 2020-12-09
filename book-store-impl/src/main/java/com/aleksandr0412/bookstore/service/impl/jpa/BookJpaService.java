@@ -30,7 +30,6 @@ public class BookJpaService implements BookService {
     @Transactional
     @Override
     public BookDto addBook(BookDto bookDto) {
-        bookDto.setId(UUID.randomUUID());
         validator.validate(bookDto);
         return mapperFacade.map(bookRepo.save(mapperFacade.map(bookDto, Book.class)), BookDto.class);
     }

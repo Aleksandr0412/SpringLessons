@@ -28,7 +28,6 @@ public class OrderJpaService implements OrderService {
     @Transactional
     @Override
     public OrderDto createNewOrder(OrderDto orderDto) {
-        orderDto.setId(UUID.randomUUID());
         validator.validate(orderDto);
         orderRepo.save(mapperFacade.map(orderDto, Order.class));
         return orderDto;

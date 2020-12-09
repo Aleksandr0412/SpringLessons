@@ -1,9 +1,6 @@
 package com.aleksandr0412.bookstore.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.UUID;
 
 /**
@@ -16,7 +13,7 @@ public class Author implements Identified<UUID> {
      * Идентификатор автора
      */
     @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private UUID id;
     /**
      * Имя автора в формате Фамилмя И. О.
@@ -54,7 +51,6 @@ public class Author implements Identified<UUID> {
         return "Author{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-//                ", books=" + books +
                 '}';
     }
 }

@@ -31,7 +31,6 @@ public class AuthorJpaService implements AuthorService {
     @Override
     public AuthorDto addAuthor(AuthorDto authorDto) {
         validator.validate(authorDto);
-        authorDto.setId(UUID.randomUUID());
         Author author = mapperFacade.map(authorDto, Author.class);
         return mapperFacade.map(authorRepo.save(author), AuthorDto.class);
     }
