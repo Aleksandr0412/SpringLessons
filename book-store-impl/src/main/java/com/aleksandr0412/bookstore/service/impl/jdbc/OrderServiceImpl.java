@@ -1,4 +1,4 @@
-package com.aleksandr0412.bookstore.service.impl;
+package com.aleksandr0412.bookstore.service.impl.jdbc;
 
 import com.aleksandr0412.api.dto.OrderDto;
 import com.aleksandr0412.bookstore.dao.springJdbc.BookJdbcDAO;

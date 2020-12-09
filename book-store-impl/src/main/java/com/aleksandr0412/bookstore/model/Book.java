@@ -1,5 +1,6 @@
 package com.aleksandr0412.bookstore.model;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.UUID;
@@ -7,34 +8,45 @@ import java.util.UUID;
 /**
  * Представление книги в системе
  */
+@Entity
+@Table(name = "books")
 public class Book implements Identified<UUID> {
     /**
      * Идентификатор книги
      */
+    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private UUID id;
     /**
      * Название книги
      */
+    @Column(name = "title")
     private String title;
     /**
      * Аннотация книги
      */
+    @Column(name = "description")
     private String description;
     /**
      * Жанр книги
      */
+    @Enumerated(EnumType.STRING)
     private Genre genre;
     /**
      * Цена книги в рублях
      */
+    @Column(name = "price")
     private BigDecimal price;
     /**
      * Дата публикации книги
      */
+    @Column(name = "publish_year")
     private LocalDate publishDate;
     /**
      * Автор книги
      */
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "author_id")
     private Author author;
 
     public Book(UUID id, String title, String description, Genre genre, BigDecimal price, LocalDate publishDate, Author author) {

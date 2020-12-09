@@ -1,4 +1,4 @@
-package com.aleksandr0412.bookstore.service.impl;
+package com.aleksandr0412.bookstore.service.impl.jdbc;
 
 import com.aleksandr0412.api.dto.AuthorDto;
 import com.aleksandr0412.bookstore.dao.springJdbc.AuthorJdbcDAO;
@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.UUID;
 
@@ -21,7 +20,6 @@ public class AuthorServiceImpl implements AuthorService {
     private final BookJdbcDAO bookDAO;
     private final AuthorDtoValidator validator;
     private final MapperFacade mapperFacade;
-
 
     public AuthorServiceImpl(AuthorJdbcDAO authorDAO, AuthorDtoValidator validator, BookJdbcDAO bookDAO, MapperFacade mapperFacade) {
         this.authorDAO = authorDAO;
@@ -43,7 +41,6 @@ public class AuthorServiceImpl implements AuthorService {
     @Transactional(readOnly = true)
     public AuthorDto getAuthorByPK(UUID id) {
         Author author = authorDAO.getByPK(id);
-        author.setBooks(new HashSet<>(bookDAO.getBookByAuthorId(id)));
         return mapperFacade.map(author, AuthorDto.class);
     }
 
@@ -68,7 +65,6 @@ public class AuthorServiceImpl implements AuthorService {
     public List<AuthorDto> getAllAuthors() {
         List<AuthorDto> authorDtos = new ArrayList<>();
         for (Author author : authorDAO.getAll()) {
-            author.setBooks(new HashSet<>(bookDAO.getBookByAuthorId(author.getId())));
             authorDtos.add(mapperFacade.map(author, AuthorDto.class));
         }
         return authorDtos;
