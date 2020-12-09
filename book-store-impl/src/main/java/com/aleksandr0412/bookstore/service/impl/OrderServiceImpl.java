@@ -1,4 +1,4 @@
-package com.aleksandr0412.bookstore.service.impl.jpa;
+package com.aleksandr0412.bookstore.service.impl;
 
 import com.aleksandr0412.api.dto.OrderDto;
 import com.aleksandr0412.bookstore.dao.repository.OrderRepository;
@@ -14,12 +14,12 @@ import java.util.UUID;
 
 @Service
 @Primary
-public class OrderJpaService implements OrderService {
+public class OrderServiceImpl implements OrderService {
     private final OrderRepository orderRepo;
     private final OrderDtoValidator validator;
     private final MapperFacade mapperFacade;
 
-    public OrderJpaService(OrderRepository orderRepo, OrderDtoValidator validator, MapperFacade mapperFacade) {
+    public OrderServiceImpl(OrderRepository orderRepo, OrderDtoValidator validator, MapperFacade mapperFacade) {
         this.orderRepo = orderRepo;
         this.validator = validator;
         this.mapperFacade = mapperFacade;

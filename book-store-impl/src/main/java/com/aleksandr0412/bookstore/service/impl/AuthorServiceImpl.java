@@ -1,4 +1,4 @@
-package com.aleksandr0412.bookstore.service.impl.jpa;
+package com.aleksandr0412.bookstore.service.impl;
 
 import com.aleksandr0412.api.dto.AuthorDto;
 import com.aleksandr0412.bookstore.dao.repository.AuthorRepository;
@@ -16,12 +16,12 @@ import java.util.UUID;
 
 @Service
 @Primary
-public class AuthorJpaService implements AuthorService {
+public class AuthorServiceImpl implements AuthorService {
     private final AuthorRepository authorRepo;
     private final AuthorDtoValidator validator;
     private final MapperFacade mapperFacade;
 
-    public AuthorJpaService(AuthorRepository authorRepo, AuthorDtoValidator validator, MapperFacade mapperFacade) {
+    public AuthorServiceImpl(AuthorRepository authorRepo, AuthorDtoValidator validator, MapperFacade mapperFacade) {
         this.authorRepo = authorRepo;
         this.validator = validator;
         this.mapperFacade = mapperFacade;
