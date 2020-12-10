@@ -35,7 +35,6 @@ public class MapperConfig implements OrikaMapperFactoryConfigurer {
 
     public void configure(MapperFactory orikaMapperFactory) {
         orikaMapperFactory.classMap(Author.class, AuthorDto.class)
-                .field("books{id}", "booksIds{}")
                 .byDefault()
                 .register();
 

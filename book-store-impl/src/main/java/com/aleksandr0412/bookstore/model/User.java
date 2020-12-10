@@ -1,26 +1,34 @@
 package com.aleksandr0412.bookstore.model;
 
+import javax.persistence.*;
 import java.util.UUID;
 
 /**
  * Представление полбзователя в системе
  */
+@Entity
+@Table(name = "users")
 public class User implements Identified<UUID> {
     /**
      * Идентификатор пользователя
      */
+    @Id
+    @GeneratedValue
     private UUID id;
     /**
      * Логин пользователя на английском
      */
+    @Column(name = "username")
     private String username;
     /**
      * Пароль
      */
+    @Column(name = "password")
     private String password;
     /**
      * Почта пользователя
      */
+    @Column(name = "email")
     private String email;
 
     public User() {

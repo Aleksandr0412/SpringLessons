@@ -1,24 +1,25 @@
 package com.aleksandr0412.bookstore.model;
 
-import java.util.Set;
+import javax.persistence.*;
 import java.util.UUID;
 
 /**
  * Представление автора книги в системе
  */
+@Entity
+@Table(name = "authors")
 public class Author implements Identified<UUID> {
     /**
      * Идентификатор автора
      */
+    @Id
+    @GeneratedValue
     private UUID id;
     /**
      * Имя автора в формате Фамилмя И. О.
      */
+    @Column(name = "name")
     private String name;
-    /**
-     * Множество книг автора
-     */
-    private Set<Book> books;
 
     public Author(UUID id, String name) {
         this.id = id;
@@ -26,12 +27,6 @@ public class Author implements Identified<UUID> {
     }
 
     public Author() {
-    }
-
-    public Author(UUID id, String name, Set<Book> books) {
-        this.id = id;
-        this.name = name;
-        this.books = books;
     }
 
     @Override
@@ -51,20 +46,11 @@ public class Author implements Identified<UUID> {
         this.name = name;
     }
 
-    public Set<Book> getBooks() {
-        return books;
-    }
-
-    public void setBooks(Set<Book> books) {
-        this.books = books;
-    }
-
     @Override
     public String toString() {
         return "Author{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", books=" + books +
                 '}';
     }
 }
