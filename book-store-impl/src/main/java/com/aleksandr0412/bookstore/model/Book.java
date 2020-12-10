@@ -10,7 +10,7 @@ import java.util.UUID;
  */
 @Entity
 @Table(name = "books")
-public class Book implements Identified<UUID> {
+public class Book extends AbstractEntity{
     /**
      * Идентификатор книги
      */

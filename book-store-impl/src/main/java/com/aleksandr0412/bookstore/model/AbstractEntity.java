@@ -1,6 +1,6 @@
 package com.aleksandr0412.bookstore.model;
 
-import com.aleksandr0412.bookstore.model.listener.AbstractEntityListener;
+import com.aleksandr0412.bookstore.model.listener.EntityListener;
 
 import javax.persistence.Column;
 import javax.persistence.EntityListeners;
@@ -9,12 +9,18 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @MappedSuperclass
-@EntityListeners(AbstractEntityListener.class)
-public abstract class AbstractEntity implements Identified<UUID>{
+@EntityListeners(EntityListener.class)
+public abstract class AbstractEntity implements Identified<UUID> {
 
+    /**
+     * Дата создания
+     */
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
+    /**
+     * Дата обновления
+     */
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 

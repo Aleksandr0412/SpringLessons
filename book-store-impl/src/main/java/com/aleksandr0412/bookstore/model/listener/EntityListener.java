@@ -6,8 +6,7 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import java.time.LocalDateTime;
 
-public class AbstractEntityListener {
-
+public class EntityListener {
     @PrePersist
     private void setCreateAt(final AbstractEntity entity) {
         LocalDateTime currentTime = LocalDateTime.now();
