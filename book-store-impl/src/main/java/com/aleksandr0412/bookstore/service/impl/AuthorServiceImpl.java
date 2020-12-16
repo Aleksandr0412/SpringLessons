@@ -60,11 +60,11 @@ public class AuthorServiceImpl implements AuthorService {
     @Transactional
     @Override
     public AuthorDto updateAuthor(AuthorDto authorDto) {
-        //TODO проверять есть ли в бд
         validator.validate(authorDto);
-
-        Author map = mapperFacade.map(authorDto, Author.class);
-        return mapperFacade.map(authorRepo.save(map), AuthorDto.class);
+        if (authorRepo.existsById(authorDto.getId())) {
+            Author map = mapperFacade.map(authorDto, Author.class);
+            return mapperFacade.map(authorRepo.save(map), AuthorDto.class);
+        } else throw new ResourceNotFoundException("bad id");
     }
 
     @Transactional(readOnly = true)
