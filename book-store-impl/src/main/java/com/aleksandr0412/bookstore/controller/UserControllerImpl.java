@@ -1,7 +1,7 @@
 package com.aleksandr0412.bookstore.controller;
 
 import com.aleksandr0412.api.controller.UserController;
-import com.aleksandr0412.api.dto.UserDto;
+import com.aleksandr0412.api.dto.user.UserDto;
 import com.aleksandr0412.bookstore.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;

@@ -1,6 +1,6 @@
 package com.aleksandr0412.bookstore.service;
 
-import com.aleksandr0412.api.dto.UserDto;
+import com.aleksandr0412.api.dto.user.UserDto;
 
 import java.util.UUID;
 

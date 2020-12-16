@@ -1,6 +1,6 @@
 package com.aleksandr0412.bookstore.validator;
 
-import com.aleksandr0412.api.dto.OrderDto;
+import com.aleksandr0412.api.dto.order.OrderDto;
 import com.aleksandr0412.bookstore.exceptions.EmptyOrderException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,4 +1,4 @@
-package com.aleksandr0412.api.dto;
+package com.aleksandr0412.api.dto.book;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

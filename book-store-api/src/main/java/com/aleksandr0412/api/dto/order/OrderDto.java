@@ -1,4 +1,4 @@
-package com.aleksandr0412.api.dto;
+package com.aleksandr0412.api.dto.order;
 
 import java.math.BigDecimal;
 import java.util.List;

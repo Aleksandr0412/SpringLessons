@@ -1,4 +1,4 @@
-package com.aleksandr0412.api.dto;
+package com.aleksandr0412.api.dto.user;
 
 import java.util.UUID;
 

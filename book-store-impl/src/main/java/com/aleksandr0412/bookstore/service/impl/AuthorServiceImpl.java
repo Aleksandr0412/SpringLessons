@@ -1,6 +1,9 @@
 package com.aleksandr0412.bookstore.service.impl;
 
-import com.aleksandr0412.api.dto.AuthorDto;
+import com.aleksandr0412.api.dto.author.AuthorDto;
+import com.aleksandr0412.api.dto.author.AuthorSearchDto;
+import com.aleksandr0412.api.dto.PageDto;
+import com.aleksandr0412.api.dto.Search;
 import com.aleksandr0412.bookstore.dao.repository.AuthorRepository;
 import com.aleksandr0412.bookstore.exceptions.ResourceNotFoundException;
 import com.aleksandr0412.bookstore.model.Author;
@@ -8,9 +11,14 @@ import com.aleksandr0412.bookstore.service.AuthorService;
 import com.aleksandr0412.bookstore.validator.AuthorDtoValidator;
 import ma.glasnost.orika.MapperFacade;
 import org.springframework.context.annotation.Primary;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.criteria.Predicate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -52,13 +60,45 @@ public class AuthorServiceImpl implements AuthorService {
     @Transactional
     @Override
     public AuthorDto updateAuthor(AuthorDto authorDto) {
+        //TODO проверять есть ли в бд
         validator.validate(authorDto);
-        return mapperFacade.map(authorRepo.save(mapperFacade.map(authorDto, Author.class)), AuthorDto.class);
+
+        Author map = mapperFacade.map(authorDto, Author.class);
+        return mapperFacade.map(authorRepo.save(map), AuthorDto.class);
     }
 
     @Transactional(readOnly = true)
     @Override
     public List<AuthorDto> getAllAuthors() {
         return mapperFacade.mapAsList(authorRepo.findAll(), AuthorDto.class);
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public PageDto<AuthorDto> getAuthors(Search<AuthorSearchDto> authorSearchDto) {
+        Page<Author> page = authorRepo
+                .findAll(getSpec(authorSearchDto.getData()), getOf(authorSearchDto));
+        var authors = page
+                .map(author ->
+                        mapperFacade.map(author, AuthorDto.class)
+                )
+                .toList();
+        return new PageDto<>(authors, page.getTotalElements());
+
+    }
+
+    private PageRequest getOf(Search<AuthorSearchDto> authorSearchDto) {
+        var page = authorSearchDto.getPage();
+        return PageRequest.of(page.getPage(), page.getSize());
+    }
+
+    private Specification<Author> getSpec(AuthorSearchDto authorSearchDto) {
+        return (root, query, builder) -> {
+            List<Predicate> predicates = new ArrayList<>();
+            if (authorSearchDto.getName() != null) {
+                predicates.add(root.get("name").in(authorSearchDto.getName()));
+            }
+            return builder.and(predicates.toArray(Predicate[]::new));
+        };
     }
 }

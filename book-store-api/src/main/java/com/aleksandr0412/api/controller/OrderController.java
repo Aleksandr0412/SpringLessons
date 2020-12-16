@@ -1,6 +1,9 @@
 package com.aleksandr0412.api.controller;
 
-import com.aleksandr0412.api.dto.OrderDto;
+import com.aleksandr0412.api.dto.PageDto;
+import com.aleksandr0412.api.dto.Search;
+import com.aleksandr0412.api.dto.order.OrderDto;
+import com.aleksandr0412.api.dto.order.OrderSearchDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -26,4 +29,12 @@ public interface OrderController {
      */
     @PostMapping
     ResponseEntity<OrderDto> createOrder(@RequestBody OrderDto orderDto, UriComponentsBuilder componentsBuilder);
+
+    /**
+     * Возвращается список заказов с учетом пагинизации и фильтров
+     * @param orderSearchDto
+     * @return
+     */
+    @GetMapping
+    PageDto<OrderDto> getOrders(@RequestBody Search<OrderSearchDto> orderSearchDto);
 }

@@ -1,11 +1,13 @@
 package com.aleksandr0412.api.controller;
 
-import com.aleksandr0412.api.dto.AuthorDto;
+import com.aleksandr0412.api.dto.PageDto;
+import com.aleksandr0412.api.dto.Search;
+import com.aleksandr0412.api.dto.author.AuthorDto;
+import com.aleksandr0412.api.dto.author.AuthorSearchDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import java.util.List;
 import java.util.UUID;
 
 /**
@@ -13,14 +15,6 @@ import java.util.UUID;
  */
 @RequestMapping("/api/author")
 public interface AuthorController {
-    /**
-     * Возвращает список всех авторов
-     *
-     * @return всех авторов
-     */
-    @GetMapping
-    List<AuthorDto> getAllAuthors();
-
     /**
      * Возвращает автора по первичному ключу
      *
@@ -54,4 +48,13 @@ public interface AuthorController {
      */
     @DeleteMapping
     AuthorDto deleteAuthor(@RequestParam(value = "id") UUID id);
+
+    /**
+     * Возвращает авторов с учетом пагинизацией и поиска
+     *
+     * @param authorSearchDto
+     * @return
+     */
+    @GetMapping
+    PageDto<AuthorDto> getAuthors(@RequestBody Search<AuthorSearchDto> authorSearchDto);
 }

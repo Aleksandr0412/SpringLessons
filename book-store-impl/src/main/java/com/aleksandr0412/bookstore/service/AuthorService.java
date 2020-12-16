@@ -1,6 +1,9 @@
 package com.aleksandr0412.bookstore.service;
 
-import com.aleksandr0412.api.dto.AuthorDto;
+import com.aleksandr0412.api.dto.author.AuthorDto;
+import com.aleksandr0412.api.dto.author.AuthorSearchDto;
+import com.aleksandr0412.api.dto.PageDto;
+import com.aleksandr0412.api.dto.Search;
 
 import java.util.List;
 import java.util.UUID;
@@ -47,4 +50,11 @@ public interface AuthorService {
      * @return всех авторов
      */
     List<AuthorDto> getAllAuthors();
+
+    /**
+     *
+     * @param authorSearchDto
+     * @return
+     */
+    PageDto<AuthorDto> getAuthors(Search<AuthorSearchDto> authorSearchDto);
 }

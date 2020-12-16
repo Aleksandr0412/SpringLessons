@@ -1,6 +1,9 @@
 package com.aleksandr0412.bookstore.service;
 
-import com.aleksandr0412.api.dto.OrderDto;
+import com.aleksandr0412.api.dto.PageDto;
+import com.aleksandr0412.api.dto.Search;
+import com.aleksandr0412.api.dto.order.OrderDto;
+import com.aleksandr0412.api.dto.order.OrderSearchDto;
 
 import java.util.UUID;
 
@@ -23,4 +26,11 @@ public interface OrderService {
      * @return заказ по первичному ключу
      */
     OrderDto getOrderByPk(UUID id);
+
+    /**
+     *
+     * @param orderSearchDto
+     * @return
+     */
+    PageDto<OrderDto> getOrders(Search<OrderSearchDto> orderSearchDto);
 }

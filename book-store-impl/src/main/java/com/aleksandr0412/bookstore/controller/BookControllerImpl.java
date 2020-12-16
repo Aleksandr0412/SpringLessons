@@ -1,15 +1,18 @@
 package com.aleksandr0412.bookstore.controller;
 
 import com.aleksandr0412.api.controller.BookController;
-import com.aleksandr0412.api.dto.BookDto;
+import com.aleksandr0412.api.dto.PageDto;
+import com.aleksandr0412.api.dto.Search;
+import com.aleksandr0412.api.dto.book.BookDto;
+import com.aleksandr0412.api.dto.book.BookSearchDto;
 import com.aleksandr0412.bookstore.exceptions.ResourceNotFoundException;
 import com.aleksandr0412.bookstore.service.BookService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
-import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -21,8 +24,9 @@ public class BookControllerImpl implements BookController {
     }
 
     @Override
-    public List<BookDto> getAllBooks() {
-        return service.getAllBooks();
+    public PageDto<BookDto> getBooks(@RequestBody Search<BookSearchDto> bookSearchDto) {
+        var result = service.getBooks(bookSearchDto);
+        return result;
     }
 
     @Override
@@ -51,4 +55,5 @@ public class BookControllerImpl implements BookController {
     public BookDto deleteBook(UUID id) {
         return service.deleteBookByPK(id);
     }
+
 }

@@ -15,7 +15,7 @@ public abstract class AbstractEntity implements Identified<UUID> {
     /**
      * Дата создания
      */
-    @Column(name = "created_at")
+    @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
 
     /**

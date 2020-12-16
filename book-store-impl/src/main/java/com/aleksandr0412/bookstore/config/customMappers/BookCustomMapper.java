@@ -1,6 +1,6 @@
 package com.aleksandr0412.bookstore.config.customMappers;
 
-import com.aleksandr0412.api.dto.BookDto;
+import com.aleksandr0412.api.dto.book.BookDto;
 import com.aleksandr0412.bookstore.model.Author;
 import com.aleksandr0412.bookstore.model.Book;
 import ma.glasnost.orika.CustomMapper;

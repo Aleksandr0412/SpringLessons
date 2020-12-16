@@ -1,11 +1,13 @@
 package com.aleksandr0412.api.controller;
 
-import com.aleksandr0412.api.dto.BookDto;
+import com.aleksandr0412.api.dto.PageDto;
+import com.aleksandr0412.api.dto.Search;
+import com.aleksandr0412.api.dto.book.BookDto;
+import com.aleksandr0412.api.dto.book.BookSearchDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import java.util.List;
 import java.util.UUID;
 
 /**
@@ -14,10 +16,13 @@ import java.util.UUID;
 @RequestMapping("api/book")
 public interface BookController {
     /**
-     * @return список всех книг
+     * Возвращает список книг с учетом пагинизации и фильтров
+     *
+     * @param bookSearchDto
+     * @return
      */
     @GetMapping
-    List<BookDto> getAllBooks();
+    PageDto<BookDto> getBooks(@RequestBody Search<BookSearchDto> bookSearchDto);
 
     /**
      * @param id пк книги
@@ -27,7 +32,7 @@ public interface BookController {
     BookDto getBookByPk(@PathVariable UUID id);
 
     /**
-     * @param bookDto           сохраняемая книга
+     * @param bookDto охраняемая книга
      * @param componentsBuilder
      * @return созданную книгу
      */

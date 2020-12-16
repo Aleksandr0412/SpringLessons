@@ -1,6 +1,6 @@
 package com.aleksandr0412.bookstore.validator;
 
-import com.aleksandr0412.api.dto.UserDto;
+import com.aleksandr0412.api.dto.user.UserDto;
 import com.aleksandr0412.bookstore.exceptions.IncorrectEmailException;
 import org.apache.commons.validator.routines.EmailValidator;
 import org.slf4j.Logger;
