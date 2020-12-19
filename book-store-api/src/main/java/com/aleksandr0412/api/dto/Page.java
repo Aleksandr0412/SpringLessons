@@ -1,9 +1,16 @@
 package com.aleksandr0412.api.dto;
 
+/**
+ * Класс для пагинации
+ */
 public class Page {
-
+    /**
+     * Номер страницы
+     */
     int page;
-
+    /**
+     * Кол-во элементов страницы
+     */
     int size;
 
     public int getPage() {

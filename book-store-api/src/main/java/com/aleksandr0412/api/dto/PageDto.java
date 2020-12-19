@@ -3,10 +3,19 @@ package com.aleksandr0412.api.dto;
 
 import java.util.List;
 
+/**
+ * Класс дто для ппагинации
+ */
 public class PageDto<T> {
 
+    /**
+     * Данные страницы
+     */
     List<T> data;
 
+    /**
+     * Кол-во страниц
+     */
     long total;
 
     public List<T> getData() {

@@ -9,15 +9,14 @@ import org.springframework.stereotype.Component;
 import javax.persistence.criteria.Predicate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 @Component
 public class BookSpecBuilder {
     public Specification<Book> getSpec(BookSearchDto bookSearchDto) {
         return (root, query, builder) -> {
             List<Predicate> predicates = new ArrayList<>();
-            if (bookSearchDto.getGenre() != null) {
-                predicates.add(root.get("genre").in(Genre.valueOf(bookSearchDto.getGenre())));
+            if (bookSearchDto.getGenre() != null && Genre.of(bookSearchDto.getGenre()) != Genre.UNKNOWN) {
+                predicates.add(root.get("genre").in(Genre.of(bookSearchDto.getGenre())));
             }
             if (bookSearchDto.getAuthorId() != null) {
                 predicates.add(root.get("author").get("id").in(bookSearchDto.getAuthorId()));
@@ -34,4 +33,5 @@ public class BookSpecBuilder {
             return builder.and(predicates.toArray(Predicate[]::new));
         };
     }
+
 }

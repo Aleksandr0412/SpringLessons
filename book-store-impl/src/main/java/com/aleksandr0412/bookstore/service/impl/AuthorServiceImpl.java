@@ -1,9 +1,9 @@
 package com.aleksandr0412.bookstore.service.impl;
 
-import com.aleksandr0412.api.dto.author.AuthorDto;
-import com.aleksandr0412.api.dto.author.AuthorSearchDto;
 import com.aleksandr0412.api.dto.PageDto;
 import com.aleksandr0412.api.dto.Search;
+import com.aleksandr0412.api.dto.author.AuthorDto;
+import com.aleksandr0412.api.dto.author.AuthorSearchDto;
 import com.aleksandr0412.bookstore.dao.repository.AuthorRepository;
 import com.aleksandr0412.bookstore.exceptions.ResourceNotFoundException;
 import com.aleksandr0412.bookstore.model.Author;
@@ -84,7 +84,6 @@ public class AuthorServiceImpl implements AuthorService {
                 )
                 .toList();
         return new PageDto<>(authors, page.getTotalElements());
-
     }
 
     private PageRequest getOf(Search<AuthorSearchDto> authorSearchDto) {

@@ -1,9 +1,16 @@
 package com.aleksandr0412.api.dto;
 
+/**
+ * Класс для поиска
+ */
 public class Search<T> {
-
+    /**
+     * Дто по которой осуществляется поиск
+     */
     private T data;
-
+    /**
+     * Информация для пагинации
+     */
     private Page page;
 
     public T getData() {

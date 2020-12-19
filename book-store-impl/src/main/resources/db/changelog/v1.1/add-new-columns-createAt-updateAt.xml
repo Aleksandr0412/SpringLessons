@@ -5,6 +5,12 @@
          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
 
     <changeSet id="1" author="Alexandr Petrov">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="authors" columnName="created_at"/>
+                <columnExists tableName="authors" columnName="updated_at"/>
+            </not>
+        </preConditions>
         <addColumn tableName="authors">
             <column name="created_at" type="timestamp with time zone" remarks="Время создания">
                 <constraints nullable="false"/>
@@ -17,6 +23,12 @@
     </changeSet>
 
     <changeSet id="2" author="Alexandr Petrov">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="books" columnName="created_at"/>
+                <columnExists tableName="books" columnName="updated_at"/>
+            </not>
+        </preConditions>
         <addColumn tableName="books">
             <column name="created_at" type="timestamp with time zone" remarks="Время создания">
                 <constraints nullable="false"/>
@@ -29,6 +41,12 @@
     </changeSet>
 
     <changeSet id="3" author="Alexandr Petrov">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="orders" columnName="created_at"/>
+                <columnExists tableName="orders" columnName="updated_at"/>
+            </not>
+        </preConditions>
         <addColumn tableName="orders">
             <column name="created_at" type="timestamp with time zone" remarks="Время создания">
                 <constraints nullable="false"/>
@@ -41,6 +59,12 @@
     </changeSet>
 
     <changeSet id="4" author="Alexandr Petrov">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="users" columnName="created_at"/>
+                <columnExists tableName="users" columnName="updated_at"/>
+            </not>
+        </preConditions>
         <addColumn tableName="users">
             <column name="created_at" type="timestamp with time zone" remarks="Время создания">
                 <constraints nullable="false"/>
