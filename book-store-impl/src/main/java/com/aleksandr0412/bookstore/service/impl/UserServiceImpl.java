@@ -1,6 +1,6 @@
 package com.aleksandr0412.bookstore.service.impl;
 
-import com.aleksandr0412.api.dto.UserDto;
+import com.aleksandr0412.api.dto.user.UserDto;
 import com.aleksandr0412.bookstore.dao.repository.UserRepository;
 import com.aleksandr0412.bookstore.exceptions.ResourceNotFoundException;
 import com.aleksandr0412.bookstore.model.User;

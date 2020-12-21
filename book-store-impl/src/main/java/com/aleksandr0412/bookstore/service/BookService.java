@@ -1,6 +1,10 @@
 package com.aleksandr0412.bookstore.service;
 
-import com.aleksandr0412.api.dto.BookDto;
+import com.aleksandr0412.api.dto.PageDto;
+import com.aleksandr0412.api.dto.Search;
+import com.aleksandr0412.api.dto.book.BookDto;
+import com.aleksandr0412.api.dto.book.BookSearchDto;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.UUID;
@@ -47,4 +51,11 @@ public interface BookService {
      * @return список всех книг
      */
     List<BookDto> getAllBooks();
+
+    /**
+     * Возвращает список книг с пагинизацией и фильрами
+     * @param bookSearchDto
+     * @return
+     */
+    PageDto<BookDto> getBooks(Search<BookSearchDto> bookSearchDto);
 }

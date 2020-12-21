@@ -1,6 +1,6 @@
 package com.aleksandr0412.api.controller;
 
-import com.aleksandr0412.api.dto.UserDto;
+import com.aleksandr0412.api.dto.user.UserDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;

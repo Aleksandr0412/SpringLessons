@@ -1,6 +1,6 @@
 package com.aleksandr0412.bookstore.validator;
 
-import com.aleksandr0412.api.dto.BookDto;
+import com.aleksandr0412.api.dto.book.BookDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.MessageSource;

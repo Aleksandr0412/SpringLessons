@@ -1,0 +1,79 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+
+    <changeSet id="1" author="Alexandr Petrov">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="authors" columnName="created_at"/>
+                <columnExists tableName="authors" columnName="updated_at"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="authors">
+            <column name="created_at" type="timestamp with time zone" remarks="Время создания">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="timestamp with time zone" remarks="Время изменения">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+        <comment>Добавление столбцов в таблицу Авторов: время создания, время изменения</comment>
+    </changeSet>
+
+    <changeSet id="2" author="Alexandr Petrov">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="books" columnName="created_at"/>
+                <columnExists tableName="books" columnName="updated_at"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="books">
+            <column name="created_at" type="timestamp with time zone" remarks="Время создания">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="timestamp with time zone" remarks="Время изменения">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+        <comment>Добавление столбцов в таблицу Книг: время создания, время изменения</comment>
+    </changeSet>
+
+    <changeSet id="3" author="Alexandr Petrov">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="orders" columnName="created_at"/>
+                <columnExists tableName="orders" columnName="updated_at"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="orders">
+            <column name="created_at" type="timestamp with time zone" remarks="Время создания">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="timestamp with time zone" remarks="Время изменения">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+        <comment>Добавление столбцов в таблицу Заказов: время создания, время изменения</comment>
+    </changeSet>
+
+    <changeSet id="4" author="Alexandr Petrov">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="users" columnName="created_at"/>
+                <columnExists tableName="users" columnName="updated_at"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="users">
+            <column name="created_at" type="timestamp with time zone" remarks="Время создания">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="timestamp with time zone" remarks="Время изменения">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+        <comment>Добавление столбцов в таблицу Пользователей: время создания, время изменения</comment>
+    </changeSet>
+
+</databaseChangeLog>

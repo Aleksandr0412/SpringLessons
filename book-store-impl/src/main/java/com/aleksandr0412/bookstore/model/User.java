@@ -8,7 +8,7 @@ import java.util.UUID;
  */
 @Entity
 @Table(name = "users")
-public class User implements Identified<UUID> {
+public class User extends AbstractEntity {
     /**
      * Идентификатор пользователя
      */

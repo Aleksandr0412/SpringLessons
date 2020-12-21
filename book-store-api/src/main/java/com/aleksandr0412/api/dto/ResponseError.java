@@ -2,10 +2,25 @@ package com.aleksandr0412.api.dto;
 
 import java.util.UUID;
 
+/**
+ * Класс дто ошибки
+ */
 public class ResponseError {
+    /**
+     * Идентификатор ошибки
+     */
     private UUID id;
+    /**
+     * Код ошибки
+     */
     private String code;
+    /**
+     * Сообшение ошибки
+     */
     private String message;
+    /**
+     * Имя системы, в которой произошла ошибка
+     */
     private String system;
 
     public ResponseError(UUID id, String code, String message, String system) {
