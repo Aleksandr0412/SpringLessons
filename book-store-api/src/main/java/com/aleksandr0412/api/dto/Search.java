@@ -1,16 +1,18 @@
 package com.aleksandr0412.api.dto;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 /**
  * Класс для поиска
  */
+@ApiModel(description = "Модель для поиска по объекатам")
 public class Search<T> {
-    /**
-     * Дто по которой осуществляется поиск
-     */
+
+    @ApiModelProperty(value = "Формат данных для поиска", allowEmptyValue = true)
     private T data;
-    /**
-     * Информация для пагинации
-     */
+
+    @ApiModelProperty(value = "Объект получения по страничного ответа", allowEmptyValue = true)
     private Page page;
 
     public T getData() {

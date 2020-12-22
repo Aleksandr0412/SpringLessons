@@ -1,12 +1,15 @@
 package com.aleksandr0412.api.dto.author;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 /**
  * Класс дто для поиска авторов
  */
+@ApiModel(description = "Модель для поиска по авторам")
 public class AuthorSearchDto {
-    /**
-     * Имя автора
-     */
+
+    @ApiModelProperty(value = "Имя автора", example = "Пушкин А. С.", required = true)
     private String name;
 
     public String getName() {

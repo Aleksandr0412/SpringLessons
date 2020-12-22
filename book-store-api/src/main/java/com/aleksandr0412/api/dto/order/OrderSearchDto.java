@@ -1,23 +1,25 @@
 package com.aleksandr0412.api.dto.order;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.math.BigDecimal;
 import java.util.UUID;
 
 /**
  * Класс дто для поиска заказов
  */
+@ApiModel(description = "Модель для поиска по заказам")
 public class OrderSearchDto {
-    /**
-     * пк пользователя, совершившего заказ
-     */
+
+    @ApiModelProperty(value = "Идентификатор пользователя, совершившего заказ", example = "30ff2b2b-42dc-4a26-93c3-ec312b4819f8",
+            required = true)
     private UUID userId;
-    /**
-     * мин цена книги
-     */
+
+    @ApiModelProperty(value = "Минимальная сумма заказа", example = "123", required = true)
     private BigDecimal minPrice;
-    /**
-     * макс цена книги
-     */
+
+    @ApiModelProperty(value = "Максимальная сумма заказа", example = "123", required = true)
     private BigDecimal maxPrice;
 
     public UUID getUserId() {

@@ -5,6 +5,7 @@ import com.aleksandr0412.api.dto.Search;
 import com.aleksandr0412.api.dto.order.OrderDto;
 import com.aleksandr0412.api.dto.order.OrderSearchDto;
 
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -28,7 +29,13 @@ public interface OrderService {
     OrderDto getOrderByPk(UUID id);
 
     /**
+     * Возвращает все заказы
      *
+     * @return заказ по первичному ключу
+     */
+    List<OrderDto> getAll();
+
+    /**
      * @param orderSearchDto
      * @return
      */

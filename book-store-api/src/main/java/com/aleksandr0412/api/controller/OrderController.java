@@ -4,6 +4,9 @@ import com.aleksandr0412.api.dto.PageDto;
 import com.aleksandr0412.api.dto.Search;
 import com.aleksandr0412.api.dto.order.OrderDto;
 import com.aleksandr0412.api.dto.order.OrderSearchDto;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -14,27 +17,18 @@ import java.util.UUID;
  * OrderController
  */
 @RequestMapping("api/order")
+@Api(value = "API для работы с заказами")
 public interface OrderController {
-    /**
-     * @param id
-     * @return закакз по пк
-     */
+
     @GetMapping("{id}")
-    OrderDto getByPK(@PathVariable UUID id);
+    @ApiOperation(value = "Детальная информация по заказу")
+    OrderDto getByPK(@ApiParam(value = "Идентификатор заказа", required = true) @PathVariable UUID id);
 
-    /**
-     * @param orderDto
-     * @param componentsBuilder
-     * @return созданый заказ
-     */
     @PostMapping
-    ResponseEntity<OrderDto> createOrder(@RequestBody OrderDto orderDto, UriComponentsBuilder componentsBuilder);
+    @ApiOperation(value = "Создание заказа")
+    ResponseEntity<OrderDto> createOrder(@ApiParam(value = "ДТО заказа", required = true) @RequestBody OrderDto orderDto, UriComponentsBuilder componentsBuilder);
 
-    /**
-     * Возвращается список заказов с учетом пагинизации и фильтров
-     * @param orderSearchDto
-     * @return
-     */
     @GetMapping
+    @ApiOperation(value = "Поиск по заказу")
     PageDto<OrderDto> getOrders(@RequestBody Search<OrderSearchDto> orderSearchDto);
 }

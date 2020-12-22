@@ -59,3 +59,11 @@ threadPool:
 
 system:
   name: my system1
+
+swagger:
+  title: Book store
+  description: API для проекта
+  contact:
+    mail: al.petrov@i-teco.ru
+    name: Александр Петров
+    url: https://github.com/Aleksandr0412/SpringLessons

@@ -1,21 +1,21 @@
 package com.aleksandr0412.api.dto;
 
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.util.List;
 
 /**
  * Класс дто для ппагинации
  */
+@ApiModel(description = "Модель ответа для поиска по объекатам")
 public class PageDto<T> {
 
-    /**
-     * Данные страницы
-     */
+    @ApiModelProperty(value = "Возращаемые данные по поиску", required = true)
     List<T> data;
 
-    /**
-     * Кол-во страниц
-     */
+    @ApiModelProperty(value = "Всего элементов по поиску", example = "123", required = true)
     long total;
 
     public List<T> getData() {

@@ -6,3 +6,11 @@ spring:
     username: POSTGRES
     password: POSTGRES
     driverClassName: org.postgresql.Driver
+  profiles:
+    active: local
+    include: swagger
+
+scheduling:
+  timeout:
+    enabled: true
+    interval: 10000
