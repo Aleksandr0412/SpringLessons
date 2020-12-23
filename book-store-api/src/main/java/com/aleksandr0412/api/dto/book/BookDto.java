@@ -23,7 +23,7 @@ public class BookDto {
     @ApiModelProperty(value = "Жанр книги", example = "Книга, написанная Толкином", allowableValues = "FANTASY, CLASSICS, DETECTIVE, HORROR", required = true)
     private String genre;
 
-    @ApiModelProperty(value = "Цена книги", example = "1234", required = true)
+    @ApiModelProperty(value = "Цена книги", example = "1234.00", required = true)
     private BigDecimal price;
 
     @ApiModelProperty(value = "Дата публикации книги", required = true)

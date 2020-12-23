@@ -26,6 +26,7 @@ public interface AuthorController {
     @ApiOperation(value = "Создание автора")
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "Автор успешно создан"),
+            @ApiResponse(code = 400, message = "Плохой запрос")
     })
     ResponseEntity<AuthorDto> createAuthor(@ApiParam(value = "ДТО автора", required = true) @RequestBody AuthorDto authorDto, UriComponentsBuilder componentsBuilder);
 

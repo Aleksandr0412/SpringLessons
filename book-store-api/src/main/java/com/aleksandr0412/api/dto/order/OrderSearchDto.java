@@ -16,10 +16,10 @@ public class OrderSearchDto {
             required = true)
     private UUID userId;
 
-    @ApiModelProperty(value = "Минимальная сумма заказа", example = "123", required = true)
+    @ApiModelProperty(value = "Минимальная сумма заказа", example = "123.00", required = true)
     private BigDecimal minPrice;
 
-    @ApiModelProperty(value = "Максимальная сумма заказа", example = "123", required = true)
+    @ApiModelProperty(value = "Максимальная сумма заказа", example = "123.00", required = true)
     private BigDecimal maxPrice;
 
     public UUID getUserId() {

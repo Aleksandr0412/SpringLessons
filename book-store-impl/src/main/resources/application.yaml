@@ -58,7 +58,7 @@ threadPool:
   maxPoolSize: 8
 
 system:
-  name: my system1
+  name: Book store
 
 swagger:
   title: Book store

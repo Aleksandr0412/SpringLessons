@@ -9,12 +9,12 @@ import org.springframework.stereotype.Component;
 
 @Component
 @ConditionalOnProperty(prefix = "scheduling.timeout", name = {"enabled"}, matchIfMissing = false)
-public class TimeSchedule {
+public class NumberOfOrdersSchedule {
 
     private final OrderService orderService;
-    private static final Logger log = LoggerFactory.getLogger(TimeSchedule.class.getName());
+    private static final Logger log = LoggerFactory.getLogger(NumberOfOrdersSchedule.class.getName());
 
-    public TimeSchedule(OrderService orderService) {
+    public NumberOfOrdersSchedule(OrderService orderService) {
         this.orderService = orderService;
     }
 

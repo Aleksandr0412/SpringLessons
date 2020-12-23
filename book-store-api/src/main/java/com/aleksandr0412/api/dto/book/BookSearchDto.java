@@ -18,10 +18,10 @@ public class BookSearchDto {
     @ApiModelProperty(value = "Жанр книги", example = "Книга, написанная Толкином", allowableValues = "FANTASY, CLASSICS, DETECTIVE, HORROR", required = true)
     private String genre;
 
-    @ApiModelProperty(value = "Минимальная цена книги", example = "1234", required = true)
+    @ApiModelProperty(value = "Минимальная цена книги", example = "1234.00", required = true)
     private BigDecimal minPrice;
 
-    @ApiModelProperty(value = "Максимальная цена книги", example = "1234", required = true)
+    @ApiModelProperty(value = "Максимальная цена книги", example = "1234.00", required = true)
     private BigDecimal maxPrice;
 
     @ApiModelProperty(value = "Идентификатор автора книги", example = "30ff2b2b-42dc-4a26-93c3-ec312b4819f8",

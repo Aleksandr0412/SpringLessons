@@ -17,7 +17,7 @@ public class OrderDto {
     @ApiModelProperty(value = "Идентификатор пользователя, оформившего заказ", example = "30ff2b2b-42dc-4a26-93c3-ec312b4819f8", required = true)
     private UUID userId;
 
-    @ApiModelProperty(value = "Сумма заказа", example = "123", required = true)
+    @ApiModelProperty(value = "Сумма заказа", example = "123.00", required = true)
     private BigDecimal price;
 
     @ApiModelProperty(value = "Список идентификаторов книг заказа", required = true)
