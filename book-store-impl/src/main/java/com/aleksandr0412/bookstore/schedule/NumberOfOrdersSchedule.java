@@ -8,7 +8,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 @Component
-@ConditionalOnProperty(prefix = "scheduling.timeout", name = {"enabled"}, matchIfMissing = false)
+@ConditionalOnProperty(prefix = "scheduling.ordersSchedule", name = {"enabled"}, matchIfMissing = false)
 public class NumberOfOrdersSchedule {
 
     private final OrderService orderService;
@@ -18,7 +18,7 @@ public class NumberOfOrdersSchedule {
         this.orderService = orderService;
     }
 
-    @Scheduled(fixedDelayString = "${scheduling.timeout.interval}")
+    @Scheduled(fixedDelayString = "${scheduling.ordersSchedule.interval}")
     public void schedule() {
         long countOfOrders = orderService.getAll().size();
         log.info("Number of orders {}", countOfOrders);

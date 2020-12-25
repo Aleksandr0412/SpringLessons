@@ -11,6 +11,6 @@ spring:
     include: swagger
 
 scheduling:
-  timeout:
+  ordersSchedule:
     enabled: true
     interval: 10000
