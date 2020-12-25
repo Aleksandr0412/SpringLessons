@@ -13,7 +13,7 @@ server:
 
 spring:
   application:
-    name: my-app
+    name: Book store
   datasource:
     url: jdbc:postgresql://localhost:5432/postgres
     username: POSTGRES
@@ -56,9 +56,6 @@ management:
 threadPool:
   corePoolSize: 4
   maxPoolSize: 8
-
-system:
-  name: Book store
 
 swagger:
   title: Book store
