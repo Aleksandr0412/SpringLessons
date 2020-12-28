@@ -13,7 +13,7 @@ server:
 
 spring:
   application:
-    name: my-app
+    name: Book store
   datasource:
     url: jdbc:postgresql://localhost:5432/postgres
     username: POSTGRES
@@ -57,5 +57,10 @@ threadPool:
   corePoolSize: 4
   maxPoolSize: 8
 
-system:
-  name: my system1
+swagger:
+  title: Book store
+  description: API для проекта
+  contact:
+    mail: al.petrov@i-teco.ru
+    name: Александр Петров
+    url: https://github.com/Aleksandr0412/SpringLessons

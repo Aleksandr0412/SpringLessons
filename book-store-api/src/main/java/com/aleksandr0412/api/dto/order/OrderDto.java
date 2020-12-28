@@ -1,25 +1,26 @@
 package com.aleksandr0412.api.dto.order;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
 
+@ApiModel(description = "Модель заказа")
 public class OrderDto {
-    /**
-     * Идентификатор заказа
-     */
+
+    @ApiModelProperty(value = "Идентификатор заказа", example = "30ff2b2b-42dc-4a26-93c3-ec312b4819f8",
+            allowEmptyValue = true)
     private UUID id;
-    /**
-     * Пользователь, создавший заказ
-     */
+
+    @ApiModelProperty(value = "Идентификатор пользователя, оформившего заказ", example = "30ff2b2b-42dc-4a26-93c3-ec312b4819f8", required = true)
     private UUID userId;
-    /**
-     * Цена в рублях
-     */
+
+    @ApiModelProperty(value = "Сумма заказа", example = "123.00", required = true)
     private BigDecimal price;
-    /**
-     * Список книг заказа
-     */
+
+    @ApiModelProperty(value = "Список идентификаторов книг заказа", required = true)
     private List<UUID> bookIds;
 
     public UUID getId() {

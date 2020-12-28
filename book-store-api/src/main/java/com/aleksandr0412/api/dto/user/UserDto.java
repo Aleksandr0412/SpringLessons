@@ -1,23 +1,24 @@
 package com.aleksandr0412.api.dto.user;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.util.UUID;
 
+@ApiModel(description = "Модель пользователя")
 public class UserDto {
-    /**
-     * Идентификатор пользователя
-     */
+
+    @ApiModelProperty(value = "Идентификатор пользователя", example = "30ff2b2b-42dc-4a26-93c3-ec312b4819f8",
+            allowEmptyValue = true)
     private UUID id;
-    /**
-     * Логин пользователя на английском
-     */
+
+    @ApiModelProperty(value = "Логин пользователя", example = "user1", required = true)
     private String username;
-    /**
-     * Пароль
-     */
+
+    @ApiModelProperty(value = "Пароль пользователя", example = "qwerty123!@#$", required = true)
     private String password;
-    /**
-     * Почта пользователя
-     */
+
+    @ApiModelProperty(value = "email пользователя", example = "username@company.com", required = true)
     private String email;
 
     public UUID getId() {

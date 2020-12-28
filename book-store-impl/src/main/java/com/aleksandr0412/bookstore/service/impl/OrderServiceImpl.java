@@ -16,6 +16,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -46,6 +47,12 @@ public class OrderServiceImpl implements OrderService {
     public OrderDto getOrderByPk(UUID id) {
         return mapperFacade.map(orderRepo.findById(id), OrderDto.class);
 
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public List<OrderDto> getAll() {
+        return mapperFacade.mapAsList(orderRepo.findAll(), OrderDto.class);
     }
 
     @Transactional(readOnly = true)

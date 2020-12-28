@@ -1,26 +1,27 @@
 package com.aleksandr0412.api.dto;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.util.UUID;
 
 /**
  * Класс дто ошибки
  */
+@ApiModel(description = "Модель для ответа в результате ошибки")
 public class ResponseError {
-    /**
-     * Идентификатор ошибки
-     */
+
+    @ApiModelProperty(value = "Идентификатор ошибки", example = "30ff2b2b-42dc-4a26-93c3-ec312b4819f8",
+            required = true)
     private UUID id;
-    /**
-     * Код ошибки
-     */
+
+    @ApiModelProperty(value = "Код ошибки", example = "illegalArgumentException", required = true)
     private String code;
-    /**
-     * Сообшение ошибки
-     */
+
+    @ApiModelProperty(value = "Сообщение ошибки", example = "Что-то пошло не так", required = true)
     private String message;
-    /**
-     * Имя системы, в которой произошла ошибка
-     */
+
+    @ApiModelProperty(value = "Идентификатор системы", example = "my-system", required = true)
     private String system;
 
     public ResponseError(UUID id, String code, String message, String system) {

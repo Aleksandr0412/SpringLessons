@@ -4,6 +4,9 @@ import com.aleksandr0412.api.dto.PageDto;
 import com.aleksandr0412.api.dto.Search;
 import com.aleksandr0412.api.dto.book.BookDto;
 import com.aleksandr0412.api.dto.book.BookSearchDto;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -14,44 +17,27 @@ import java.util.UUID;
  * BookController
  */
 @RequestMapping("api/book")
+@Api(value = "API для работы с книгами")
 public interface BookController {
-    /**
-     * Возвращает список книг с учетом пагинизации и фильтров
-     *
-     * @param bookSearchDto
-     * @return
-     */
+
     @GetMapping
+    @ApiOperation(value = "Поиск по книгам")
     PageDto<BookDto> getBooks(@RequestBody Search<BookSearchDto> bookSearchDto);
 
-    /**
-     * @param id пк книги
-     * @return книгу по пк
-     */
     @GetMapping("{id}")
-    BookDto getBookByPk(@PathVariable UUID id);
+    @ApiOperation(value = "Детальная информация по книге")
+    BookDto getBookByPk(@ApiParam(value = "Идентификатор книги", required = true) @PathVariable UUID id);
 
-    /**
-     * @param bookDto охраняемая книга
-     * @param componentsBuilder
-     * @return созданную книгу
-     */
     @PostMapping
-    ResponseEntity<BookDto> createBook(@RequestBody BookDto bookDto, UriComponentsBuilder componentsBuilder);
+    @ApiOperation(value = "Создание книги")
+    ResponseEntity<BookDto> createBook(@ApiParam(value = "ДТО книги", required = true) @RequestBody BookDto bookDto, UriComponentsBuilder componentsBuilder);
 
-    /**
-     * @param id      пк книги
-     * @param bookDto
-     * @return измененную книгу
-     */
     @PutMapping("{id}")
+    @ApiOperation(value = "Обновление книги")
     BookDto updateBook(@PathVariable UUID id, @RequestBody BookDto bookDto);
 
-    /**
-     * @param id пк книги
-     * @return удаленную книгу
-     */
     @DeleteMapping
-    BookDto deleteBook(@RequestParam(value = "id") UUID id);
+    @ApiOperation(value = "Удаление книги")
+    BookDto deleteBook(@ApiParam(value = "Идентификатор книги", required = true) @RequestParam(value = "id") UUID id);
 
 }

@@ -21,7 +21,7 @@ import java.util.UUID;
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     private static final Logger log = LoggerFactory.getLogger(GlobalExceptionHandler.class.getName());
-    @Value("${system.name}")
+    @Value("${spring.application.name}")
     private String systemName;
 
     @ExceptionHandler(IllegalArgumentException.class)

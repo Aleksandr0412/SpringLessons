@@ -1,11 +1,15 @@
 package com.aleksandr0412.api.dto.author;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.util.UUID;
 
+@ApiModel(description = "Модель автора")
 public class AuthorDto {
-    /**
-     * Идентификатор автора
-     */
+
+    @ApiModelProperty(value = "Идентификатор автора", example = "30ff2b2b-42dc-4a26-93c3-ec312b4819f8",
+            allowEmptyValue = true)
     private UUID id;
     /**
      * Имя автора в формате Фамилмя И. О.

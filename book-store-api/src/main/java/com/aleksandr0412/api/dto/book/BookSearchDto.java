@@ -1,31 +1,31 @@
 package com.aleksandr0412.api.dto.book;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.math.BigDecimal;
 import java.util.UUID;
 
 /**
  * Класс дто для поиска книг
  */
+@ApiModel(description = "Модель для поиска по книгам")
 public class BookSearchDto {
-    /**
-     * Название книги
-     */
+
+    @ApiModelProperty(value = "Название книги", example = "Властелин колец", required = true)
     private String title;
-    /**
-     * Жанр книги
-     */
+
+    @ApiModelProperty(value = "Жанр книги", example = "Книга, написанная Толкином", allowableValues = "FANTASY, CLASSICS, DETECTIVE, HORROR", required = true)
     private String genre;
-    /**
-     * Цена книги в рублях(min)
-     */
+
+    @ApiModelProperty(value = "Минимальная цена книги", example = "1234.00", required = true)
     private BigDecimal minPrice;
-    /**
-     * Цена книги в рублях(max)
-     */
+
+    @ApiModelProperty(value = "Максимальная цена книги", example = "1234.00", required = true)
     private BigDecimal maxPrice;
-    /**
-     * Автор книги
-     */
+
+    @ApiModelProperty(value = "Идентификатор автора книги", example = "30ff2b2b-42dc-4a26-93c3-ec312b4819f8",
+            required = true)
     private UUID authorId;
 
     public String getTitle() {

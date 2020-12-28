@@ -1,16 +1,18 @@
 package com.aleksandr0412.api.dto;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 /**
  * Класс для пагинации
  */
+@ApiModel(description = "Объект получения по страничного ответа")
 public class Page {
-    /**
-     * Номер страницы
-     */
+
+    @ApiModelProperty(value = "Номер страницы", example = "1", required = true)
     int page;
-    /**
-     * Кол-во элементов страницы
-     */
+
+    @ApiModelProperty(value = "Количество элементов на странице", example = "5", required = true)
     int size;
 
     public int getPage() {
