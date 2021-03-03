@@ -10,5 +10,17 @@ spring:
 
 scheduling:
   ordersSchedule:
-    enabled: true
+    enabled: false
     interval: 10000
+
+logging:
+  appenders:
+    file:
+      path: log
+
+aspect:
+  maxHistory: 300
+  appender:
+    database:
+      enabled: false
+

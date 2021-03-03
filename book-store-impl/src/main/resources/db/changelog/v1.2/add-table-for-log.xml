@@ -1,0 +1,46 @@
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+
+    <changeSet id="1" author="Alexandr Petrov">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="audit_log"/>
+            </not>
+        </preConditions>
+        <createTable tableName="audit_log" remarks="Таблица логов аудита">
+            <column name="event_id" type="bigint" autoIncrement="true" remarks="Идентификатор события">
+                <constraints primaryKey="true"
+                             primaryKeyName="event_id_pk"
+                             nullable="false"/>
+            </column>
+            <column name="uuid" type="uuid" remarks="Идентификатор события">
+                <constraints nullable="false"/>
+            </column>
+            <column name="audit_code" type="varchar(255)" remarks="Уникальный код события аудита">
+                <constraints nullable="false"/>
+            </column>
+            <column name="log_event_status" type="varchar(255)" remarks="Статус выполнения (START, SUCCESS, FAILURE)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="time_start" type="timestamp with time zone" remarks="Время соответствующее событию START">
+                <constraints nullable="false"/>
+            </column>
+            <column name="time_end" type="timestamp with time zone"
+                    remarks="Время соответствующее событию SUCCESS, FAILURE"/>
+            <column name="username" type="varchar(255)"
+                    remarks="Имя пользователя от которого выполняется данный запрос">
+                <constraints nullable="false"/>
+            </column>
+            <column name="params" type="varchar(65535)" remarks="Параметры запроса(JSON)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="return_value" type="varchar(65535)"
+                    remarks="Возвращаемое значение в результате выполнения метода (JSON)"/>
+        </createTable>
+        <comment>Созадние таблицы для хранения логов аудита</comment>
+    </changeSet>
+
+</databaseChangeLog>

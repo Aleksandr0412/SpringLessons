@@ -8,4 +8,5 @@ rootProject.name = 'BookStore'
 
 include 'book-store-api'
 include 'book-store-impl'
+include 'book-store-audit'
 
