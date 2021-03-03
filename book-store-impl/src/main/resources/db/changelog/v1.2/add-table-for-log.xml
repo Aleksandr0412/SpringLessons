@@ -1,0 +1,46 @@
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+
+    <changeSet id="1" author="Alexandr Petrov">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="audit_log"/>
+            </not>
+        </preConditions>
+        <createTable tableName="audit_log" remarks="Таблица логов">
+            <column name="event_id" type="bigint" autoIncrement="true" remarks="Идентификатор события">
+                <constraints primaryKey="true"
+                             primaryKeyName="event_id_pk"
+                             nullable="false"/>
+            </column>
+            <column name="uuid" type="uuid" remarks="Идентификатор события">
+                <constraints nullable="false"/>
+            </column>
+            <column name="audit_code" type="varchar(255)" remarks="Rод события аудита">
+                <constraints nullable="false"/>
+            </column>
+            <column name="event_code" type="varchar(255)" remarks="Статус события">
+                <constraints nullable="false"/>
+            </column>
+            <column name="time_start" type="timestamp with time zone" remarks="Время начала событию">
+                <constraints nullable="false"/>
+            </column>
+            <column name="time_end" type="timestamp with time zone"
+                    remarks="Время завершения события"/>
+            <column name="username" type="varchar(255)"
+                    remarks="Имя пользователя">
+                <constraints nullable="false"/>
+            </column>
+            <column name="params" type="varchar(50000)" remarks="Параметры запроса">
+                <constraints nullable="false"/>
+            </column>
+            <column name="return_value" type="varchar(50000)"
+                    remarks="Возвращаемое значение"/>
+        </createTable>
+        <comment>Созадние таблицы для хранения логов</comment>
+    </changeSet>
+
+</databaseChangeLog>

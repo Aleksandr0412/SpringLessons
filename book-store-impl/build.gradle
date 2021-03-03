@@ -16,6 +16,7 @@ dependencies {
     implementation 'net.rakugakibox.spring.boot:orika-spring-boot-starter:1.9.0'
 
     implementation project(':book-store-api')
+    implementation project(':book-store-audit')
 }
 
 bootJar {

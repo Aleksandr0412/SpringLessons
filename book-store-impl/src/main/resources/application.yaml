@@ -15,10 +15,10 @@ spring:
   application:
     name: Book store
   datasource:
-    url: jdbc:postgresql://localhost:5432/postgres
+    url: jdbc:postgresql://localhost:5432/TEST
     username: POSTGRES
     password: POSTGRES
-    driverClassName: org.postgresql.Driver
+    driver-class-name: org.postgresql.Driver
     hikari:
       connection-timeout: 30000
       maximum-pool-size: 10
@@ -42,6 +42,10 @@ logging:
     ROOT: INFO
     com.aleksandr0412.bookstore: DEBUG
     org.springframework: INFO
+  appenders:
+    console:
+      enabled: true
+
 
 management:
   endpoints:
@@ -64,3 +68,4 @@ swagger:
     mail: al.petrov@i-teco.ru
     name: Александр Петров
     url: https://github.com/Aleksandr0412/SpringLessons
+

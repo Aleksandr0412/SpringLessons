@@ -13,13 +13,21 @@ allprojects {
 }
 
 subprojects {
-    apply plugin: 'org.springframework.boot'
-    apply plugin: 'io.spring.dependency-management'
     apply plugin: 'java'
     apply plugin: 'idea'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
     repositories {
         mavenCentral()
     }
+    dependencies {
+        implementation(group: 'com.intellij', name: 'annotations', version: '12.0')
+        implementation(group: 'org.projectlombok', name: 'lombok', version: '1.18.14')
+        implementation(group: 'commons-lang', name: 'commons-lang', version: '2.6')
+
+        annotationProcessor(group: 'org.projectlombok', name: 'lombok', version: '1.18.14')
+    }
+
 }
 
 repositories {
