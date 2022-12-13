@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+
+    <springProperty name="LOG_PATH" source="logging.appenders.file.path" defaultValue="log"/>
+    <springProperty scope="context" name="ASPECT_PATH" source="aspect.path" defaultValue="${LOG_PATH}/aspect"/>
+    <springProperty scope="context" name="ASPECT_NAME" source="aspect.logName" defaultValue="aspect"/>
+    <springProperty scope="context" name="MAX_HISTORY" source="aspect.maxHistory" defaultValue="300"/>
+    <springProperty scope="context" name="CLASS_NAME" source="spring.datasource.driver-class-name"/>
+    <springProperty scope="context" name="URL" source="spring.datasource.url"/>
+    <springProperty scope="context" name="USERNAME" source="spring.datasource.username"/>
+    <springProperty scope="context" name="PASSWORD" source="spring.datasource.password"/>
+    <property name="ASPECT_ARCHIVE" value="${ASPECT_PATH}/archive"/>
+
+    <springProperty name="CONSOLE_ENABLED" source="logging.appenders.console.enabled"/>
+    <if condition='p("CONSOLE_ENABLED").equals("true")'>
+        <then>
+            <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+                <encoder>
+                    <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+                </encoder>
+            </appender>
+        </then>
+    </if>
+
+    <root level="INFO">
+        <if condition='p("CONSOLE_ENABLED").equals("true")'>
+            <then>
+                <appender-ref ref="console"/>
+            </then>
+        </if>
+    </root>
+
+    <springProperty name="DATABASE_ENABLED" source="aspect.appender.database.enabled"/>
+    <if condition='p("DATABASE_ENABLED").equals("true")'>
+        <then>
+            <appender name="DB" class="com.aleksandr0412.bookstore.appender.DBAppender">
+                <connectionSource class="ch.qos.logback.core.db.DriverManagerConnectionSource">
+                    <driverClass>${CLASS_NAME}</driverClass>
+                    <url>${URL}</url>
+                    <user>${USERNAME}</user>
+                    <password>${PASSWORD}</password>
+                </connectionSource>
+            </appender>
+
+            <logger name="com.aleksandr0412.bookstore.service.AspectService" level="DEBUG" additivity="false">
+                <appender-ref ref="DB"/>
+            </logger>
+        </then>
+        <else>
+            <appender name="ASPECT_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+                <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+                    <Pattern>%msg%n</Pattern>
+                    <charset>UTF-8</charset>
+                </encoder>
+
+                <file>${ASPECT_PATH}/${ASPECT_NAME}.log</file>
+                <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                    <fileNamePattern>${ASPECT_ARCHIVE}/${ASPECT_NAME}.%d{yyyy-MM-dd}.log</fileNamePattern>
+                    <maxHistory>${MAX_HISTORY}</maxHistory>
+                </rollingPolicy>
+            </appender>
+
+            <logger name="com.aleksandr0412.bookstore.service.AspectService" level="DEBUG" additivity="false">
+                <appender-ref ref="ASPECT_FILE"/>
+            </logger>
+        </else>
+    </if>
+
+
+</configuration>

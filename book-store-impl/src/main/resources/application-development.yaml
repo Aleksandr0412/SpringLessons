@@ -1,0 +1,26 @@
+spring:
+  datasource:
+    username: POSTGRES
+    password: POSTGRES
+    url: jdbc:postgresql://localhost:5432/TEST
+    driver-class-name: org.postgresql.Driver
+  profiles:
+    include: swagger
+
+swagger:
+  title: Book store
+  description: API для проекта
+  contact:
+    mail: al.petrov@i-teco.ru
+    name: Александр Петров
+    url: https://github.com/Aleksandr0412/SpringLessons
+
+aspect:
+  appender:
+    database:
+      enabled: true
+
+logging:
+  appenders:
+    console:
+      enabled: true

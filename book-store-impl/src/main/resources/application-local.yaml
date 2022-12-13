@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/postgres
+    url: jdbc:postgresql://localhost:5432/TEST
     username: POSTGRES
     password: POSTGRES
     driverClassName: org.postgresql.Driver
@@ -10,5 +10,17 @@ spring:
 
 scheduling:
   ordersSchedule:
-    enabled: true
+    enabled: false
     interval: 10000
+
+logging:
+  appenders:
+    file:
+      path: log
+
+aspect:
+  maxHistory: 300
+  appender:
+    database:
+      enabled: false
+
